@@ -40,11 +40,11 @@ from sqlalchemy import Integer
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import backref
 from sqlalchemy.ext.hybrid import hybrid_property
-from BaseMixin import BASE
-from Word import Word
-from TagWord import TagWord
-from find_tag import find_tag
-from tag_relationship import tag_relationship
+from .BaseMixin import BASE
+from .Word import Word
+from .TagWord import TagWord
+from .find_tag import find_tag
+from .tag_relationship import tag_relationship
 
 
 class TagClassConstructor():
