@@ -2,6 +2,12 @@ anormbookmarker provides a Bookmark class that links Tags (unicode sentences) wi
 
 The included example shows a simple 'class Filename' getting bookmarked.
 
+Tags are a ordered sequence of unicode strings (class Word).
+
+Words can have mispellings that alias back to the correct Word.
+
+Tags can have any number of parents and/or children.
+
 
 ![image of db schema from pydot](https://github.com/jakeogh/anormbookmarker/raw/master/dbschema.1493601122.7285874.png "dbschema.png")
 
