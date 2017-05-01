@@ -18,12 +18,12 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
-from get_one_or_create import get_one_or_create
-from BaseMixin import BASE
-from Config import CONFIG
-from Word import Word
-from Word import WordMisSpelling
-from TagWord import TagWord
+from .get_one_or_create import get_one_or_create
+from .BaseMixin import BASE
+from .Config import CONFIG
+from .Word import Word
+from .Word import WordMisSpelling
+from .TagWord import TagWord
 
 
 def find_tag(session, tag):
