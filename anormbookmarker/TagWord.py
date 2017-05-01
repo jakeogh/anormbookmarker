@@ -9,7 +9,7 @@ from sqlalchemy import UniqueConstraint
 from sqlalchemy import CheckConstraint
 from sqlalchemy import Integer
 from sqlalchemy.orm import relationship
-from BaseMixin import BASE
+from .BaseMixin import BASE
 
 
 class TagWord(BASE):
