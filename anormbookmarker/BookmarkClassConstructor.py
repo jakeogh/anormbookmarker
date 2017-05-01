@@ -15,9 +15,9 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.orm import backref
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.associationproxy import association_proxy
-from get_one_or_create import get_one_or_create
-from BaseMixin import BASE
-from Tag import Tag
+from .get_one_or_create import get_one_or_create
+from .BaseMixin import BASE
+from .Tag import Tag
 
 tagbookmarks_table = \
     Table('tagbookmarks', BASE.metadata,
