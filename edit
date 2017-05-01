@@ -1,0 +1,38 @@
+#!/bin/sh
+short_package="anormbookmarker"
+package="dev-python/anormbookmarker"
+
+prehash=`sha1sum "${1}"`
+~/cfg/appwrappers/nano "${1}"
+posthash=`sha1sum "${1}"`
+
+if [[ "${prehash}" != "${posthash}" ]] ;
+then
+    ~/cfg/python/pylint "${1}"
+    git diff
+    git add "${1}"
+fi
+
+~/cfg/git/staged_but_uncomitted_changes_exist.sh > /dev/null || exit 1
+
+echo -e "\nenter commit message:"
+read commitmessage
+if [[ -z "${commitmessage}" ]] ;
+then
+    echo "empty commit message?"
+    ~/cfg/pause
+    commitmessage="auto-commit"
+fi
+git commit -m "${commitmessage}" #&& git push || exit 0
+sudo emerge --rage-clean "${short_package}"
+sudo rm -f /usr/portage/packages/"${package}"-0.0.1.tbz2
+sudo rm -rf /usr/lib64/python3.4/site-packages/"${short_package}"-0.1-py3.4.egg
+sudo emerge --tree --quiet-build=n --usepkg=n "${package}"
+sudo rm /usr/portage/packages/"${package}"-0.0.1.tbz2 -f
+sudo rm -rf build
+$short_package
+
+
+
+
+
