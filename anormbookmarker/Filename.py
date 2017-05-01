@@ -12,8 +12,8 @@ from sqlalchemy import ForeignKey
 from sqlalchemy import CheckConstraint
 from sqlalchemy import Integer
 from sqlalchemy import LargeBinary # bytea on postgresql
-from get_one_or_create import get_one_or_create
-from BaseMixin import BASE
+from .get_one_or_create import get_one_or_create
+from .BaseMixin import BASE
 
 
 class Filename(BASE):
