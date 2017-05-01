@@ -25,9 +25,9 @@ from sqlalchemy import Unicode
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.ext.hybrid import hybrid_property
-from get_one_or_create import get_one_or_create
-from BaseMixin import BASE
-from Config import CONFIG
+from .get_one_or_create import get_one_or_create
+from .BaseMixin import BASE
+from .Config import CONFIG
 
 class Word(BASE):
     '''
