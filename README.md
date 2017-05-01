@@ -3,7 +3,7 @@ anormbookmarker provides a Bookmark class that links Tags (unicode sentences) wi
 In this example the class getting "Bookmarked" is Filename.
 
 
-![image of db schema from pydot](https://raw.githubusercontent.com/jakeogh/simple-bookmarking-example/master/dbschema.1493601122.7285874.png "dbschema.png")
+![image of db schema from pydot](https://github.com/jakeogh/anormbookmarker/raw/master/dbschema.1493601122.7285874.png "dbschema.png")
 
 
 Output:
