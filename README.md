@@ -1,6 +1,6 @@
 anormbookmarker provides a Bookmark class that links Tags (unicode sentences) with another mapper class that the user would like to Tag.
 
-The included example shows a simple 'class Filename' the class getting bookmarked.
+The included example shows a simple 'class Filename' getting bookmarked.
 
 
 ![image of db schema from pydot](https://github.com/jakeogh/anormbookmarker/raw/master/dbschema.1493601122.7285874.png "dbschema.png")
