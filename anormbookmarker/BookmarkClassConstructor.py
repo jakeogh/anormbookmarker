@@ -17,10 +17,10 @@ from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.associationproxy import association_proxy
 from .get_one_or_create import get_one_or_create
 from .BaseMixin import BASE
-# from .Tag import Tag
-from .TagClassConstructor import TagClassConstructor
-from .Filename import Filename
-Tag = TagClassConstructor(mapper_to_bookmark=Filename)
+
+#from .TagClassConstructor import TagClassConstructor
+#from .Filename import Filename
+#Tag = TagClassConstructor(mapper_to_bookmark=Filename)
 
 tagbookmarks_table = \
     Table('tagbookmarks', BASE.metadata,
@@ -36,7 +36,7 @@ tagbookmarks_table = \
 
 @classmethod
 def bookmark_construct(cls, session, tag, **kwargs):
-    tag = Tag.construct(session=session, tag=tag)
+    #tag = Tag.construct(session=session, tag=tag) # could demand to get a tag obj...
     result = get_one_or_create(session, cls, **kwargs)
     result.tag_rel.add(tag)
     return result
