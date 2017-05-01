@@ -17,7 +17,10 @@ from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.associationproxy import association_proxy
 from .get_one_or_create import get_one_or_create
 from .BaseMixin import BASE
-from .Tag import Tag
+# from .Tag import Tag
+from .TagClassConstructor import TagClassConstructor
+from .Filename import Filename
+Tag = TagClassConstructor(mapper_to_bookmark=Filename)
 
 tagbookmarks_table = \
     Table('tagbookmarks', BASE.metadata,
