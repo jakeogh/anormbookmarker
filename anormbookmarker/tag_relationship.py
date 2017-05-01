@@ -6,7 +6,7 @@ from sqlalchemy import Table
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
-from BaseMixin import BASE
+from .BaseMixin import BASE
 
 tag_relationship = Table(
     'tag_relationship', BASE.metadata,
