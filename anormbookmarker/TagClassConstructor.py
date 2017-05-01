@@ -119,7 +119,6 @@ def tag_targets(self):
     return set(target_list)
 
 
-
 ## not sure if sorting is necessary
 #    @property
 #    def tag_with_checks(self):
