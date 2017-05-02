@@ -32,14 +32,14 @@ class TagAlias(BASE):
     '''
     id = Column(Integer, primary_key=True)
 
-    words = relationship("TagWord", backref='tag') # a list of TagWord instances
+    words = relationship("TagWord", backref='alias') # a list of TagWord instances
 
-    def __init__(self, session, tag):
-        print("Tag.__init__() tag:", tag)
+    def __init__(self, session, alias):
+        print("TagAlias.__init__() alias:", alias)
         assert isinstance(tag, str)
-        assert not find_tag(session=session, tag=tag)
+        assert not find_tag(session=session, tag=alias)
 
-        for index, word in enumerate(tag.split(' ')):
+        for index, word in enumerate(alias.split(' ')):
             previous_position = index - 1
             if previous_position == -1:
                 previous_position = None
@@ -50,20 +50,20 @@ class TagAlias(BASE):
             session.flush(objects=[self])
 
     @classmethod
-    def construct(cls, session, tag):
+    def construct(cls, session, alias):
         '''
         prevents creation of duplicate tag aliases or conflicting tag aliases and tags
         '''
-        #print("Tag.construct() tag:", tag)
-        assert tag
-        existing_tag = find_tag(session=session, tag=tag)
-        if existing_tag:
-            #print("Tag.construct() existing_tag:", existing_tag)
-            return existing_tag
+        print("TagAlias.construct() alias:", alias)
+        assert alias
+        existing_tag = find_tag(session=session, tag=alias)
+        if existing_tag: # this would be an existing tag that matches this alias
+            print("TagAlias.construct() existing_tag:", existing_tag)
+            return False #todo
         else:
-            new_tag = Tag(tag=tag, session=session)
-            #print("Tag.construct() new_tag:", new_tag)
-            return new_tag
+            new_alias = TagAlias(alias=alias, session=session)
+            print("TagAlias.construct() new_alias:", new_alias)
+            return new_alias
 
 #    # not sure if sorting is necessary
 #    @property
@@ -80,11 +80,11 @@ class TagAlias(BASE):
 #        return unsorted_tag
 
     @property
-    def tag(self): # appears to always return the same result as tag_with_checks()
-        tag = " ".join([str(word.word) for word in self.words])
-        return tag
+    def alias(self): # appears to always return the same result as tag_with_checks()
+        alias = " ".join([str(word.word) for word in self.words])
+        return alias
 
     def __repr__(self):
-        return str(self.tag)
+        return str(self.alias)
 
 
