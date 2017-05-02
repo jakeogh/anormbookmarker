@@ -13,7 +13,7 @@ def find_alias(session, alias):
     checks each word for a misspelling and replaces the mispelling if it's found
     returns the alias if found, else returns False
     it's reasonable to return the tag if it's found beacuse unlike an alias, a tag cant point to
-    the wrong thing. returning a "duplicate" alias only makes sense if it's pointing to the same tag.
+    the wrong thing. returning a "duplicate" alias only makes sense if it's pointing to the same tag. TODO
     '''
     corrected_alias = alias
     possible_alias_set = set([])
