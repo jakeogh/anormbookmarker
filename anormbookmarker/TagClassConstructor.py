@@ -45,7 +45,7 @@ from .Word import Word
 from .TagWord import TagWord
 from .find_tag import find_tag
 from .tag_relationship import tag_relationship
-
+from .ConflictingAliasError import ConflictingAliasError
 
 class TagClassConstructor():
     def __new__(cls, mapper_to_bookmark):
@@ -92,8 +92,16 @@ def tag_init(self, session, tag):
 
 @classmethod
 def tag_construct(cls, session, tag, **kwargs):
-    '''prevents creation of duplicate tags'''
+    '''
+    prevents creation of duplicate tags
+    prevents creation of a tag that conflicts with an existing alias
+    '''
     assert tag
+    existing_alias = find_alias(session=session, alias=tag)
+    if existing_alias:
+       error_msg = "tag: '%s' conflicts with existing alias: '%s'" % (tag, existing_alias)
+       raise ConflictingAliasError(error_msg)
+
     existing_tag = find_tag(session=session, tag=tag)
     if existing_tag:
         return existing_tag
