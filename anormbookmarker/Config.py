@@ -11,7 +11,7 @@ class Config():
     def __init__(self):
         self.word_max_length = 255
         self.tag_max_length = 255
-        self.dbname = 'bookmark_test_' + str(time.time()).replace('.', '_')
+        self.dbname = 'anormbookmarker_test_' + str(time.time()).replace('.', '_')
         self.dbpath = 'postgres://postgres@localhost/' + self.dbname
         self.pg_dbpath = 'postgresql://postgres@localhost/postgres'
 
