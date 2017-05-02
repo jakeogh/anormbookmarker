@@ -50,6 +50,7 @@ class Alias(BASE):
             self.words.append(aliasword)
             self.tag = tag
             session.add(self)
+            print("Alias.__init__ calling session.flush()")
             session.flush(objects=[self])
 
     @classmethod
@@ -62,6 +63,7 @@ class Alias(BASE):
         existing_tag = find_tag(session=session, tag=alias)
         if existing_tag: # this would be an existing tag that matches this alias
             print("Alias.construct() existing_tag:", existing_tag)
+            quit(1)
             return False #todo
         else:
             new_alias = Alias(alias=alias, tag=tag, session=session)
