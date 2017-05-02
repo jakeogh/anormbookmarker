@@ -68,6 +68,7 @@ class TagWord(BASE):
             'word: ' + str(self.word) + \
             ', tag_id: ' + str(self.tag_id) + \
             ', word_id: ' + str(self.word_id) + \
+            ', alias_id: ' + str(self.alias_id) + \
             ', position: ' + str(self.position) + '>'
 
 
