@@ -25,7 +25,7 @@ from .Word import Word
 from .find_tag import find_tag
 from .BaseMixin import BASE
 
-class TagAlias(BASE):
+class Alias(BASE):
     '''
     List of TagWord instances that point to a Tag
 
@@ -35,7 +35,7 @@ class TagAlias(BASE):
     words = relationship("TagWord", backref='alias') # a list of TagWord instances
 
     def __init__(self, session, alias):
-        print("TagAlias.__init__() alias:", alias)
+        print("Alias.__init__() alias:", alias)
         assert isinstance(tag, str)
         assert not find_tag(session=session, tag=alias)
 
@@ -54,15 +54,15 @@ class TagAlias(BASE):
         '''
         prevents creation of duplicate aliases or conflicting tag aliases and tags
         '''
-        print("TagAlias.construct() alias:", alias)
+        print("Alias.construct() alias:", alias)
         assert alias
         existing_tag = find_tag(session=session, tag=alias)
         if existing_tag: # this would be an existing tag that matches this alias
-            print("TagAlias.construct() existing_tag:", existing_tag)
+            print("Alias.construct() existing_tag:", existing_tag)
             return False #todo
         else:
-            new_alias = TagAlias(alias=alias, session=session)
-            print("TagAlias.construct() new_alias:", new_alias)
+            new_alias = Alias(alias=alias, session=session)
+            print("Alias.construct() new_alias:", new_alias)
             return new_alias
 
 #    # not sure if sorting is necessary

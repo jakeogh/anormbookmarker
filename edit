@@ -23,7 +23,7 @@ then
     ~/cfg/pause
     commitmessage="auto-commit"
 fi
-git commit -m "${commitmessage}" #&& git push || exit 0
+git commit -m "${commitmessage}" && git push || exit 0
 sudo emerge --rage-clean "${short_package}"
 sudo rm -f /usr/portage/packages/"${package}"-0.0.1.tbz2
 sudo rm -rf /usr/lib64/python3.4/site-packages/"${short_package}"-0.1-py3.4.egg

@@ -10,6 +10,7 @@ Tag = TagClassConstructor(mapper_to_bookmark=Filename)
 from anormbookmarker.BookmarkClassConstructor import BookmarkClassConstructor
 Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
 
+from anormbookmarker.TagAlias import TagAlias
 from anormbookmarker.Word import Word
 from anormbookmarker.Word import WordMisSpelling
 from db_utils import create_database_and_tables
@@ -148,6 +149,17 @@ def run_tests(session):
     # test parent Tag relationship
     plants.parents.append(life)
     session.commit()
+
+    # make a tag to make an alias to
+    next_tag = "life"
+    eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
+    session.commit()
+
+    # make a Alias
+    #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus', casesensitive=False)
+    #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+    alias = Alias.construct(session=session, alias='rainbow eucalyptus')
+
 
     list_tables(session)
     print_database(session)

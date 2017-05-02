@@ -31,12 +31,17 @@ class TagWord(BASE):
     Does not appear to be a big deal because it's not exp and most tags have 0 spaces
 
     '''
-    __table_args__ = (UniqueConstraint('word_id', 'tag_id', 'position'),)
+    __table_args__ = (UniqueConstraint('word_id', 'tag_id', 'alias_id', 'position'),)
     tag_id = Column(Integer,
                     ForeignKey("tag.id"),
                     unique=False,
                     primary_key=True,
                     nullable=False)
+    alias_id = Column(Integer,
+                      ForeignKey("tag.id"),
+                      unique=False,
+                      primary_key=True,
+                      nullable=False)
     word_id = Column(Integer,
                      ForeignKey("word.id"),
                      unique=False,
