@@ -20,38 +20,38 @@ from .Config import CONFIG
 from .Word import Word
 #from Word import WordMisSpelling
 #from tag_relationship import tag_relationship
-#from TagWord import TagWord
+from AliasWord import AliasWord
 from .find_tag import find_tag
 from .BaseMixin import BASE
 
 class Alias(BASE):
     '''
-    List of TagWord instances that point to a Tag
+    List of AliasWord instances that point to a Tag
 
     '''
     id = Column(Integer, primary_key=True)
 
-    words = relationship("TagWord", backref='alias') # a list of TagWord instances
+    words = relationship("AliasWord", backref='alias') # a list of AliasWord instances
 
     def __init__(self, session, alias):
         print("Alias.__init__() alias:", alias)
-        assert isinstance(tag, str)
+        assert isinstance(alias, str)
         assert not find_tag(session=session, tag=alias)
 
         for index, word in enumerate(alias.split(' ')):
             previous_position = index - 1
             if previous_position == -1:
                 previous_position = None
-            tagword = TagWord(position=index, previous_position=previous_position)
-            tagword.word = Word.construct(session=session, word=word)
-            self.words.append(tagword)
+            aliasword = AliasWord(position=index, previous_position=previous_position)
+            aliasword.word = Word.construct(session=session, word=word)
+            self.words.append(aliasword)
             session.add(self)
             session.flush(objects=[self])
 
     @classmethod
     def construct(cls, session, alias):
         '''
-        prevents creation of duplicate aliases or conflicting tag aliases and tags
+        prevents creation of duplicate aliases or conflicting aliases and tags
         '''
         print("Alias.construct() alias:", alias)
         assert alias
