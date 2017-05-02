@@ -19,7 +19,7 @@ def create_database():
 
 def create_tables(schema=BASE):
     '''Create tables.'''
-    engine = create_engine(CONFIG.dbpath, echo=False)
+    engine = create_engine(CONFIG.dbpath, echo=True)
     schema.metadata.create_all(engine)
 
 def create_database_and_tables():
