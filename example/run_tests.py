@@ -212,11 +212,6 @@ def run_tests(session):
     # AssertionError
     alias = Alias(session=session, tag=trees, alias='Eucalyptus deglupta')
     session.commit()
-#
-#
-#    # make an Alias that conflicts with existing alias
-#    #alias = Alias.construct(session=session, tag=trees, alias='rainbow eucalyptus')
-#    #session.commit()
 
 
     list_tables(session)
