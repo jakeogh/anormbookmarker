@@ -29,7 +29,7 @@ def create_database_and_tables():
 
 def create_session():
     '''Create a session.'''
-    engine = create_engine(CONFIG.dbpath, echo=False, poolclass=NullPool)
+    engine = create_engine(CONFIG.dbpath, echo=True, poolclass=NullPool)
     session = scoped_session(sessionmaker(autocommit=False,
                                           autoflush=False,
                                           bind=engine))

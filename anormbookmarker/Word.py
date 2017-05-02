@@ -81,10 +81,7 @@ class WordMisSpelling(BASE):
     '''
     alias of a word, intended to be used for misspellings
     '''
-    id = Column(Integer,
-                autoincrement=True,
-                primary_key=True,
-                index=True)
+    id = Column(Integer, autoincrement=True, primary_key=True)
     wordmisspelling = Column(Unicode(CONFIG.word_max_length),
                              unique=True,
                              nullable=False,

@@ -14,37 +14,55 @@ Tags can have any number of parents and/or children.
 Current Output:
 ```
  $ ./run_tests.py 
-create_database() CONFIG.dbname: anormbookmarker_test_1493700608_2689643
-create_database() CONFIG.dbpath: postgres://postgres@localhost/anormbookmarker_test_1493700608_2689643
-2017-05-01 21:50:08,604 INFO sqlalchemy.engine.base.Engine select version()
-2017-05-01 21:50:08,604 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,605 INFO sqlalchemy.engine.base.Engine select current_schema()
-2017-05-01 21:50:08,605 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,606 INFO sqlalchemy.engine.base.Engine SELECT CAST('test plain returns' AS VARCHAR(60)) AS anon_1
-2017-05-01 21:50:08,606 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,607 INFO sqlalchemy.engine.base.Engine SELECT CAST('test unicode returns' AS VARCHAR(60)) AS anon_1
-2017-05-01 21:50:08,607 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,608 INFO sqlalchemy.engine.base.Engine show standard_conforming_strings
-2017-05-01 21:50:08,608 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,609 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
-2017-05-01 21:50:08,609 INFO sqlalchemy.engine.base.Engine {'name': 'filename'}
-2017-05-01 21:50:08,610 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
-2017-05-01 21:50:08,610 INFO sqlalchemy.engine.base.Engine {'name': 'alias'}
-2017-05-01 21:50:08,611 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
-2017-05-01 21:50:08,611 INFO sqlalchemy.engine.base.Engine {'name': 'word'}
-2017-05-01 21:50:08,612 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
-2017-05-01 21:50:08,612 INFO sqlalchemy.engine.base.Engine {'name': 'bookmark'}
-2017-05-01 21:50:08,612 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
-2017-05-01 21:50:08,613 INFO sqlalchemy.engine.base.Engine {'name': 'wordmisspelling'}
-2017-05-01 21:50:08,613 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
-2017-05-01 21:50:08,613 INFO sqlalchemy.engine.base.Engine {'name': 'tagbookmarks'}
-2017-05-01 21:50:08,614 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
-2017-05-01 21:50:08,614 INFO sqlalchemy.engine.base.Engine {'name': 'tag_relationship'}
-2017-05-01 21:50:08,615 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
-2017-05-01 21:50:08,615 INFO sqlalchemy.engine.base.Engine {'name': 'tagword'}
-2017-05-01 21:50:08,616 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
-2017-05-01 21:50:08,616 INFO sqlalchemy.engine.base.Engine {'name': 'tag'}
-2017-05-01 21:50:08,617 INFO sqlalchemy.engine.base.Engine 
+create_database() CONFIG.dbname: anormbookmarker_test_1493702428_8747272
+create_database() CONFIG.dbpath: postgres://postgres@localhost/anormbookmarker_test_1493702428_8747272
+2017-05-01 22:20:29,205 INFO sqlalchemy.engine.base.Engine select version()
+2017-05-01 22:20:29,205 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,206 INFO sqlalchemy.engine.base.Engine select current_schema()
+2017-05-01 22:20:29,206 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,208 INFO sqlalchemy.engine.base.Engine SELECT CAST('test plain returns' AS VARCHAR(60)) AS anon_1
+2017-05-01 22:20:29,208 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,208 INFO sqlalchemy.engine.base.Engine SELECT CAST('test unicode returns' AS VARCHAR(60)) AS anon_1
+2017-05-01 22:20:29,208 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,209 INFO sqlalchemy.engine.base.Engine show standard_conforming_strings
+2017-05-01 22:20:29,209 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,210 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2017-05-01 22:20:29,210 INFO sqlalchemy.engine.base.Engine {'name': 'tag'}
+2017-05-01 22:20:29,211 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2017-05-01 22:20:29,211 INFO sqlalchemy.engine.base.Engine {'name': 'alias'}
+2017-05-01 22:20:29,212 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2017-05-01 22:20:29,212 INFO sqlalchemy.engine.base.Engine {'name': 'tagbookmarks'}
+2017-05-01 22:20:29,213 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2017-05-01 22:20:29,213 INFO sqlalchemy.engine.base.Engine {'name': 'tag_relationship'}
+2017-05-01 22:20:29,214 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2017-05-01 22:20:29,214 INFO sqlalchemy.engine.base.Engine {'name': 'tagword'}
+2017-05-01 22:20:29,215 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2017-05-01 22:20:29,215 INFO sqlalchemy.engine.base.Engine {'name': 'filename'}
+2017-05-01 22:20:29,215 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2017-05-01 22:20:29,216 INFO sqlalchemy.engine.base.Engine {'name': 'bookmark'}
+2017-05-01 22:20:29,216 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2017-05-01 22:20:29,216 INFO sqlalchemy.engine.base.Engine {'name': 'word'}
+2017-05-01 22:20:29,217 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2017-05-01 22:20:29,217 INFO sqlalchemy.engine.base.Engine {'name': 'wordmisspelling'}
+2017-05-01 22:20:29,218 INFO sqlalchemy.engine.base.Engine 
+CREATE TABLE tag (
+        id SERIAL NOT NULL, 
+        PRIMARY KEY (id)
+)
+
+
+2017-05-01 22:20:29,219 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,224 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,226 INFO sqlalchemy.engine.base.Engine 
+CREATE TABLE alias (
+        id SERIAL NOT NULL, 
+        PRIMARY KEY (id)
+)
+
+
+2017-05-01 22:20:29,227 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,231 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,233 INFO sqlalchemy.engine.base.Engine 
 CREATE TABLE filename (
         id SERIAL NOT NULL, 
         filename BYTEA NOT NULL, 
@@ -52,21 +70,12 @@ CREATE TABLE filename (
 )
 
 
-2017-05-01 21:50:08,617 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,630 INFO sqlalchemy.engine.base.Engine COMMIT
-2017-05-01 21:50:08,635 INFO sqlalchemy.engine.base.Engine CREATE UNIQUE INDEX ix_filename_filename ON filename (filename)
-2017-05-01 21:50:08,635 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,641 INFO sqlalchemy.engine.base.Engine COMMIT
-2017-05-01 21:50:08,645 INFO sqlalchemy.engine.base.Engine 
-CREATE TABLE alias (
-        id SERIAL NOT NULL, 
-        PRIMARY KEY (id)
-)
-
-
-2017-05-01 21:50:08,645 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,651 INFO sqlalchemy.engine.base.Engine COMMIT
-2017-05-01 21:50:08,656 INFO sqlalchemy.engine.base.Engine 
+2017-05-01 22:20:29,233 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,239 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,241 INFO sqlalchemy.engine.base.Engine CREATE UNIQUE INDEX ix_filename_filename ON filename (filename)
+2017-05-01 22:20:29,241 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,244 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,246 INFO sqlalchemy.engine.base.Engine 
 CREATE TABLE word (
         id SERIAL NOT NULL, 
         word VARCHAR(255) NOT NULL CHECK (position('\x20' in word) = 0), 
@@ -74,50 +83,12 @@ CREATE TABLE word (
 )
 
 
-2017-05-01 21:50:08,656 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,665 INFO sqlalchemy.engine.base.Engine COMMIT
-2017-05-01 21:50:08,669 INFO sqlalchemy.engine.base.Engine CREATE UNIQUE INDEX ix_word_word ON word (word)
-2017-05-01 21:50:08,669 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,676 INFO sqlalchemy.engine.base.Engine COMMIT
-2017-05-01 21:50:08,680 INFO sqlalchemy.engine.base.Engine 
-CREATE TABLE tag (
-        id SERIAL NOT NULL, 
-        PRIMARY KEY (id)
-)
-
-
-2017-05-01 21:50:08,680 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,686 INFO sqlalchemy.engine.base.Engine COMMIT
-2017-05-01 21:50:08,691 INFO sqlalchemy.engine.base.Engine 
-CREATE TABLE bookmark (
-        id SERIAL NOT NULL, 
-        filename_id INTEGER NOT NULL, 
-        PRIMARY KEY (id), 
-        FOREIGN KEY(filename_id) REFERENCES filename (id)
-)
-
-
-2017-05-01 21:50:08,691 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,698 INFO sqlalchemy.engine.base.Engine COMMIT
-2017-05-01 21:50:08,703 INFO sqlalchemy.engine.base.Engine 
-CREATE TABLE wordmisspelling (
-        id SERIAL NOT NULL, 
-        wordmisspelling VARCHAR(255) NOT NULL, 
-        word_id INTEGER NOT NULL, 
-        PRIMARY KEY (id), 
-        FOREIGN KEY(word_id) REFERENCES word (id)
-)
-
-
-2017-05-01 21:50:08,703 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,710 INFO sqlalchemy.engine.base.Engine COMMIT
-2017-05-01 21:50:08,714 INFO sqlalchemy.engine.base.Engine CREATE INDEX ix_wordmisspelling_id ON wordmisspelling (id)
-2017-05-01 21:50:08,714 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,720 INFO sqlalchemy.engine.base.Engine COMMIT
-2017-05-01 21:50:08,723 INFO sqlalchemy.engine.base.Engine CREATE UNIQUE INDEX ix_wordmisspelling_wordmisspelling ON wordmisspelling (wordmisspelling)
-2017-05-01 21:50:08,724 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,730 INFO sqlalchemy.engine.base.Engine COMMIT
-2017-05-01 21:50:08,734 INFO sqlalchemy.engine.base.Engine 
+2017-05-01 22:20:29,246 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,250 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,252 INFO sqlalchemy.engine.base.Engine CREATE UNIQUE INDEX ix_word_word ON word (word)
+2017-05-01 22:20:29,252 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,258 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,260 INFO sqlalchemy.engine.base.Engine 
 CREATE TABLE tag_relationship (
         tag_parent_id INTEGER, 
         tag_id INTEGER, 
@@ -126,9 +97,9 @@ CREATE TABLE tag_relationship (
 )
 
 
-2017-05-01 21:50:08,734 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,736 INFO sqlalchemy.engine.base.Engine COMMIT
-2017-05-01 21:50:08,740 INFO sqlalchemy.engine.base.Engine 
+2017-05-01 22:20:29,260 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,262 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,264 INFO sqlalchemy.engine.base.Engine 
 CREATE TABLE tagword (
         tag_id INTEGER, 
         alias_id INTEGER, 
@@ -143,9 +114,38 @@ CREATE TABLE tagword (
 )
 
 
-2017-05-01 21:50:08,740 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,754 INFO sqlalchemy.engine.base.Engine COMMIT
-2017-05-01 21:50:08,759 INFO sqlalchemy.engine.base.Engine 
+2017-05-01 22:20:29,264 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,272 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,274 INFO sqlalchemy.engine.base.Engine 
+CREATE TABLE bookmark (
+        id SERIAL NOT NULL, 
+        filename_id INTEGER NOT NULL, 
+        PRIMARY KEY (id), 
+        FOREIGN KEY(filename_id) REFERENCES filename (id)
+)
+
+
+2017-05-01 22:20:29,274 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,278 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,283 INFO sqlalchemy.engine.base.Engine 
+CREATE TABLE wordmisspelling (
+        id SERIAL NOT NULL, 
+        wordmisspelling VARCHAR(255) NOT NULL, 
+        word_id INTEGER NOT NULL, 
+        PRIMARY KEY (id), 
+        FOREIGN KEY(word_id) REFERENCES word (id)
+)
+
+
+2017-05-01 22:20:29,283 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,287 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,289 INFO sqlalchemy.engine.base.Engine CREATE INDEX ix_wordmisspelling_id ON wordmisspelling (id)
+2017-05-01 22:20:29,289 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,292 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,293 INFO sqlalchemy.engine.base.Engine CREATE UNIQUE INDEX ix_wordmisspelling_wordmisspelling ON wordmisspelling (wordmisspelling)
+2017-05-01 22:20:29,293 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,296 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,297 INFO sqlalchemy.engine.base.Engine 
 CREATE TABLE tagbookmarks (
         bookmark_id INTEGER NOT NULL, 
         tag_id INTEGER NOT NULL, 
@@ -156,10 +156,60 @@ CREATE TABLE tagbookmarks (
 )
 
 
-2017-05-01 21:50:08,759 INFO sqlalchemy.engine.base.Engine {}
-2017-05-01 21:50:08,767 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,297 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,301 INFO sqlalchemy.engine.base.Engine COMMIT
 
 making Filename: /var/log/messages
+2017-05-01 22:20:29,331 INFO sqlalchemy.engine.base.Engine select version()
+2017-05-01 22:20:29,331 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,332 INFO sqlalchemy.engine.base.Engine select current_schema()
+2017-05-01 22:20:29,332 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,333 INFO sqlalchemy.engine.base.Engine SELECT CAST('test plain returns' AS VARCHAR(60)) AS anon_1
+2017-05-01 22:20:29,333 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,333 INFO sqlalchemy.engine.base.Engine SELECT CAST('test unicode returns' AS VARCHAR(60)) AS anon_1
+2017-05-01 22:20:29,333 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,334 INFO sqlalchemy.engine.base.Engine show standard_conforming_strings
+2017-05-01 22:20:29,334 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,334 INFO sqlalchemy.engine.base.Engine BEGIN (implicit)
+2017-05-01 22:20:29,335 INFO sqlalchemy.engine.base.Engine SELECT filename.id AS filename_id, filename.filename AS filename_filename 
+FROM filename 
+WHERE filename.filename = %(filename_1)s
+2017-05-01 22:20:29,335 INFO sqlalchemy.engine.base.Engine {'filename_1': <psycopg2.extensions.Binary object at 0x6e58eea77058>}
+2017-05-01 22:20:29,337 INFO sqlalchemy.engine.base.Engine INSERT INTO filename (filename) VALUES (%(filename)s) RETURNING filename.id
+2017-05-01 22:20:29,337 INFO sqlalchemy.engine.base.Engine {'filename': <psycopg2.extensions.Binary object at 0x6e58eea77080>}
+2017-05-01 22:20:29,338 INFO sqlalchemy.engine.base.Engine COMMIT
+2017-05-01 22:20:29,343 INFO sqlalchemy.engine.base.Engine BEGIN (implicit)
+2017-05-01 22:20:29,344 INFO sqlalchemy.engine.base.Engine SELECT wordmisspelling.id AS wordmisspelling_id, wordmisspelling.wordmisspelling AS wordmisspelling_wordmisspelling, wordmisspelling.word_id AS wordmisspelling_word_id 
+FROM wordmisspelling 
+WHERE wordmisspelling.wordmisspelling = %(wordmisspelling_1)s
+2017-05-01 22:20:29,344 INFO sqlalchemy.engine.base.Engine {'wordmisspelling_1': 'messages'}
+2017-05-01 22:20:29,347 INFO sqlalchemy.engine.base.Engine SELECT word.id AS word_id, word.word AS word_word 
+FROM word 
+WHERE word.word = %(word_1)s
+2017-05-01 22:20:29,347 INFO sqlalchemy.engine.base.Engine {'word_1': 'messages'}
+2017-05-01 22:20:29,348 INFO sqlalchemy.engine.base.Engine SELECT wordmisspelling.id AS wordmisspelling_id, wordmisspelling.wordmisspelling AS wordmisspelling_wordmisspelling, wordmisspelling.word_id AS wordmisspelling_word_id 
+FROM wordmisspelling 
+WHERE wordmisspelling.wordmisspelling = %(wordmisspelling_1)s
+2017-05-01 22:20:29,348 INFO sqlalchemy.engine.base.Engine {'wordmisspelling_1': 'messages'}
+2017-05-01 22:20:29,349 INFO sqlalchemy.engine.base.Engine SELECT word.id AS word_id, word.word AS word_word 
+FROM word 
+WHERE word.word = %(word_1)s
+2017-05-01 22:20:29,349 INFO sqlalchemy.engine.base.Engine {'word_1': 'messages'}
+2017-05-01 22:20:29,351 INFO sqlalchemy.engine.base.Engine SELECT wordmisspelling.id AS wordmisspelling_id, wordmisspelling.wordmisspelling AS wordmisspelling_wordmisspelling, wordmisspelling.word_id AS wordmisspelling_word_id 
+FROM wordmisspelling 
+WHERE wordmisspelling.wordmisspelling = %(wordmisspelling_1)s
+2017-05-01 22:20:29,351 INFO sqlalchemy.engine.base.Engine {'wordmisspelling_1': 'messages'}
+2017-05-01 22:20:29,352 INFO sqlalchemy.engine.base.Engine SELECT word.id AS word_id, word.word AS word_word 
+FROM word 
+WHERE word.word = %(word_1)s
+2017-05-01 22:20:29,352 INFO sqlalchemy.engine.base.Engine {'word_1': 'messages'}
+2017-05-01 22:20:29,354 INFO sqlalchemy.engine.base.Engine INSERT INTO word (word) VALUES (%(word)s) RETURNING word.id
+2017-05-01 22:20:29,354 INFO sqlalchemy.engine.base.Engine {'word': 'messages'}
+2017-05-01 22:20:29,356 INFO sqlalchemy.engine.base.Engine INSERT INTO tag DEFAULT VALUES RETURNING tag.id
+2017-05-01 22:20:29,356 INFO sqlalchemy.engine.base.Engine {}
+2017-05-01 22:20:29,358 INFO sqlalchemy.engine.base.Engine INSERT INTO tagword (tag_id, word_id, position, previous_position) VALUES (%(tag_id)s, %(word_id)s, %(position)s, %(previous_position)s)
+2017-05-01 22:20:29,358 INFO sqlalchemy.engine.base.Engine {'tag_id': 1, 'position': 0, 'previous_position': None, 'word_id': 1}
+2017-05-01 22:20:29,359 INFO sqlalchemy.engine.base.Engine ROLLBACK
 Traceback (most recent call last):
   File "/usr/lib64/python3.4/site-packages/sqlalchemy/engine/base.py", line 1182, in _execute_context
     context)
@@ -229,7 +279,7 @@ Traceback (most recent call last):
     cursor.execute(statement, parameters)
 sqlalchemy.exc.IntegrityError: (psycopg2.IntegrityError) null value in column "alias_id" violates not-null constraint
 DETAIL:  Failing row contains (1, null, 1, 0, null).
- [SQL: 'INSERT INTO tagword (tag_id, word_id, position, previous_position) VALUES (%(tag_id)s, %(word_id)s, %(position)s, %(previous_position)s)'] [parameters: {'previous_position': None, 'word_id': 1, 'position': 0, 'tag_id': 1}]
+ [SQL: 'INSERT INTO tagword (tag_id, word_id, position, previous_position) VALUES (%(tag_id)s, %(word_id)s, %(position)s, %(previous_position)s)'] [parameters: {'tag_id': 1, 'position': 0, 'previous_position': None, 'word_id': 1}]
 
 ```
 
