@@ -5,7 +5,7 @@
 from sqlalchemy.orm.exc import NoResultFound
 from .Word import Word
 from .Word import WordMisSpelling
-from .TagWord import TagWord
+from .AliasWord import AliasWord
 
 def find_alias(session, alias):
     '''
@@ -15,6 +15,7 @@ def find_alias(session, alias):
     it's reasonable to return the tag if it's found beacuse unlike an alias, a tag cant point to
     the wrong thing. returning a "duplicate" alias only makes sense if it's pointing to the same tag. TODO
     '''
+    #print("find_alias() alias:", alias)
     corrected_alias = alias
     possible_alias_set = set([])
     assert isinstance(alias, str)
@@ -26,9 +27,10 @@ def find_alias(session, alias):
                 word = str(target_word)
                 corrected_alias = alias.replace(wordmisspelling.wordmisspelling, word)
             except NoResultFound:
+                #print("find_alias() no wordmisspelling found for word:", word)
                 pass
             current_word = session.query(Word).filter_by(word=word).one()
-            current_aliasword_list = session.query(TagWord).filter_by(word=current_word, position=index).all()
+            current_aliasword_list = session.query(AliasWord).filter_by(word=current_word, position=index).all()
             if current_aliasword_list:
                 current_aliasword_list_alias_set = set([aliasword.alias for aliasword in current_aliasword_list])
                 possible_alias_set = possible_alias_set & current_aliasword_list_alias_set
