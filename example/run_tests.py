@@ -209,8 +209,15 @@ def run_tests(session):
 
 
     # make an Alias that conflicts with existing tag (correctly throws exception)
-    # AssertionError
-    alias = Alias(session=session, tag=trees, alias='Eucalyptus deglupta')
+    # ConflictingAliasError
+    #alias = Alias(session=session, tag=trees, alias='Eucalyptus deglupta')
+    #session.commit()
+
+    # attempt to make a tag it's own parent and child
+    # also attempts to give a tag the same parent and child
+    # hm, works. trees gets a trees parent and child
+    # todo fix. cant thing of a reason to have circular ref
+    trees.parents.append(trees)
     session.commit()
 
 
