@@ -35,12 +35,12 @@ class TagWord(BASE):
                     ForeignKey("tag.id"),
                     unique=False,
                     primary_key=True,
-                    nullable=True) # TagWord can rep Alias or Tag or both.
-    alias_id = Column(Integer,
-                      ForeignKey("alias.id"),
-                      unique=False,
-                      primary_key=True,
-                      nullable=True) # TagWord can rep Alias or Tag or both.
+                    nullable=False) # TagWord can rep Alias or Tag or both.
+    #alias_id = Column(Integer,
+    #                  ForeignKey("alias.id"),
+    #                  unique=False,
+    #                  primary_key=True,
+    #                  nullable=True) # TagWord can rep Alias or Tag or both.
     word_id = Column(Integer,
                      ForeignKey("word.id"),
                      unique=False,
