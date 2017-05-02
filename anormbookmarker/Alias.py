@@ -53,23 +53,24 @@ class Alias(BASE):
 
         session.add(self)
         session.flush(objects=[self]) # any db error will happen here, like attempting to add a duplicate alias
+        # maybe return the already existing alias if it's a duplicate or conflicting
 
-    @classmethod
-    def construct(cls, session, alias, tag):
-        '''
-        prevents creation of duplicate aliases or conflicting aliases and tags
-        '''
-        print("Alias.construct() alias:", alias)
-        assert alias
-        existing_tag = find_tag(session=session, tag=alias)
-        if existing_tag: # this would be an existing tag that matches this alias
-            print("Alias.construct() existing_tag:", existing_tag)
-            quit(1)
-            return False #todo
-        else:
-            new_alias = Alias(alias=alias, tag=tag, session=session)
-            print("Alias.construct() new_alias:", new_alias)
-            return new_alias
+    #@classmethod
+    #def construct(cls, session, alias, tag):
+    #    '''
+    #    prevents creation of duplicate aliases or conflicting aliases and tags
+    #    '''
+    #    #print("Alias.construct() alias:", alias)
+    #    #assert alias
+    #    #existing_tag = find_tag(session=session, tag=alias)
+    #    #if existing_tag: # this would be an existing tag that matches this alias # todo do this in a constraint
+    #    #    print("Alias.construct() existing_tag:", existing_tag)
+    #    #    quit(1)
+    #    #    return False #todo
+    #    #else:
+    #        new_alias = Alias(alias=alias, tag=tag, session=session)
+    #        print("Alias.construct() new_alias:", new_alias)
+    #        return new_alias
 
 #    # not sure if sorting is necessary
 #    @property
