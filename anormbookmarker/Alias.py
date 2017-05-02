@@ -33,7 +33,8 @@ class Alias(BASE):
 
     words = relationship("AliasWord", backref='alias') # a list of AliasWord instances
 
-    tag = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
+    tag_id = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
+    tag = relationship('Tag', backref='aliases')
 
     def __init__(self, session, alias, tag):
         print("Alias.__init__() alias:", alias)
