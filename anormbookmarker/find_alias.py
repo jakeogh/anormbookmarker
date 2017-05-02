@@ -30,7 +30,6 @@ def find_alias(session, alias, tag=False):
                 word = str(target_word)
                 corrected_alias = alias.replace(wordmisspelling.wordmisspelling, word)
             except NoResultFound:
-                #print("find_alias() no wordmisspelling found for word:", word)
                 pass
             current_word = session.query(Word).filter_by(word=word).one()
             current_aliasword_list = session.query(AliasWord).filter_by(word=current_word, position=index).all()
@@ -51,7 +50,6 @@ def find_alias(session, alias, tag=False):
                     if last_alias_text == corrected_alias:
                         if tag:
                             if last_alias.tag == tag:
-                                print("find_alias() returning last_alias")
                                 return last_alias
                             else:
                                 error_msg = "alias: '%s' exists, but points to different tag: '%s'" % (alias, last_alias.tag)
