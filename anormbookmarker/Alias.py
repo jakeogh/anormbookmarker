@@ -52,6 +52,7 @@ class Alias(BASE):
             session.add(self)
             print("Alias.__init__ calling session.flush()")
             session.flush(objects=[self])
+            print("Alias.__init__ done calling session.flush()")
 
     @classmethod
     def construct(cls, session, alias, tag):
