@@ -10,7 +10,7 @@ Tag = TagClassConstructor(mapper_to_bookmark=Filename)
 from anormbookmarker.BookmarkClassConstructor import BookmarkClassConstructor
 Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
 
-from anormbookmarker.TagAlias import TagAlias
+from anormbookmarker.Alias import Alias
 from anormbookmarker.Word import Word
 from anormbookmarker.Word import WordMisSpelling
 from db_utils import create_database_and_tables
