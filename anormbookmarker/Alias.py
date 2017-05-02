@@ -20,7 +20,7 @@ from .Config import CONFIG
 from .Word import Word
 #from Word import WordMisSpelling
 #from tag_relationship import tag_relationship
-from AliasWord import AliasWord
+from .AliasWord import AliasWord
 from .find_tag import find_tag
 from .BaseMixin import BASE
 
