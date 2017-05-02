@@ -37,7 +37,8 @@ class AliasWord(BASE):
 
     '''
 
-    #prevent creation of duplicate AliasWords, note adding alias_id breaks it
+    # does not prevent duplicate Aliases, it's fine of 2 aliases start with the same AliasWord, so alias.id should be in the
+    # UniqueConstraint below
     __table_args__ = (UniqueConstraint('word_id', 'position', 'previous_position'),)
     alias_id = Column(Integer,
                     ForeignKey("alias.id"),
