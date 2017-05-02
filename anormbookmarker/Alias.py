@@ -41,6 +41,8 @@ class Alias(BASE):
         assert isinstance(alias, str)
         assert not find_tag(session=session, tag=alias)
 
+        self.tag = tag
+
         for index, word in enumerate(alias.split(' ')):
             previous_position = index - 1
             if previous_position == -1:
@@ -48,11 +50,9 @@ class Alias(BASE):
             aliasword = AliasWord(position=index, previous_position=previous_position)
             aliasword.word = Word.construct(session=session, word=word)
             self.words.append(aliasword)
-            self.tag = tag
-            session.add(self)
-            print("Alias.__init__ calling session.flush()")
-            session.flush(objects=[self])
-            print("Alias.__init__ done calling session.flush()")
+
+        session.add(self)
+        session.flush(objects=[self]) # any db error will happen here, like attempting to add a duplicate alias
 
     @classmethod
     def construct(cls, session, alias, tag):
