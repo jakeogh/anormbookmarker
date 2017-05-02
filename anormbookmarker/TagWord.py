@@ -30,24 +30,21 @@ class TagWord(BASE):
     Does not appear to be a big deal because it's not exp and most tags have 0 spaces
 
     '''
-    __table_args__ = (UniqueConstraint('word_id', 'tag_id', 'position'),) #previous_position?
+    __table_args__ = (UniqueConstraint('word_id', 'tag_id', 'position', 'previous_position'),) #previous_position?
     tag_id = Column(Integer,
                     ForeignKey("tag.id"),
                     unique=False,
-                    primary_key=True,
-                    nullable=False) # TagWord can rep Alias or Tag or both.
+                    primary_key=True)
     word_id = Column(Integer,
                      ForeignKey("word.id"),
                      unique=False,
-                     primary_key=True,
-                     nullable=False)
+                     primary_key=True)
     # These must be a signed int's because -1 has special meaning
     position_constraint = 'position<100' #limit words/tag to 100
     position = Column(Integer,
                       CheckConstraint(position_constraint),
                       unique=False,
-                      primary_key=True,
-                      nullable=False)
+                      primary_key=True)
     previous_position_constraint = \
         '(previous_position IS NULL AND position = 0) ' + \
         'OR ((previous_position = position - 1) IS TRUE)'
@@ -62,7 +59,6 @@ class TagWord(BASE):
             'word: ' + str(self.word) + \
             ', tag_id: ' + str(self.tag_id) + \
             ', word_id: ' + str(self.word_id) + \
-            ', alias_id: ' + str(self.alias_id) + \
             ', position: ' + str(self.position) + '>'
 
 
