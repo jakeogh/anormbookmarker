@@ -53,7 +53,7 @@ class Alias(BASE):
         print("Alias.construct() alias:", alias)
         assert alias
         #existing_tag = find_tag(session=session, tag=alias)
-        existing_alias = find_alias(session=session, alias=alias)
+        existing_alias = find_alias(session=session, alias=alias, tag=tag)
         print("Alias.construct() existing_alias:", existing_alias)
         if existing_alias:
             #print("Alias.construct() existing_alias:", existing_alias)
