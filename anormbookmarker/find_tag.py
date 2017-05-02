@@ -13,7 +13,7 @@
 #from sqlalchemy.orm import relationship
 #from sqlalchemy.orm import backref
 #from sqlalchemy.orm import relation
-#from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.orm.exc import NoResultFound
 #from sqlalchemy.ext.declarative import declarative_base
 #from sqlalchemy.ext.declarative import declared_attr
 #from sqlalchemy.ext.associationproxy import association_proxy
@@ -22,8 +22,8 @@
 #from .BaseMixin import BASE
 #from .Config import CONFIG
 #from .Word import Word
-#from .Word import WordMisSpelling
-#from .TagWord import TagWord
+from .Word import WordMisSpelling
+from .TagWord import TagWord
 
 
 def find_tag(session, tag):
