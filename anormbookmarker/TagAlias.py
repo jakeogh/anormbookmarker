@@ -52,7 +52,7 @@ class TagAlias(BASE):
     @classmethod
     def construct(cls, session, alias):
         '''
-        prevents creation of duplicate tag aliases or conflicting tag aliases and tags
+        prevents creation of duplicate aliases or conflicting tag aliases and tags
         '''
         print("TagAlias.construct() alias:", alias)
         assert alias
