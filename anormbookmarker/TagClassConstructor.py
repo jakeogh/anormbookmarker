@@ -64,7 +64,7 @@ class TagClassConstructor():
         future_class_attr['target_class_name'] = target_class_name
         future_class_attr['target_name'] = target_name
 
-        future_class_attr['construct'] = tag_construct
+        #future_class_attr['construct'] = tag_construct
         future_class_attr['__repr__'] = tag_repr
         future_class_attr['__init__'] = tag_init
         future_class_attr['tag'] = tag_property
@@ -74,7 +74,8 @@ class TagClassConstructor():
 
 def tag_init(self, session, tag):
     assert isinstance(tag, str)
-    assert not find_tag(session=session, tag=tag)
+    #assert not find_tag(session=session, tag=tag) #done by constraint
+    #assert not find_alias(session=session, alias=tag) #todo
 
     for index, word in enumerate(tag.split(' ')):
         previous_position = index - 1
@@ -88,16 +89,16 @@ def tag_init(self, session, tag):
         session.flush(objects=[self])
 
 
-@classmethod
-def tag_construct(cls, session, tag, **kwargs):
-    '''prevents creation of duplicate tags'''
-    assert tag
-    existing_tag = find_tag(session=session, tag=tag)
-    if existing_tag:
-        return existing_tag
-    else:
-        new_tag = cls(tag=tag, session=session)
-        return new_tag
+#@classmethod
+#def tag_construct(cls, session, tag, **kwargs):
+#    '''prevents creation of duplicate tags'''
+#    assert tag
+#    existing_tag = find_tag(session=session, tag=tag)
+#    if existing_tag:
+#        return existing_tag
+#    else:
+#        new_tag = cls(tag=tag, session=session)
+#        return new_tag
 
 
 def tag_repr(self):
