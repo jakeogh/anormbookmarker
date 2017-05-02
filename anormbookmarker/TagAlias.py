@@ -23,7 +23,7 @@ from .Word import Word
 #from tag_relationship import tag_relationship
 #from TagWord import TagWord
 from .find_tag import find_tag
-
+from .BaseMixin import BASE
 
 class TagAlias(BASE):
     '''
