@@ -6,10 +6,8 @@
 from anormbookmarker.TagClassConstructor import TagClassConstructor
 from Filename import Filename
 Tag = TagClassConstructor(mapper_to_bookmark=Filename)
-
 from anormbookmarker.BookmarkClassConstructor import BookmarkClassConstructor
 Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
-
 from anormbookmarker.Alias import Alias
 from anormbookmarker.Word import Word
 from anormbookmarker.Word import WordMisSpelling
@@ -129,8 +127,8 @@ def run_tests(session):
     # correctly returns alias target
     rainbow_eucalyptus = Tag.construct(session=session, tag='rainbow eucalyptus')
     session.commit()
-    print("rainbow_eucalyptus:", rainbow_eucalyptus)
-    print("eucalyptus_deglupta:", eucalyptus_deglupta)
+    #print("rainbow_eucalyptus:", rainbow_eucalyptus)
+    #print("eucalyptus_deglupta:", eucalyptus_deglupta)
     assert rainbow_eucalyptus == eucalyptus_deglupta
 
     #make a Filename object to attach to a Bookmark
