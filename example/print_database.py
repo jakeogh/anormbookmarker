@@ -7,9 +7,10 @@ from sqlalchemy import inspect as sqlalchemy_inspect
 
 def print_database(session):
     inspector = sqlalchemy_inspect(session.bind)
-    for table_name in inspector.get_table_names():
+    for table_name in sorted(inspector.get_table_names()):
         print('\n' + table_name + ':')
-        for column in inspector.get_columns(table_name):
+        columns = inspector.get_columns(table_name)
+        for column in columns:
             print("%s, " % column['name'], end='')
         print('\n', end='')
         select_statement = "select * from " + table_name + ";"
