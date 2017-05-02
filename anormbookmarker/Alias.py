@@ -63,7 +63,7 @@ class Alias(BASE):
             print("Alias.construct() existing_tag:", existing_tag)
             return False #todo
         else:
-            new_alias = Alias(alias=alias, session=session)
+            new_alias = Alias(alias=alias, tag=tag, session=session)
             print("Alias.construct() new_alias:", new_alias)
             return new_alias
 
