@@ -36,25 +36,23 @@ class AliasWord(BASE):
 
 
     '''
-    #__table_args__ = (UniqueConstraint('alias_id', 'word_id', 'position', 'previous_position'),) #previous_position?
-    __table_args__ = (UniqueConstraint('word_id', 'position', 'previous_position'),) #previous_position?
+
+    #prevent creation of duplicate AliasWords, note adding alias_id breaks it
+    __table_args__ = (UniqueConstraint('word_id', 'position', 'previous_position'),)
     alias_id = Column(Integer,
                     ForeignKey("alias.id"),
                     unique=False,
-                    primary_key=True,
-                    nullable=False) # AliasWord can rep Alias or Tag or both.
+                    primary_key=True)
     word_id = Column(Integer,
                      ForeignKey("word.id"),
                      unique=False,
-                     primary_key=True,
-                     nullable=False)
+                     primary_key=True)
     # These must be a signed int's because -1 has special meaning
     position_constraint = 'position<100' #limit words/alias to 100
     position = Column(Integer,
                       CheckConstraint(position_constraint),
                       unique=False,
-                      primary_key=True,
-                      nullable=False)
+                      primary_key=True)
     previous_position_constraint = \
         '(previous_position IS NULL AND position = 0) ' + \
         'OR ((previous_position = position - 1) IS TRUE)'
