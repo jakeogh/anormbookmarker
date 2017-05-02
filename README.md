@@ -2,9 +2,19 @@ anormbookmarker provides a Bookmark class that links Tags (unicode sentences) wi
 
 The included example shows a simple 'class Filename' getting bookmarked.
 
-Tags are a ordered sequence of unicode strings (class Word).
+A Tag is a unicode string.
+
+A Tag is split into Words seperated by spaces.
+
+The only invalid (unicode) Tag is a single space.
+
+Leading and trailing spaces are ignored.
 
 Words can have mispellings that alias back to the correct Word.
+
+Tags can have aliases.
+
+Mispellings also apply to the words that aliases are composed of.
 
 Tags can have any number of parents and/or children.
 
