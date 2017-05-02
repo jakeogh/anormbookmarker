@@ -10,7 +10,7 @@ from .AliasWord import AliasWord
 class ConflictingAliasError(ValueError):
     pass
 
-def find_alias(session, alias, tag):
+def find_alias(session, alias, tag=False):
     '''
     iterates over the aliaswords table to check for a existing alias
     checks each word for a misspelling and replaces the mispelling if it's found
@@ -49,12 +49,15 @@ def find_alias(session, alias, tag):
                     last_alias = list(possible_alias_set)[0]
                     last_alias_text = str(last_alias)
                     if last_alias_text == corrected_alias:
-                        if last_alias.tag == tag:
-                            print("find_alias() returning last_alias")
-                            return last_alias
+                        if tag:
+                            if last_alias.tag == tag:
+                                print("find_alias() returning last_alias")
+                                return last_alias
+                            else:
+                                error_msg = "alias: '%s' exists, but points to different tag: '%s'" % (alias, last_alias.tag)
+                                raise ConflictingAliasError(error_msg)
                         else:
-                            error_msg = "alias: '%s' exists, but points to different tag: '%s'" % (alias, last_alias.tag)
-                            raise ConflictingAliasError(error_msg)
+                            return last_alias
                     else:
                         return False
     except NoResultFound: # any failed query
