@@ -67,7 +67,6 @@ class AliasWord(BASE):
             'word: ' + str(self.word) + \
             ', alias_id: ' + str(self.alias_id) + \
             ', word_id: ' + str(self.word_id) + \
-            ', alias_id: ' + str(self.alias_id) + \
             ', position: ' + str(self.position) + '>'
 
 
