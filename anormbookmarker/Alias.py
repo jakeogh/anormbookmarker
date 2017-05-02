@@ -33,7 +33,7 @@ class Alias(BASE):
             conflicting_tag = find_tag(session=session, tag=alias)
             assert not conflicting_tag #dont create aliase that conflict with an existing tag
         except AssertionError:
-            error_msg = "alias: '%s' conflicts with existing tag: %s" % (alias, existing_tag)
+            error_msg = "alias: '%s' conflicts with existing tag: %s" % (alias, conflicting_tag)
             raise ConflictingAliasError(error_msg)
 
         self.tag = tag
