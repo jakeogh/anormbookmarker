@@ -3,7 +3,7 @@
 # MIT License
 
 from sqlalchemy import Column
-#from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey
 #from sqlalchemy import UniqueConstraint
 #from sqlalchemy import CheckConstraint
 from sqlalchemy import Integer
