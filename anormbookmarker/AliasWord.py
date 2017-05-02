@@ -11,38 +11,38 @@ from sqlalchemy.orm import relationship
 from .BaseMixin import BASE
 
 
-class TagWord(BASE):
+class AliasWord(BASE):
     '''
-    Tag instances are composed of a list of TagWord instances.
-    Tags with spaces are composed of multiple TagWord instances.
-    Each TagWord maps a Word to a position and a specific Tag.
-    position is always 0 unless the tag is composed of multiple TagWord instances
+    Tag instances are composed of a list of AliasWord instances.
+    Tags with spaces are composed of multiple AliasWord instances.
+    Each AliasWord maps a Word to a position and a specific Tag.
+    position is always 0 unless the alias is composed of multiple AliasWord instances
     The Slide/Bullett example:
         http://docs.sqlalchemy.org/en/latest/orm/extensions/orderinglist.html
-        seems to confirm that TagWords are necessary because in this instance
+        seems to confirm that AliasWords are necessary because in this instance
         many Slides(Tags) can have the same Bullet(Word), and in the example
         a Bullet can only exist on one Slide.
 
-    The tagword table has a row count:
+    The aliasword table has a row count:
     of (4 col) that are parsed by the ORM to reconstruct each Tag's __repr__.
-    * row_count = count of every word in every tag including duplicates
-    * row_count = tags + spaces
-    Does not appear to be a big deal because it's not exp and most tags have 0 spaces
+    * row_count = count of every word in every alias including duplicates
+    * row_count = aliass + spaces
+    Does not appear to be a big deal because it's not exp and most aliass have 0 spaces
 
     '''
-    __table_args__ = (UniqueConstraint('word_id', 'tag_id', 'position'),) #previous_position?
-    tag_id = Column(Integer,
-                    ForeignKey("tag.id"),
+    __table_args__ = (UniqueConstraint('word_id', 'alias_id', 'position'),) #previous_position?
+    alias_id = Column(Integer,
+                    ForeignKey("alias.id"),
                     unique=False,
                     primary_key=True,
-                    nullable=False) # TagWord can rep Alias or Tag or both.
+                    nullable=False) # AliasWord can rep Alias or Tag or both.
     word_id = Column(Integer,
                      ForeignKey("word.id"),
                      unique=False,
                      primary_key=True,
                      nullable=False)
     # These must be a signed int's because -1 has special meaning
-    position_constraint = 'position<100' #limit words/tag to 100
+    position_constraint = 'position<100' #limit words/alias to 100
     position = Column(Integer,
                       CheckConstraint(position_constraint),
                       unique=False,
@@ -56,11 +56,11 @@ class TagWord(BASE):
                                primary_key=False,
                                nullable=True)
     # collection_class=set?
-    word = relationship("Word", backref='tag_words')
+    word = relationship("Word", backref='alias_words')
     def __repr__(self):
-        return 'TagWord<' + \
+        return 'AliasWord<' + \
             'word: ' + str(self.word) + \
-            ', tag_id: ' + str(self.tag_id) + \
+            ', alias_id: ' + str(self.alias_id) + \
             ', word_id: ' + str(self.word_id) + \
             ', alias_id: ' + str(self.alias_id) + \
             ', position: ' + str(self.position) + '>'

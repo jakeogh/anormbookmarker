@@ -10,7 +10,7 @@ Tag = TagClassConstructor(mapper_to_bookmark=Filename)
 from anormbookmarker.BookmarkClassConstructor import BookmarkClassConstructor
 Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
 
-from anormbookmarker.Alias import Alias
+#from anormbookmarker.Alias import Alias
 from anormbookmarker.Word import Word
 from anormbookmarker.Word import WordMisSpelling
 from db_utils import create_database_and_tables
@@ -158,7 +158,7 @@ def run_tests(session):
     # make a Alias
     #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus', casesensitive=False)
     #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
-    alias = Alias.construct(session=session, alias='rainbow eucalyptus')
+    #alias = Alias.construct(session=session, alias='rainbow eucalyptus')
 
 
     list_tables(session)
