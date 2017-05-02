@@ -36,7 +36,8 @@ class AliasWord(BASE):
 
 
     '''
-    __table_args__ = (UniqueConstraint('alias_id', 'word_id', 'position', 'previous_position'),) #previous_position?
+    #__table_args__ = (UniqueConstraint('alias_id', 'word_id', 'position', 'previous_position'),) #previous_position?
+    __table_args__ = (UniqueConstraint('word_id', 'position', 'previous_position'),) #previous_position?
     alias_id = Column(Integer,
                     ForeignKey("alias.id"),
                     unique=False,
