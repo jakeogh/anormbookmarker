@@ -22,6 +22,7 @@ def list_tables(session):
     bookmark_generator = session.query(Bookmark)
     for bookmark in bookmark_generator:
         print('    bookmark:', bookmark)
+        print('    bookmark.id:', bookmark.id)
         print('    bookmark.filename:', bookmark.filename)
         print('    tags:')
         for tag in bookmark.tags:
@@ -39,10 +40,18 @@ def list_tables(session):
         for bookmark in tag.bookmarks:
             print('            ', bookmark)
 
+    print("\nAll Aliases's:")
+    alias_generator = session.query(Alias)
+    for alias in alias_generator:
+        print('    alias:', alias)
+        print('        alias.id:', alias.id)
+        print('        tag:', alias.tag)
+
     print("\nAll Word's:")
     word_generator = session.query(Word)
     for word in word_generator:
         print('    word:', word)
+        print('    word.id:', word.id)
         print('        misspellings:', word.wordmisspellings)
         print("        bookmarks:")
         for bookmark in word.bookmarks:
@@ -68,9 +77,13 @@ def run_tests(session):
     session.commit()
 
     # make a tag
-    next_tag = "messages"
-    messages = Tag.construct(session=session, tag=next_tag)
+    messages = Tag(session=session, tag='messages')
     session.commit()
+
+    # make a duplicate tag
+    messages = Tag(session=session, tag='messages')
+    session.commit()
+
 
     # make a Bookmark
     print("\nmaking Bookmark:\n \tfile: /var/log/messages\n \ttag: messages")
@@ -78,8 +91,7 @@ def run_tests(session):
     session.commit()
 
     # make a tag
-    next_tag = "more messages"
-    more_messages = Tag.construct(session=session, tag=next_tag)
+    more_messages = Tag(session=session, tag='more messages')
     session.commit()
 
     # make aother Bookmark
@@ -92,8 +104,7 @@ def run_tests(session):
     session.commit()
 
     # make a tag
-    next_tag = "mail"
-    mail = Tag.construct(session=session, tag=next_tag)
+    mail = Tag(session=session, tag='mail')
     session.commit()
 
     # make third Bookmark
@@ -103,22 +114,21 @@ def run_tests(session):
 
     # make a tag
     next_tag = "Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo"
-    tag = Tag.construct(session=session, tag=next_tag)
+    tag = Tag(session=session, tag=next_tag)
     session.commit()
 
     # make another tag out of the same Word objects
     next_tag = "Buffalo buffalo Buffalo buffalo buffalo buffalo buffalo Buffalo"
-    tag = Tag.construct(session=session, tag=next_tag)
+    tag = Tag(session=session, tag=next_tag)
     session.commit()
 
     # make another tag out of the same Word objects that is a subset of above
     next_tag = "Buffalo buffalo Buffalo buffalo buffalo buffalo buffalo"
-    tag = Tag.construct(session=session, tag=next_tag)
+    tag = Tag(session=session, tag=next_tag)
     session.commit()
 
     # make a tag to misspell
-    next_tag = "plants"
-    tag = Tag.construct(session=session, tag=next_tag)
+    tag = Tag(session=session, tag='plants')
     session.commit()
 
     # make a WordMispelling of the plants tag
@@ -127,14 +137,11 @@ def run_tests(session):
     session.commit()
 
     # test the WordMispelling
-    next_tag = "plantss"
-    #print("\n(should find the existing Tag plants)")
-    plants = Tag.construct(session=session, tag=next_tag)
+    plants = Tag(session=session, tag='plantss')
     session.commit()
 
     # make a child tag for plants
-    next_tag = "trees"
-    trees = Tag.construct(session=session, tag=next_tag)
+    trees = Tag(session=session, tag='trees')
     session.commit()
 
     # test parent/child Tag relationship
@@ -142,8 +149,7 @@ def run_tests(session):
     session.commit()
 
     # make a parent tag for plants
-    next_tag = "life"
-    life = Tag.construct(session=session, tag=next_tag)
+    life = Tag(session=session, tag='life')
     session.commit()
 
     # test parent Tag relationship
@@ -151,21 +157,30 @@ def run_tests(session):
     session.commit()
 
     # make a tag to make an alias to
-    eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
+    eucalyptus_deglupta = Tag(session=session, tag='Eucalyptus deglupta')
     session.commit()
 
     # make a Alias
     #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus', casesensitive=False)
-    alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+    #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+    alias = Alias(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
     session.commit()
 
-    # make a duplicate Alias
-    alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
-    session.commit()
+    # make a duplicate Alias (correctly throws exception)
+    # psycopg2.IntegrityError:
+    #   duplicate key value violates unique constraint "aliasword_word_id_position_previous_position_key"
+    #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+    #session.commit()
+
+    ## make an Alias that conflicts with existing tag (correctly throws exception)
+    ## AssertionError
+    #alias = Alias(session=session, tag=trees, alias='Eucalyptus deglupta')
+    #session.commit()
+
 
     # make an Alias that conflicts with existing alias
-    alias = Alias.construct(session=session, tag=trees, alias='rainbow eucalyptus')
-    session.commit()
+    #alias = Alias.construct(session=session, tag=trees, alias='rainbow eucalyptus')
+    #session.commit()
 
 
     list_tables(session)
