@@ -44,6 +44,25 @@ class Alias(BASE):
         # maybe return the already existing alias if it's a duplicate or conflicting
 
 
+    @classmethod
+    def construct(cls, session, alias, tag):
+        '''
+        prevents creation of duplicate aliases or conflicting aliases and tags
+        '''
+        print("Alias.construct() alias:", alias)
+        assert alias
+        existing_tag = find_tag(session=session, tag=alias)
+        if existing_tag: # this would be an existing tag that matches this alias
+            print("Alias.construct() existing_tag:", existing_tag)
+            quit(1)
+            return False #todo
+        else:
+            new_alias = Alias(alias=alias, tag=tag, session=session)
+            print("Alias.construct() new_alias:", new_alias)
+            return new_alias
+
+
+
     @property
     def alias(self): # appears to always return the same result as tag_with_checks()
         alias = " ".join([str(word.word) for word in self.words])
