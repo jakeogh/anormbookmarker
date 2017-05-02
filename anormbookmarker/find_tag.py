@@ -29,7 +29,10 @@ from .TagWord import TagWord
 def find_tag(session, tag):
     '''
     iterates over the tagwords table to check for a existing tag
-    returns if found, else returns False
+    checks each word for a misspelling and replaces the mispelling if it's found
+    returns the tag if found, else returns False
+    it's reasonable to return the tag if it's found beacuse unlike an alias, a tag cant point to
+    the wrong thing. returning a "duplicate" alias only makes sense if it's pointing to the same tag.
     '''
     corrected_tag = tag
     possible_tag_set = set([])
