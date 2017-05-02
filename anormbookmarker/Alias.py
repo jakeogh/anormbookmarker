@@ -27,7 +27,6 @@ class Alias(BASE):
     tag = relationship('Tag', backref='aliases')
 
     def __init__(self, session, alias, tag):
-        print("Alias.__init__() alias:", alias)
         assert isinstance(alias, str)
         try:
             conflicting_tag = find_tag(session=session, tag=alias)
@@ -56,17 +55,13 @@ class Alias(BASE):
         '''
         prevents creation of duplicate aliases or conflicting aliases and tags
         '''
-        print("Alias.construct() alias:", alias)
         assert alias
         #existing_tag = find_tag(session=session, tag=alias)
         existing_alias = find_alias(session=session, alias=alias, tag=tag)
-        print("Alias.construct() existing_alias:", existing_alias)
         if existing_alias:
-            #print("Alias.construct() existing_alias:", existing_alias)
             return existing_alias #todo check if it points to the same tag
         else:
             new_alias = Alias(alias=alias, tag=tag, session=session)
-            print("Alias.construct() new_alias:", new_alias)
             return new_alias
 
 
