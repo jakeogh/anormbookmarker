@@ -17,12 +17,12 @@ from sqlalchemy.orm import relationship
 #from sqlalchemy.ext.hybrid import hybrid_property
 #from get_one_or_create import get_one_or_create
 #from BaseMixin import BASE
-from Config import CONFIG
-from Word import Word
+from .Config import CONFIG
+from .Word import Word
 #from Word import WordMisSpelling
 #from tag_relationship import tag_relationship
 #from TagWord import TagWord
-from find_tag import find_tag
+from .find_tag import find_tag
 
 
 class TagAlias(BASE):
