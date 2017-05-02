@@ -44,6 +44,7 @@ from .BaseMixin import BASE
 from .Word import Word
 from .TagWord import TagWord
 from .find_tag import find_tag
+from .find_alias import find_alias
 from .tag_relationship import tag_relationship
 from .ConflictingAliasError import ConflictingAliasError
 
