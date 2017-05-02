@@ -10,6 +10,7 @@ from sqlalchemy.pool import NullPool
 from anormbookmarker.BaseMixin import BASE
 from anormbookmarker.Config import CONFIG
 
+
 def create_database():
     '''Create new database.'''
     print("create_database() CONFIG.dbname:", CONFIG.dbname)

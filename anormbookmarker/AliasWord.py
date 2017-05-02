@@ -29,16 +29,9 @@ class AliasWord(BASE):
     * row_count = aliass + spaces
     Does not appear to be a big deal because it's not exp and most aliass have 0 spaces
 
-    aliasword:
-    alias_id, word_id, position, previous_position,
-    [(1, 11, 0, None), (1, 12, 1, 0),
-     (2, 11, 0, None), (2, 12, 1, 0)]
-
 
     '''
 
-    # does not prevent duplicate Aliases, it's fine of 2 aliases start with the same AliasWord, so alias.id should be in the
-    # UniqueConstraint below
     __table_args__ = (UniqueConstraint('alias_id', 'word_id', 'position', 'previous_position'),)
     alias_id = Column(Integer,
                     ForeignKey("alias.id"),

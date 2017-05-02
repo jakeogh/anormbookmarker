@@ -65,7 +65,6 @@ class Alias(BASE):
             return new_alias
 
 
-
     @property
     def alias(self): # appears to always return the same result as tag_with_checks()
         alias = " ".join([str(word.word) for word in self.words])

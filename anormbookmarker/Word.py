@@ -13,8 +13,6 @@ Words do have misspellings (class WordMisSpelling) that alias to the correctly s
 Tags are composed of Words in a specific order, that order is defined by class TagWord
 Each TagWord instance maps a Word to a position.
 So, actually, Tag.words is a list of TagWord instances, not Word instances.
-
-TODO: Add aliases for Tag's (so "rainbow eucalyptus" is an alias for "Eucalyptus deglupta").
 '''
 
 from sqlalchemy import Column
