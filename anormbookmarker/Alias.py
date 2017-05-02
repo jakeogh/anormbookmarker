@@ -33,7 +33,9 @@ class Alias(BASE):
 
     words = relationship("AliasWord", backref='alias') # a list of AliasWord instances
 
-    def __init__(self, session, alias):
+    tag = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
+
+    def __init__(self, session, alias, tag):
         print("Alias.__init__() alias:", alias)
         assert isinstance(alias, str)
         assert not find_tag(session=session, tag=alias)
@@ -45,11 +47,12 @@ class Alias(BASE):
             aliasword = AliasWord(position=index, previous_position=previous_position)
             aliasword.word = Word.construct(session=session, word=word)
             self.words.append(aliasword)
+            self.tag = tag
             session.add(self)
             session.flush(objects=[self])
 
     @classmethod
-    def construct(cls, session, alias):
+    def construct(cls, session, alias, tag):
         '''
         prevents creation of duplicate aliases or conflicting aliases and tags
         '''
