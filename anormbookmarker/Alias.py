@@ -16,7 +16,6 @@ from sqlalchemy.orm import relationship
 #from sqlalchemy.ext.associationproxy import association_proxy
 #from sqlalchemy.ext.hybrid import hybrid_property
 #from get_one_or_create import get_one_or_create
-#from BaseMixin import BASE
 from .Config import CONFIG
 from .Word import Word
 #from Word import WordMisSpelling
