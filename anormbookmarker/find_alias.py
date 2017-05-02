@@ -46,11 +46,11 @@ def find_alias(session, alias, tag):
                     last_alias = list(possible_alias_set)[0]
                     last_alias_text = str(last_alias)
                     if last_alias_text == corrected_alias:
-                        if last_alias.tag == tag
+                        if last_alias.tag == tag:
                             print("returning last_alias")
                             return last_alias
                         else:
-                            print("alias exists, but points to different tag:", last_alias.tag)
+                            print("alias exists, but points to different tag:", last_alias.tag) #todo raise something
                             return False
                     else:
                         return False
