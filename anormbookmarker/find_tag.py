@@ -21,7 +21,7 @@ def find_tag(session, tag):
     try:
         for index, word in enumerate(tag.split(' ')):
             try:
-                wordmisspelling = session.query(WordMisSpelling).filter_by(wordmisspelling=tag).one()
+                wordmisspelling = session.query(WordMisSpelling).filter_by(wordmisspelling=tag).one() #bug? shouldnt it be =word?
                 target_word = wordmisspelling.word
                 word = str(target_word)
                 corrected_tag = tag.replace(wordmisspelling.wordmisspelling, word)
