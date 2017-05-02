@@ -51,11 +51,11 @@ class Alias(BASE):
         '''
         print("Alias.construct() alias:", alias)
         assert alias
-        existing_tag = find_tag(session=session, tag=alias)
-        if existing_tag: # this would be an existing tag that matches this alias
-            print("Alias.construct() existing_tag:", existing_tag)
-            quit(1)
-            return False #todo
+        #existing_tag = find_tag(session=session, tag=alias)
+        existing_alias = find_alias(session=session, alias=alias)
+        if existing_alias:
+            print("Alias.construct() existing_alias:", existing_alias)
+            return existing_alias #todo check if it points to the same tag
         else:
             new_alias = Alias(alias=alias, tag=tag, session=session)
             print("Alias.construct() new_alias:", new_alias)
