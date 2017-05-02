@@ -2,29 +2,10 @@
 # -*- coding: utf-8 -*-
 # MIT License
 
-
-#from sqlalchemy import Table
-#from sqlalchemy import Column
-#from sqlalchemy import ForeignKey
-#from sqlalchemy import UniqueConstraint
-#from sqlalchemy import CheckConstraint
-#from sqlalchemy import Integer
-#from sqlalchemy import Unicode
-#from sqlalchemy.orm import relationship
-#from sqlalchemy.orm import backref
-#from sqlalchemy.orm import relation
 from sqlalchemy.orm.exc import NoResultFound
-#from sqlalchemy.ext.declarative import declarative_base
-#from sqlalchemy.ext.declarative import declared_attr
-#from sqlalchemy.ext.associationproxy import association_proxy
-#from sqlalchemy.ext.hybrid import hybrid_property
-#from .get_one_or_create import get_one_or_create
-#from .BaseMixin import BASE
-#from .Config import CONFIG
 from .Word import Word
 from .Word import WordMisSpelling
 from .TagWord import TagWord
-
 
 def find_tag(session, tag):
     '''
@@ -68,5 +49,3 @@ def find_tag(session, tag):
                         return False
     except NoResultFound: # any failed query
         return False
-
-
