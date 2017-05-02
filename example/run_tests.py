@@ -33,6 +33,7 @@ def list_tables(session):
     for tag in tag_generator:
         print('    tag:', tag)
         print('        tag.id:', tag.id)
+        print('        aliases:', tag.aliases)
         print('        parents:', tag.parents)
         print('        children:', tag.children)
         print('        filenames:', tag.filenames)
@@ -124,6 +125,13 @@ def run_tests(session):
     #alias = Alias.construct(session=session, tag=trees, alias='rainbow eucalyptus')
     #session.commit()
 
+    # create a tag that conflicts with an existing alias
+    # correctly returns alias target
+    rainbow_eucalyptus = Tag.construct(session=session, tag='rainbow eucalyptus')
+    session.commit()
+    print("rainbow_eucalyptus:", rainbow_eucalyptus)
+    print("eucalyptus_deglupta:", eucalyptus_deglupta)
+    assert rainbow_eucalyptus == eucalyptus_deglupta
 
     #make a Filename object to attach to a Bookmark
     filename = Filename.construct(session=session, filename=b"/var/log/messages")
@@ -188,6 +196,11 @@ def run_tests(session):
     # test the WordMispelling (correctly does not create a plantss tag)
     plants = Tag.construct(session=session, tag='plantss')
     session.commit()
+
+    # test wordmisspelling on a multiple word tag
+    plants_plants = Tag.construct(session=session, tag='plantss plants')
+    session.commit()
+    assert str(plants_plants) == 'plants plants'
 
     # make a child tag for plants (it's a duplicate tag and is correctly returned)
     trees = Tag.construct(session=session, tag='trees')
