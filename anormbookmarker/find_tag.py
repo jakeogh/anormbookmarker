@@ -21,7 +21,7 @@ from sqlalchemy.orm.exc import NoResultFound
 #from .get_one_or_create import get_one_or_create
 #from .BaseMixin import BASE
 #from .Config import CONFIG
-#from .Word import Word
+from .Word import Word
 from .Word import WordMisSpelling
 from .TagWord import TagWord
 
