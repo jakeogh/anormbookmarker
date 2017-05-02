@@ -104,118 +104,114 @@ def run_tests(session):
     session.commit()
 
     # make a tag to make an alias to
-    eucalyptus_deglupta = Tag(session=session, tag='Eucalyptus deglupta')
+    eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
     session.commit()
 
     # make a Alias
     #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus', casesensitive=False)
-    alias = Alias(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+    alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
     session.commit()
 
-    # make a duplicate Alias
-    alias = Alias(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+    # make a duplicate Alias (correctly returns the existing alias)
+    alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
     session.commit()
 
-#    # make an Alias that conflicts with existing alias
-#    #alias = Alias.construct(session=session, tag=trees, alias='rainbow eucalyptus')
-#    #session.commit()
+    # make a tag to use in a conflicting alias for rainbow eucalyptus
+    trees = Tag.construct(session=session, tag='trees')
+    session.commit()
 
-    ##make a Filename object to attach to a Bookmark
-    #print("\nmaking Filename: /var/log/messages")
-    #filename = Filename.construct(session=session, filename=b"/var/log/messages")
+    # make a duplicate (conflicting) Alias to a different tag (correctly throws ConflictingAliasError)
+    #alias = Alias.construct(session=session, tag=trees, alias='rainbow eucalyptus')
     #session.commit()
 
-    ## make a tag
-    #messages = Tag(session=session, tag='messages')
-    #session.commit()
 
-    ## make a duplicate tag (correctly throws exception)
-    ## psycopg2.IntegrityError:
-    ##   duplicate key value violates unique constraint "tagword_word_id_position_previous_position_key"
-    ##messages = Tag(session=session, tag='messages')
-    ##session.commit()
+    #make a Filename object to attach to a Bookmark
+    filename = Filename.construct(session=session, filename=b"/var/log/messages")
+    session.commit()
 
-    ## make a Bookmark
-    #bookmark = Bookmark.construct(session=session, filename=filename, tag=messages)
-    #session.commit()
+    #make a duplicate Filename object (correctly returns the existing filename)
+    filename = Filename.construct(session=session, filename=b"/var/log/messages")
+    session.commit()
 
-    ## make a tag
-    #more_messages = Tag(session=session, tag='more messages')
-    #session.commit()
+    # make a tag
+    messages = Tag.construct(session=session, tag='messages')
+    session.commit()
 
-    ## make aother Bookmark
-    #print("\nmaking Bookmark:\n \tfile: /var/log/messages\n \ttag: more messages")
-    #bookmark = Bookmark.construct(session=session, filename=filename, tag=more_messages)
-    #session.commit()
+    # make a Bookmark
+    bookmark = Bookmark.construct(session=session, filename=filename, tag=messages)
+    session.commit()
 
-    ##make another Filename object to attach to a Bookmark
-    #filename = Filename.construct(session=session, filename=b"/var/log/mail.log")
-    #session.commit()
+    # make a tag
+    more_messages = Tag.construct(session=session, tag='more messages')
+    session.commit()
 
-    ## make a tag
-    #mail = Tag(session=session, tag='mail')
-    #session.commit()
+    # make aother Bookmark (correctly adds "more messages" tag to existing bookmark)
+    bookmark = Bookmark.construct(session=session, filename=filename, tag=more_messages)
+    session.commit()
 
-    ## make third Bookmark
-    #print("\nmaking Bookmark:\n \tfile: /var/log/mail.log\n \ttag: mail")
-    #bookmark = Bookmark.construct(session=session, filename=filename, tag=mail)
-    #session.commit()
+    #make another Filename object to attach to a Bookmark
+    filename = Filename.construct(session=session, filename=b"/var/log/mail.log")
+    session.commit()
 
-    ## make a tag
-    #next_tag = "Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo"
-    #tag = Tag(session=session, tag=next_tag)
-    #session.commit()
+    # make tag
+    mail = Tag.construct(session=session, tag='mail')
+    session.commit()
 
-    ## make another tag out of the same Word objects
-    #next_tag = "Buffalo buffalo Buffalo buffalo buffalo buffalo buffalo Buffalo"
-    #tag = Tag(session=session, tag=next_tag)
-    #session.commit()
-#
-#    # make another tag out of the same Word objects that is a subset of above
-#    next_tag = "Buffalo buffalo Buffalo buffalo buffalo buffalo buffalo"
-#    tag = Tag(session=session, tag=next_tag)
-#    session.commit()
-#
-#    # make a tag to misspell
-#    tag = Tag(session=session, tag='plants')
-#    session.commit()
-#
-#    # make a WordMispelling of the plants tag
-#    #print("\n\nmaking WordMisSpelling: plantss")
-#    WordMisSpelling.construct(session=session, wordmisspelling="plantss", word="plants")
-#    session.commit()
-#
-#    # test the WordMispelling
-#    plants = Tag(session=session, tag='plantss')
-#    session.commit()
-#
-#    # make a child tag for plants
-#    trees = Tag(session=session, tag='trees')
-#    session.commit()
-#
-#    # test parent/child Tag relationship
-#    plants.children.append(trees)
-#    session.commit()
-#
-#    # make a parent tag for plants
-#    life = Tag(session=session, tag='life')
-#    session.commit()
-#
-#    # test parent Tag relationship
-#    plants.parents.append(life)
-#    session.commit()
-#
-#
-#    # make a duplicate Alias (correctly throws exception)
-#    # psycopg2.IntegrityError:
-#    #   duplicate key value violates unique constraint "aliasword_word_id_position_previous_position_key"
-#    #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
-#    #session.commit()
-#
-#    ## make an Alias that conflicts with existing tag (correctly throws exception)
-#    ## AssertionError
-#    #alias = Alias(session=session, tag=trees, alias='Eucalyptus deglupta')
-#    #session.commit()
+    # make Bookmark
+    bookmark = Bookmark.construct(session=session, filename=filename, tag=mail)
+    session.commit()
+
+    # make tag
+    next_tag = "Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo"
+    tag = Tag.construct(session=session, tag=next_tag)
+    session.commit()
+
+    # make another tag out of the same Word objects but swap order
+    next_tag = "Buffalo buffalo Buffalo buffalo buffalo buffalo buffalo Buffalo"
+    tag = Tag.construct(session=session, tag=next_tag)
+    session.commit()
+
+    # make another tag out of the same Word objects that is a subset of above
+    next_tag = "Buffalo buffalo Buffalo buffalo buffalo buffalo buffalo"
+    tag = Tag.construct(session=session, tag=next_tag)
+    session.commit()
+
+    # make a tag to misspell
+    tag = Tag.construct(session=session, tag='plants')
+    session.commit()
+
+    # todo require manual creation of Word to pass?
+    # make a WordMispelling of the plants tag
+    WordMisSpelling.construct(session=session, wordmisspelling="plantss", word="plants")
+    session.commit()
+
+    # test the WordMispelling (correctly does not create a plantss tag)
+    plants = Tag.construct(session=session, tag='plantss')
+    session.commit()
+
+    # make a child tag for plants (it's a duplicate tag and is correctly returned)
+    trees = Tag.construct(session=session, tag='trees')
+    session.commit()
+
+    # test parent/child Tag relationship
+    # works. plants gets a tree child and tree gets a plants parent
+    plants.children.append(trees)
+    session.commit()
+
+    # make a parent tag for plants
+    life = Tag.construct(session=session, tag='life')
+    session.commit()
+
+    # test parent Tag relationship
+    # correctly gives plants a parent of life and life a child of plants
+    plants.parents.append(life)
+    session.commit()
+
+
+    # make an Alias that conflicts with existing tag (correctly throws exception)
+    # AssertionError
+    alias = Alias(session=session, tag=trees, alias='Eucalyptus deglupta')
+    session.commit()
 #
 #
 #    # make an Alias that conflicts with existing alias

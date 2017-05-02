@@ -12,6 +12,7 @@ from .AliasWord import AliasWord
 from .find_tag import find_tag
 from .find_alias import find_alias
 from .BaseMixin import BASE
+from .ConflictingAliasError import ConflictingAliasError
 
 class Alias(BASE):
     '''
@@ -28,7 +29,12 @@ class Alias(BASE):
     def __init__(self, session, alias, tag):
         print("Alias.__init__() alias:", alias)
         assert isinstance(alias, str)
-        assert not find_tag(session=session, tag=alias) #dont create aliase that conflict with an existing tag
+        try:
+            conflicting_tag = find_tag(session=session, tag=alias)
+            assert not conflicting_tag #dont create aliase that conflict with an existing tag
+        except AssertionError:
+            error_msg = "alias: '%s' conflicts with existing tag: %s" % (alias, existing_tag)
+            raise ConflictingAliasError(error_msg)
 
         self.tag = tag
 
