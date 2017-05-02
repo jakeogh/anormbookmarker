@@ -7,6 +7,9 @@ from .Word import Word
 from .Word import WordMisSpelling
 from .AliasWord import AliasWord
 
+class ConflictingAliasError(ValueError):
+    pass
+
 def find_alias(session, alias, tag):
     '''
     iterates over the aliaswords table to check for a existing alias
@@ -47,11 +50,11 @@ def find_alias(session, alias, tag):
                     last_alias_text = str(last_alias)
                     if last_alias_text == corrected_alias:
                         if last_alias.tag == tag:
-                            print("returning last_alias")
+                            print("find_alias() returning last_alias")
                             return last_alias
                         else:
-                            print("alias exists, but points to different tag:", last_alias.tag) #todo raise something
-                            return False
+                            print("find_alias() alias exists, but points to different tag:", last_alias.tag)
+                            raise ConflictingAliasError
                     else:
                         return False
     except NoResultFound: # any failed query
