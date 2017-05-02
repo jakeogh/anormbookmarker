@@ -11,8 +11,90 @@ Tags can have any number of parents and/or children.
 
 ![image of db schema from pydot](https://github.com/jakeogh/anormbookmarker/raw/master/dbschema.1493601122.7285874.png "dbschema.png")
 
+Current Output:
+```
+ $ ./run_tests.py 
+create_database() CONFIG.dbname: anormbookmarker_test_1493698837_917426
+create_database() CONFIG.dbpath: postgres://postgres@localhost/anormbookmarker_test_1493698837_917426
 
-Output:
+making Filename: /var/log/messages
+Traceback (most recent call last):
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/engine/base.py", line 1182, in _execute_context
+    context)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/engine/default.py", line 470, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.IntegrityError: null value in column "alias_id" violates not-null constraint
+DETAIL:  Failing row contains (1, null, 1, 0, null).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "./run_tests.py", line 175, in <module>
+    run_tests(SESSION)
+  File "./run_tests.py", line 72, in run_tests
+    messages = Tag.construct(session=session, tag=next_tag)
+  File "/usr/lib64/python3.4/site-packages/anormbookmarker/TagClassConstructor.py", line 99, in tag_construct
+    new_tag = cls(tag=tag, session=session)
+  File "<string>", line 4, in __init__
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/orm/state.py", line 414, in _initialize_instance
+    manager.dispatch.init_failure(self, args, kwargs)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/util/compat.py", line 187, in reraise
+    raise value
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/orm/state.py", line 411, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "/usr/lib64/python3.4/site-packages/anormbookmarker/TagClassConstructor.py", line 88, in tag_init
+    session.flush(objects=[self])
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/orm/scoping.py", line 157, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/orm/session.py", line 2139, in flush
+    self._flush(objects)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/orm/session.py", line 2259, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/util/compat.py", line 187, in reraise
+    raise value
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/orm/session.py", line 2223, in _flush
+    flush_context.execute()
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/orm/unitofwork.py", line 389, in execute
+    rec.execute(self)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/orm/unitofwork.py", line 548, in execute
+    uow
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/orm/persistence.py", line 181, in save_obj
+    mapper, table, insert)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/orm/persistence.py", line 835, in _emit_insert_statements
+    execute(statement, params)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/engine/base.py", line 945, in execute
+    return meth(self, multiparams, params)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/sql/elements.py", line 263, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/engine/base.py", line 1053, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/engine/base.py", line 1189, in _execute_context
+    context)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/engine/base.py", line 1393, in _handle_dbapi_exception
+    exc_info
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/engine/base.py", line 1182, in _execute_context
+    context)
+  File "/usr/lib64/python3.4/site-packages/sqlalchemy/engine/default.py", line 470, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.IntegrityError) null value in column "alias_id" violates not-null constraint
+DETAIL:  Failing row contains (1, null, 1, 0, null).
+ [SQL: 'INSERT INTO tagword (tag_id, word_id, position, previous_position) VALUES (%(tag_id)s, %(word_id)s, %(position)s, %(previous_position)s)'] [parameters: {'tag_id': 1, 'previous_position': None, 'word_id': 1, 'position': 0}]
+
+```
+
+
+
+
+Expected Output:
 
 ```
 $ ./run_tests.py 
