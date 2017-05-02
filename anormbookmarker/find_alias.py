@@ -53,8 +53,8 @@ def find_alias(session, alias, tag):
                             print("find_alias() returning last_alias")
                             return last_alias
                         else:
-                            print("find_alias() alias exists, but points to different tag:", last_alias.tag)
-                            raise ConflictingAliasError
+                            error_msg = "alias: %s exists, but points to different tag: %s" % (alias, last_alias.tag))
+                            raise ConflictingAliasError(error_msg)
                     else:
                         return False
     except NoResultFound: # any failed query
