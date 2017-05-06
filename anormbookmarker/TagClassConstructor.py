@@ -49,27 +49,27 @@ from .tag_relationship import tag_relationship
 
 class TagClassConstructor():
     def __new__(cls, mapper_to_bookmark):
-        future_class_attr = {}
-        future_class_attr['id'] = Column(Integer, primary_key=True)
-        future_class_attr['words'] = relationship("TagWord", backref='tag') # list of TagWord instances
+        class_attr = {}
+        class_attr['id'] = Column(Integer, primary_key=True)
+        class_attr['words'] = relationship("TagWord", backref='tag') # list of TagWord instances
 
-        future_class_attr['parents'] = relationship('Tag',
+        class_attr['parents'] = relationship('Tag',
                                                 secondary=tag_relationship,
-                                                primaryjoin=tag_relationship.c.tag_id == future_class_attr['id'],
-                                                secondaryjoin=tag_relationship.c.tag_parent_id == future_class_attr['id'],
+                                                primaryjoin=tag_relationship.c.tag_id == class_attr['id'],
+                                                secondaryjoin=tag_relationship.c.tag_parent_id == class_attr['id'],
                                                 backref="children")
         target_class_name = mapper_to_bookmark.__name__
         target_name =  target_class_name.lower() # 'filename' usually
 
-        future_class_attr['target_class_name'] = target_class_name
-        future_class_attr['target_name'] = target_name
+        class_attr['target_class_name'] = target_class_name
+        class_attr['target_name'] = target_name
 
-        future_class_attr['construct'] = tag_construct
-        future_class_attr['__repr__'] = tag_repr
-        future_class_attr['__init__'] = tag_init
-        future_class_attr['tag'] = tag_property
-        future_class_attr[target_name+'s'] = tag_targets
-        return type('Tag', (BASE,), future_class_attr)
+        class_attr['construct'] = tag_construct
+        class_attr['__repr__'] = tag_repr
+        class_attr['__init__'] = tag_init
+        class_attr['tag'] = tag_property
+        class_attr[target_name+'s'] = tag_targets
+        return type('Tag', (BASE,), class_attr)
 
 
 def tag_init(self, session, tag):
