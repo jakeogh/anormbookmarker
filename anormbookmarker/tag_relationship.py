@@ -6,6 +6,7 @@ from sqlalchemy import Table
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
+from sqlalchemy import UniqueConstraint
 from .BaseMixin import BASE
 
 tag_relationship = Table(
