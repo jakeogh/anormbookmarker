@@ -61,4 +61,3 @@ class TagWord(BASE):
             ', word_id: ' + str(self.word_id) + \
             ', position: ' + str(self.position) + '>'
 
-
