@@ -10,7 +10,7 @@ from sqlalchemy import UniqueConstraint
 from sqlalchemy import CheckConstraint
 from .BaseMixin import BASE
 
-tag_constraint = 'tag_id!=tag_parent_id''
+tag_constraint = 'tag_id!=tag_parent_id'
 
 tag_relationship = Table(
     'tag_relationship', BASE.metadata,
