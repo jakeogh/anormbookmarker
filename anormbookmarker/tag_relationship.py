@@ -11,6 +11,7 @@ from .BaseMixin import BASE
 tag_relationship = Table(
     'tag_relationship', BASE.metadata,
     Column('tag_parent_id', Integer, ForeignKey('tag.id')),
-    Column('tag_id', Integer, ForeignKey('tag.id')))
+    Column('tag_id', Integer, ForeignKey('tag.id')),
+    UniqueConstraint('tag_id', 'tag_parent_id'))
 
 

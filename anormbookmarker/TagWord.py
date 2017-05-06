@@ -39,7 +39,7 @@ class TagWord(BASE):
                      ForeignKey("word.id"),
                      unique=False,
                      primary_key=True)
-    # These must be a signed int's because -1 has special meaning
+    # Must be signed int because -1 has special meaning
     position_constraint = 'position<100' #limit words/tag to 100
     position = Column(Integer,
                       CheckConstraint(position_constraint),
