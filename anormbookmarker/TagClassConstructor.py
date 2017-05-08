@@ -67,7 +67,7 @@ class TagClassConstructor():
         class_attr['construct'] = tag_construct
         class_attr['__repr__'] = tag_repr
         class_attr['__init__'] = tag_init
-        class_attr['tag'] = tag_property
+        class_attr['tag'] = tag
         class_attr[target_name+'s'] = tag_targets
         class_attr['words'] = words
         return type('Tag', (BASE,), class_attr)
@@ -115,7 +115,7 @@ def tag_repr(self):
 
 
 @property
-def tag_property(self): # appears to always return the same result as tag_with_checks()
+def tag(self): # appears to always return the same result as tag_with_checks()
     tag = " ".join([word for word in self.words])
     return tag
 
