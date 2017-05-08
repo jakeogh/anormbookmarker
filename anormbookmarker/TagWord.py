@@ -55,9 +55,12 @@ class TagWord(BASE):
     # collection_class=set?
     word = relationship("Word", backref='tag_words')
     def __repr__(self):
-        return 'TagWord<' + \
-            'word: ' + str(self.word) + \
-            ', tag_id: ' + str(self.tag_id) + \
-            ', word_id: ' + str(self.word_id) + \
-            ', position: ' + str(self.position) + '>'
+        return str(self.word)
+
+#    def __repr__(self):
+#        return 'TagWord<' + \
+#            'word: ' + str(self.word) + \
+#            ', tag_id: ' + str(self.tag_id) + \
+#            ', word_id: ' + str(self.word_id) + \
+#            ', position: ' + str(self.position) + '>'
 
