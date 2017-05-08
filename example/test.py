@@ -13,6 +13,7 @@ from anormbookmarker.Word import Word
 from anormbookmarker.Word import WordMisSpelling
 from db_utils import create_database_and_tables
 from db_utils import create_session
+from db_utils import get_engine
 from print_database import print_database
 
 from kcl.printops import cprint
@@ -51,14 +52,16 @@ def run_job(session, job, test_file):
         attrs_to_check_dict = test['orm_result']
         #print('attrs_to_check_dict:', attrs_to_check_dict)
         for attr in attrs_to_check_dict.keys():
-            print("attr:", attr)
+            print("\nattr:", attr)
             result = getattr(orm_object_instance, attr)
             print("result:", result)
+            print("type(result):", type(result))
             expected_result = attrs_to_check_dict[attr]
             print("expected_result:", expected_result)
+            print("type(expected_result):", type(expected_result))
             if expected_result: # it's not empty
                 try:
-                    assert str(result) == expected_result
+                    assert result == expected_result
                 except AssertionError as e:
                     print("\nAssertionError on attribute:", attr)
                     print("str(result) != expected_result:\n", str(result), "!=", expected_result)
@@ -76,6 +79,7 @@ def run_job(session, job, test_file):
 
     session.commit()
 
+    ENGINE = get_engine()
     for db_test in job['db_result']:
         #print("db_test:", db_test)
         with ENGINE.connect() as connection:

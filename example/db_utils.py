@@ -18,9 +18,14 @@ def create_database():
     with create_engine(CONFIG.pg_dbpath, isolation_level='AUTOCOMMIT', echo=False).connect() as connection:
         connection.execute('CREATE DATABASE ' + CONFIG.dbname)
 
+def get_engine():
+    engine = create_engine(CONFIG.dbpath, echo=False)
+    return engine
+
 def create_tables(schema=BASE):
     '''Create tables.'''
-    engine = create_engine(CONFIG.dbpath, echo=False)
+    #engine = create_engine(CONFIG.dbpath, echo=False)
+    engine = get_engine()
     schema.metadata.create_all(engine)
 
 def create_database_and_tables():
