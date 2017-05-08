@@ -69,7 +69,7 @@ class TagClassConstructor():
         class_attr['__init__'] = tag_init
         class_attr['tag'] = tag_property
         class_attr[target_name+'s'] = tag_targets
-        class_attr['words'] = tag_words
+        class_attr['words'] = words
         return type('Tag', (BASE,), class_attr)
 
 
@@ -129,11 +129,11 @@ def tag_targets(self):
     return set(target_list)
 
 @hybrid_property
-def tag_words(self):
+def words(self):
     word_list = []
     for tagword in self.tagwords:
         #tag_word = getattr(word, self.tagword)
-        word_list.append(str(tagword.word))
+        word_list.append(tagword.word)
     return word_list # cant be a set because "a a" -> "a"
 
 ## not sure if sorting is necessary
