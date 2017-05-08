@@ -65,16 +65,22 @@ def run_job(session, config, job, test_file):
                     assert result == expected_result
                 except AssertionError as e:
                     print("\nAssertionError on attribute:", attr)
-                    print("str(result) != expected_result:\n", str(result), "!=", expected_result)
+                    print("result != expected_result:\n", result, "!=", expected_result)
                     #from IPython import embed; embed()
                     raise e
             else: #it's empty, so compare the empty sets?
                 try:
                     assert len(result) == 0
+                except AssertionError as e:
+                    print("\nAssertionError on attribute:", attr)
+                    print("len(result) != 0:\n", len(result), "!= 0")
+                    #from IPython import embed; embed()
+                    raise e
+                try:
                     assert set(result) == set(expected_result)
                 except AssertionError as e:
                     print("\nAssertionError on attribute:", attr)
-                    print("str(result) != expected_result:\n", str(result), "!=", expected_result)
+                    print("set(result) != set(expected_result):\n", set(result), "!=", set(expected_result))
                     #from IPython import embed; embed()
                     raise e
 
