@@ -131,9 +131,9 @@ def tag_targets(self):
 @hybrid_property
 def tag_words(self):
     word_list = []
-    for word in self.tagwords:
-        tag_word = getattr(word, self.word)
-        target_list.append(tag_word)
+    for tagword in self.tagwords:
+        #tag_word = getattr(word, self.tagword)
+        target_list.append(tagword.word)
     return set(word_list)
 
 ## not sure if sorting is necessary
