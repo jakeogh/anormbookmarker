@@ -14,9 +14,11 @@ Words can have mispellings that alias back to the correct Word.
 
 Tags can have aliases.
 
-Mispellings also apply to the words that aliases are composed of.
+Mispellings also apply to the words that Tag aliases are composed of.
 
 Tags can have any number of parents and/or children.
+
+A Tag can not be it's own parent or child.
 
 
 ![image of db schema from pydot](https://github.com/jakeogh/anormbookmarker/raw/master/dbschema.1493721547.838351.png "dbschema.png")
