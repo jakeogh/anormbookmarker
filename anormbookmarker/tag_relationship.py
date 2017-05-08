@@ -18,4 +18,3 @@ tag_relationship = Table(
     Column('tag_id', Integer, ForeignKey('tag.id')),
     CheckConstraint(tag_constraint))
 
-
