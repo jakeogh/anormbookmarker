@@ -51,9 +51,12 @@ def run_job(session, job, test_file):
         attrs_to_check_dict = test['orm_result']
         #print('attrs_to_check_dict:', attrs_to_check_dict)
         for attr in attrs_to_check_dict.keys():
+            print("attr:", attr)
             result = getattr(orm_object_instance, attr)
+            print("result:", result)
             expected_result = attrs_to_check_dict[attr]
-            if expected_result:
+            print("expected_result:", expected_result)
+            if expected_result: # it's not empty
                 try:
                     assert str(result) == expected_result
                 except AssertionError as e:
@@ -61,9 +64,10 @@ def run_job(session, job, test_file):
                     print("str(result) != expected_result:\n", str(result), "!=", expected_result)
                     #from IPython import embed; embed()
                     raise e
-            else:
+            else: #it's empty, so compare the empty sets?
                 try:
-                    assert result == None
+                    assert len(result) == 0
+                    assert set(result) == set(expected_result)
                 except AssertionError as e:
                     print("\nAssertionError on attribute:", attr)
                     print("str(result) != expected_result:\n", str(result), "!=", expected_result)

@@ -4,11 +4,17 @@ The included example shows a simple 'class Filename' getting bookmarked.
 
 A Tag is a unicode string.
 
+Leading and trailing spaces are stripped.
+
+Consecutive spaces are collapsed into a single space.
+
+The only invalid (unicode) Tag is a sequence of 1 or more spaces.
+
+A space is only 0x20. Any other unicode (including whitespace) is treated as valid tag chars.
+
 A Tag is split into Words seperated by spaces.
 
-The only invalid (unicode) Tag is a single space.
-
-Leading and trailing spaces are ignored.
+The only unicode char that can not be in a Word is 0x20.
 
 Words can have mispellings that alias back to the correct Word.
 

@@ -34,9 +34,7 @@ class Word(BASE):
     before a Word is created we must make sure it's not already a WordMisSpelling
     the only restrictions on words is they can not contain SPACE
     '''
-    id = Column(Integer,
-                autoincrement=True,
-                primary_key=True)
+    id = Column(Integer, primary_key=True)
 
     word_constraint = "position('\\x20' in word) = 0" # words can not contain SPACE
     word = Column(Unicode(CONFIG.word_max_length),
@@ -79,7 +77,7 @@ class WordMisSpelling(BASE):
     '''
     alias of a word, intended to be used for misspellings
     '''
-    id = Column(Integer, autoincrement=True, primary_key=True)
+    id = Column(Integer, primary_key=True)
     wordmisspelling = Column(Unicode(CONFIG.word_max_length),
                              unique=True,
                              nullable=False,

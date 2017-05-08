@@ -51,7 +51,7 @@ class TagClassConstructor():
     def __new__(cls, mapper_to_bookmark):
         class_attr = {}
         class_attr['id'] = Column(Integer, primary_key=True)
-        class_attr['words'] = relationship("TagWord", backref='tag') # list of TagWord instances
+        class_attr['tagwords'] = relationship("TagWord", backref='tag') # list of TagWord instances
 
         class_attr['parents'] = relationship('Tag',
                                                 secondary=tag_relationship,
@@ -69,6 +69,7 @@ class TagClassConstructor():
         class_attr['__init__'] = tag_init
         class_attr['tag'] = tag_property
         class_attr[target_name+'s'] = tag_targets
+        class_attr['words'] = tag_words
         return type('Tag', (BASE,), class_attr)
 
 
@@ -127,6 +128,13 @@ def tag_targets(self):
         target_list.append(target)
     return set(target_list)
 
+@hybrid_property
+def tag_words(self):
+    word_list = []
+    for word in self.tagwords:
+        tag_word = getattr(word, self.word)
+        target_list.append(tag_word)
+    return set(word_list)
 
 ## not sure if sorting is necessary
 #    @property
