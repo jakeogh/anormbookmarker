@@ -70,7 +70,7 @@ class Word(BASE):
         return set(bookmarks)
 
     def __repr__(self):
-        return "'"+str(self.word)+"'"
+        return str(self.word)
 
     def __len__(self):
         return len(str(self.word))
