@@ -64,16 +64,16 @@ class TagClassConstructor():
         class_attr['target_class_name'] = target_class_name
         class_attr['target_name'] = target_name
 
-        class_attr['construct'] = tag_construct
-        class_attr['__repr__'] = tag_repr
-        class_attr['__init__'] = tag_init
+        class_attr['construct'] = construct
+        class_attr['__repr__'] = display
+        class_attr['__init__'] = init
         class_attr['tag'] = tag
         class_attr[target_name+'s'] = tag_targets
         class_attr['words'] = words
         return type('Tag', (BASE,), class_attr)
 
 
-def tag_init(self, session, tag):
+def init(self, session, tag):
     assert isinstance(tag, str)
     assert not find_tag(session=session, tag=tag)
     #assert not find_alias(session=session, alias=tag) #todo
@@ -92,7 +92,7 @@ def tag_init(self, session, tag):
 
 
 @classmethod
-def tag_construct(cls, session, tag, **kwargs):
+def construct(cls, session, tag, **kwargs):
     '''
     prevents creation of duplicate tags
     prevents creation of a tag that conflicts with an existing alias
@@ -110,13 +110,13 @@ def tag_construct(cls, session, tag, **kwargs):
         return new_tag
 
 
-def tag_repr(self):
+def display(self):
     return str(self.tag)
 
 
 @property
 def tag(self): # appears to always return the same result as tag_with_checks()
-    tag = " ".join([word for word in self.words])
+    tag = " ".join([str(word) for word in self.words])
     return tag
 
 
