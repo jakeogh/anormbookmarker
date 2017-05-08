@@ -8,34 +8,34 @@ from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import NullPool
 from anormbookmarker.BaseMixin import BASE
-from anormbookmarker.Config import CONFIG
+#from anormbookmarker.Config import CONFIG
 
 
-def create_database():
+def create_database(config):
     '''Create new database.'''
-    print("create_database() CONFIG.dbname:", CONFIG.dbname)
-    print("create_database() CONFIG.dbpath:", CONFIG.dbpath)
-    with create_engine(CONFIG.pg_dbpath, isolation_level='AUTOCOMMIT', echo=False).connect() as connection:
-        connection.execute('CREATE DATABASE ' + CONFIG.dbname)
+    print("create_database() config.dbname:", config.dbname)
+    print("create_database() config.dbpath:", config.dbpath)
+    with create_engine(config.pg_dbpath, isolation_level='AUTOCOMMIT', echo=False).connect() as connection:
+        connection.execute('CREATE DATABASE ' + config.dbname)
 
-def get_engine():
-    engine = create_engine(CONFIG.dbpath, echo=False)
+def get_engine(config):
+    assert isinstance(config.dbpath, str)
+    engine = create_engine(config.dbpath, echo=False)
     return engine
 
-def create_tables(schema=BASE):
+def create_tables(config, schema=BASE):
     '''Create tables.'''
-    #engine = create_engine(CONFIG.dbpath, echo=False)
-    engine = get_engine()
+    engine = get_engine(config=config)
     schema.metadata.create_all(engine)
 
-def create_database_and_tables():
+def create_database_and_tables(config):
     '''Create new database and tables.'''
-    create_database()
-    create_tables(BASE)
+    create_database(config=config)
+    create_tables(config, schema=BASE)
 
-def create_session():
+def create_session(config):
     '''Create a session.'''
-    engine = create_engine(CONFIG.dbpath, echo=False, poolclass=NullPool)
+    engine = create_engine(config.dbpath, echo=False, poolclass=NullPool)
     session = scoped_session(sessionmaker(autocommit=False,
                                           autoflush=False,
                                           bind=engine))

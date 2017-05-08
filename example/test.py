@@ -11,6 +11,7 @@ Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
 from anormbookmarker.Alias import Alias
 from anormbookmarker.Word import Word
 from anormbookmarker.Word import WordMisSpelling
+from anormbookmarker.Config import Config
 from db_utils import create_database_and_tables
 from db_utils import create_session
 from db_utils import get_engine
@@ -27,8 +28,8 @@ logging.basicConfig()
 logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
 
 
-def run_job(session, job, test_file):
-    print('test_file:', test_file)
+def run_job(session, config, job, test_file):
+    print('\n\n\ntest_file:', test_file)
     #print("run_job() job:", job['note'])
     assert isinstance(job, dict)
     assert isinstance(job['debug'], bool)
@@ -79,7 +80,7 @@ def run_job(session, job, test_file):
 
     session.commit()
 
-    ENGINE = get_engine()
+    ENGINE = get_engine(config)
     for db_test in job['db_result']:
         #print("db_test:", db_test)
         with ENGINE.connect() as connection:
@@ -102,8 +103,10 @@ if __name__ == '__main__':
         with open(test_file, 'r') as fh:
             contents = fh.read()
             job = eval(contents)
-            create_database_and_tables()
-            SESSION = create_session()
-            run_job(SESSION, job, test_file)
+            config = Config()
+            print("config.dbpath:", config.dbpath)
+            create_database_and_tables(config=config)
+            SESSION = create_session(config=config)
+            run_job(SESSION, config, job, test_file)
 
 
