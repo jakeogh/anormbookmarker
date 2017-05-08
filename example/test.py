@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
-import time
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
-
 
 from anormbookmarker.TagClassConstructor import TagClassConstructor
 from Filename import Filename
@@ -17,15 +15,8 @@ from db_utils import create_database_and_tables
 from db_utils import create_session
 from print_database import print_database
 
-
 from kcl.printops import cprint
-from kcl.postgresqlops import delete_and_recreate_database
 from kcl.dirops import all_files
-from sqlalchemy.pool import NullPool
-from sqlalchemy.orm import scoped_session
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
-from kcl.timeops import timestamp
 import logging
 
 logger = logging.getLogger()
@@ -43,10 +34,6 @@ def run_job(session, job, test_file):
     assert isinstance(job['echo'], bool)
     if job['echo']:
         pp.pprint(job)
-
-    #ENGINE = create_engine("postgres://postgres@localhost/" + dbname, echo=job['echo'], poolclass=NullPool)
-    #Base.metadata.create_all(ENGINE)
-    #session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=ENGINE))
 
     jobs = job['inputs']
     assert isinstance(jobs, list)
