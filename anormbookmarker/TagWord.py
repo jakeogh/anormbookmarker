@@ -54,6 +54,7 @@ class TagWord(BASE):
                                nullable=True)
     # collection_class=set?
     word = relationship("Word", backref='tag_words')
+
     def __repr__(self):
         return str(self.word)
 
