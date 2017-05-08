@@ -133,7 +133,7 @@ def tag_words(self):
     word_list = []
     for tagword in self.tagwords:
         #tag_word = getattr(word, self.tagword)
-        word_list.append(tagword.word)
+        word_list.append(str(tagword.word))
     return set(word_list)
 
 ## not sure if sorting is necessary
