@@ -53,7 +53,7 @@ class TagWord(BASE):
                                primary_key=False,
                                nullable=True)
     # collection_class=set?
-    word = relationship("Word", backref='tag_words')
+    word = relationship("Word", backref='tagwords')
 
     def __repr__(self):
         return str(self.word)
