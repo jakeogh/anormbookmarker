@@ -116,7 +116,7 @@ def tag_repr(self):
 
 @property
 def tag_property(self): # appears to always return the same result as tag_with_checks()
-    tag = " ".join([str(word.word) for word in self.words])
+    tag = " ".join([word for word in self.words])
     return tag
 
 
