@@ -134,7 +134,7 @@ def tag_words(self):
     for tagword in self.tagwords:
         #tag_word = getattr(word, self.tagword)
         word_list.append(str(tagword.word))
-    return set(word_list)
+    return word_list # cant be a set because "a a" -> "a"
 
 ## not sure if sorting is necessary
 #    @property
