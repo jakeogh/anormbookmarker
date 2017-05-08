@@ -85,7 +85,7 @@ def tag_init(self, session, tag):
         tagword = TagWord(position=index,
                           previous_position=previous_position)
         tagword.word = Word.construct(session=session, word=word)
-        self.words.append(tagword)
+        self.tagwords.append(tagword)
 
     session.add(self)
     session.flush(objects=[self])
