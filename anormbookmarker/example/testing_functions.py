@@ -11,7 +11,7 @@
 #from anormbookmarker.Config import Config
 #from db_utils import create_database_and_tables
 #from db_utils import create_session
-from db_utils import get_engine
+from anormbookmarker.example.db_utils import get_engine
 #from print_database import print_database
 #
 #from kcl.printops import cprint
