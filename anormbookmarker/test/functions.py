@@ -17,6 +17,7 @@ from anormbookmarker.Alias import Alias
 from anormbookmarker.Config import CONFIG
 from anormbookmarker.test.db_utils import create_database_and_tables
 from anormbookmarker.test.db_utils import create_session
+from anormbookmarker.find_alias import ConflictingAliasError
 
 import logging
 logger = logging.getLogger()

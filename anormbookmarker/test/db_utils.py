@@ -8,8 +8,6 @@ from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import NullPool
 from anormbookmarker.BaseMixin import BASE
-#from anormbookmarker.Config import CONFIG
-
 
 def create_database(config):
     '''Create new database.'''
