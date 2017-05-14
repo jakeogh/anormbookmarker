@@ -59,7 +59,7 @@ class TagClassConstructor():
                                                 secondaryjoin=tag_relationship.c.tag_parent_id == class_attr['id'],
                                                 backref="children")
         target_class_name = mapper_to_bookmark.__name__
-        target_name =  target_class_name.lower() # 'filename' usually
+        target_name = target_class_name.lower().split('.')[-1] # 'filename' usually
 
         class_attr['target_class_name'] = target_class_name
         class_attr['target_name'] = target_name
