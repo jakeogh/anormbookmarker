@@ -128,6 +128,10 @@ def run_tests(session):
     alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
     session.commit()
 
+
+
+
+
     # make a tag to use in a conflicting alias for rainbow eucalyptus
     trees = Tag.construct(session=session, tag='trees')
     session.commit()
@@ -136,6 +140,9 @@ def run_tests(session):
     #alias = Alias.construct(session=session, tag=trees, alias='rainbow eucalyptus')
     #session.commit()
 
+
+
+
     # create a tag that conflicts with an existing alias
     # correctly returns alias target
     rainbow_eucalyptus = Tag.construct(session=session, tag='rainbow eucalyptus')
@@ -143,6 +150,12 @@ def run_tests(session):
     #print("rainbow_eucalyptus:", rainbow_eucalyptus)
     #print("eucalyptus_deglupta:", eucalyptus_deglupta)
     assert rainbow_eucalyptus == eucalyptus_deglupta
+
+
+
+
+
+
 
     #make a Filename object to attach to a Bookmark
     filename = Filename.construct(session=session, filename=b"/var/log/messages")
