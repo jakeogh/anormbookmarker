@@ -8,13 +8,14 @@ debug =  False
 echo = False
 
 # make a tag to make an alias to
-eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
-session.commit()
+eucalyptus_deglupta = Tag.construct(session=SESSION, tag='Eucalyptus deglupta')
+SESSION.commit()
 
 # make a Alias
 #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus', casesensitive=False)
-alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
-session.commit()
+alias = Alias.construct(session=SESSION, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+SESSION.commit()
+
 
 str_attrs = {'tag': 'a'}
 
