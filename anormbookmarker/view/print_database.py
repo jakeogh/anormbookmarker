@@ -16,4 +16,3 @@ def print_database(session):
         select_statement = "select * from " + table_name + ";"
         pprint.pprint(session.execute(select_statement).fetchall())
 
-

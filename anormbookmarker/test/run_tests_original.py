@@ -5,7 +5,6 @@
 
 from anormbookmarker.TagClassConstructor import TagClassConstructor
 from Filename import Filename
-print(type(Filename))
 Tag = TagClassConstructor(mapper_to_bookmark=Filename)
 from anormbookmarker.BookmarkClassConstructor import BookmarkClassConstructor
 Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
@@ -15,7 +14,7 @@ from anormbookmarker.Word import WordMisSpelling
 from anormbookmarker.Config import CONFIG
 from db_utils import create_database_and_tables
 from db_utils import create_session
-from print_database import print_database
+from anormbookmarker.view.print_database import print_database
 
 def list_tables(session):
     print("\nAll Bookmark's:")
