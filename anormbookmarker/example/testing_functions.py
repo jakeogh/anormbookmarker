@@ -5,6 +5,12 @@ pp = pprint.PrettyPrinter(indent=4)
 
 from anormbookmarker.example.db_utils import get_engine
 
+from anormbookmarker.example.Filename import Filename
+from anormbookmarker.TagClassConstructor import TagClassConstructor
+Tag = TagClassConstructor(mapper_to_bookmark=Filename)
+
+
+
 def check_db_result(config, db_result):
     ENGINE = get_engine(config)
     for db_test in db_result:
