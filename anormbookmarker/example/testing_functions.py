@@ -9,6 +9,15 @@ from anormbookmarker.example.Filename import Filename
 from anormbookmarker.TagClassConstructor import TagClassConstructor
 Tag = TagClassConstructor(mapper_to_bookmark=Filename)
 
+from anormbookmarker.BookmarkClassConstructor import BookmarkClassConstructor
+Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
+
+from anormbookmarker.Alias import Alias
+
+from anormbookmarker.Config import CONFIG
+from anormbookmarker.example.db_utils import create_database_and_tables
+from anormbookmarker.example.db_utils import create_session
+
 
 
 def check_db_result(config, db_result):
