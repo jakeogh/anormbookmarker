@@ -50,7 +50,7 @@ class BookmarkClassConstructor():
                                                     backref=backref('bookmarks'))
         future_class_attr['tags'] = association_proxy('tag_rel', 'tag')
         target_class_name = mapper_to_bookmark.__name__
-        target_name =  target_class_name.lower() # 'filename' usually
+        target_name =  target_class_name.lower().split('.')[-1] # 'filename' usually
 
         future_class_attr[target_name+'_id'] = Column(Integer, ForeignKey(target_name+'.id'), unique=False, nullable=False)
         future_class_attr[target_name] = relationship(target_class_name, backref='bookmarks')
