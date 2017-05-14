@@ -28,7 +28,7 @@ logging.basicConfig()
 logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
 
 
-def run_job(session, config, job, test_file):
+def run_job_old(session, config, job, test_file):
     print('\n\n\ntest_file:', test_file)
     #print("run_job() job:", job['note'])
     assert isinstance(job, dict)
@@ -50,7 +50,7 @@ def run_job(session, config, job, test_file):
         orm_object_instance = orm_object.construct(session, tag=test[orm_object_attr], debug=job['debug'])
         print("orm_object_instance:", orm_object_instance)
         print("dir(orm_object_instance):", dir(orm_object_instance))
-        attrs_to_check_dict = test['orm_result']
+        attrs_to_check_dict = test['str_attrs']
         #print('attrs_to_check_dict:', attrs_to_check_dict)
         for attr in attrs_to_check_dict.keys():
             print("\nattr:", attr)
@@ -66,7 +66,7 @@ def run_job(session, config, job, test_file):
                 except AssertionError as e:
                     print("\nAssertionError on attribute:", attr)
                     print("result != expected_result:\n", result, "!=", expected_result)
-                    #from IPython import embed; embed()
+                    from IPython import embed; embed()
                     raise e
             else: #it's empty, so compare the empty sets?
                 try:
@@ -86,9 +86,11 @@ def run_job(session, config, job, test_file):
 
     session.commit()
 
+
+def check_db_result(db_result)
     ENGINE = get_engine(config)
-    for db_test in job['db_result']:
-        #print("db_test:", db_test)
+    for db_test in db_result:
+        print("db_test:", db_test)
         with ENGINE.connect() as connection:
             answer = connection.execute(db_test[0])
             for row in answer:
@@ -103,16 +105,5 @@ def run_job(session, config, job, test_file):
 
 
 
-if __name__ == '__main__':
-
-    for test_file in all_files('tests/'):
-        with open(test_file, 'r') as fh:
-            contents = fh.read()
-            job = eval(contents)
-            config = Config()
-            print("config.dbpath:", config.dbpath)
-            create_database_and_tables(config=config)
-            SESSION = create_session(config=config)
-            run_job(SESSION, config, job, test_file)
 
 
