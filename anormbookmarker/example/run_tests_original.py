@@ -5,6 +5,7 @@
 
 from anormbookmarker.TagClassConstructor import TagClassConstructor
 from Filename import Filename
+print(type(Filename))
 Tag = TagClassConstructor(mapper_to_bookmark=Filename)
 from anormbookmarker.BookmarkClassConstructor import BookmarkClassConstructor
 Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
