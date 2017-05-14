@@ -29,7 +29,7 @@ logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
 
 
 
-def check_db_result(db_result)
+def check_db_result(db_result):
     ENGINE = get_engine(config)
     for db_test in db_result:
         print("db_test:", db_test)
