@@ -19,6 +19,17 @@ from anormbookmarker.example.db_utils import create_database_and_tables
 from anormbookmarker.example.db_utils import create_session
 
 
+import logging
+logger = logging.getLogger()
+logger.setLevel(logging.CRITICAL)
+logging.basicConfig()
+logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
+
+create_database_and_tables(config=CONFIG)
+
+SESSION = create_session(config=CONFIG)
+
+
 
 def check_db_result(config, db_result):
     ENGINE = get_engine(config)
