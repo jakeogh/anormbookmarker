@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+
 from anormbookmarker.example.db_utils import get_engine
 
 def check_db_result(config, db_result):
