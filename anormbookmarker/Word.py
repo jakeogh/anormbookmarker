@@ -57,14 +57,14 @@ class Word(BASE):
     @hybrid_property
     def tags(self):
         tags = []
-        for tag in self.tag_words:
+        for tag in self.tagwords:
             tags.append(tag)
         return set(tags)
 
     @hybrid_property
     def bookmarks(self):
         bookmarks = []
-        for tagword in self.tag_words:
+        for tagword in self.tagwords:
             for bookmark in tagword.tag.bookmarks:
                 bookmarks.append(bookmark)
         return set(bookmarks)
