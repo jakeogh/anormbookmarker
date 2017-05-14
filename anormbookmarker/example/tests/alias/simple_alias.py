@@ -4,9 +4,15 @@ import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
 
+
+
 from anormbookmarker.example import Filename
 from anormbookmarker.TagClassConstructor import TagClassConstructor
 Tag = TagClassConstructor(mapper_to_bookmark=Filename)
+
+from anormbookmarker.BookmarkClassConstructor import BookmarkClassConstructor
+Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
+
 from anormbookmarker.Alias import Alias
 
 from anormbookmarker.Config import CONFIG
@@ -36,8 +42,8 @@ SESSION.commit()
 
 str_attrs = {'tag': 'a'}
 
-db_result = [('select COUNT(*) from alias;', 0),
-             ('select COUNT(*) from aliasword;', 0),
+db_result = [('select COUNT(*) from alias;', 1),
+             ('select COUNT(*) from aliasword;', 2),
              ('select COUNT(*) from bookmark;', 0),
              ('select COUNT(*) from filename;', 0),
              ('select COUNT(*) from tag;', 1),
@@ -49,6 +55,6 @@ db_result = [('select COUNT(*) from alias;', 0),
 
 pp.pprint(db_result)
 
-check_db_result(db_result)
+check_db_result(config=CONFIG, db_result=db_result)
 
 #from IPython import embed; embed()

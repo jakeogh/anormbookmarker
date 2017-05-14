@@ -1,30 +1,6 @@
 #!/usr/bin/env python3
 
-#import pprint
-#pp = pprint.PrettyPrinter(indent=4)
-#
-#from anormbookmarker.TagClassConstructor import TagClassConstructor
-#from Filename import Filename
-#Tag = TagClassConstructor(mapper_to_bookmark=Filename)
-#from anormbookmarker.BookmarkClassConstructor import BookmarkClassConstructor
-#Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
-#from anormbookmarker.Config import Config
-#from db_utils import create_database_and_tables
-#from db_utils import create_session
 from anormbookmarker.example.db_utils import get_engine
-#from print_database import print_database
-#
-#from kcl.printops import cprint
-#from kcl.dirops import all_files
-#import logging
-#
-#logger = logging.getLogger()
-#logger.setLevel(logging.CRITICAL)
-#
-#logging.basicConfig()
-#logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
-
-
 
 def check_db_result(config, db_result):
     ENGINE = get_engine(config)
@@ -39,7 +15,7 @@ def check_db_result(config, db_result):
                     print("\nAssertionError on db test:", db_test[0])
                     print("row[0] != db_test[0]:\n", row[0], "!=", db_test[1])
                     raise e
-    session.close()
+    #session.close()
     ENGINE.dispose()
 
 
