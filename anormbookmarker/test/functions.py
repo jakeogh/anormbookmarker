@@ -3,9 +3,9 @@
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-from anormbookmarker.example.db_utils import get_engine
+from anormbookmarker.test.db_utils import get_engine
 
-from anormbookmarker.example.Filename import Filename
+from anormbookmarker.test.Filename import Filename
 from anormbookmarker.TagClassConstructor import TagClassConstructor
 Tag = TagClassConstructor(mapper_to_bookmark=Filename)
 
@@ -15,9 +15,8 @@ Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
 from anormbookmarker.Alias import Alias
 
 from anormbookmarker.Config import CONFIG
-from anormbookmarker.example.db_utils import create_database_and_tables
-from anormbookmarker.example.db_utils import create_session
-
+from anormbookmarker.test.db_utils import create_database_and_tables
+from anormbookmarker.test.db_utils import create_session
 
 import logging
 logger = logging.getLogger()
@@ -26,10 +25,7 @@ logging.basicConfig()
 logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
 
 create_database_and_tables(config=CONFIG)
-
 SESSION = create_session(config=CONFIG)
-
-
 
 def check_db_result(config, db_result):
     ENGINE = get_engine(config)
@@ -44,10 +40,4 @@ def check_db_result(config, db_result):
                     print("\nAssertionError on db test:", db_test[0])
                     print("row[0] != db_test[0]:\n", row[0], "!=", db_test[1])
                     raise e
-    #session.close()
     ENGINE.dispose()
-
-
-
-
-

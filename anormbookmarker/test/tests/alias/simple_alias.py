@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from anormbookmarker.example.testing_functions import *
+from anormbookmarker.test.functions import *
 
 # make a tag to make an alias to
 eucalyptus_deglupta = Tag.construct(session=SESSION, tag='Eucalyptus deglupta')
