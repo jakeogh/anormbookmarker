@@ -1,16 +1,21 @@
-{   'inputs': [   {   'note': 'tag with two of the same single char words',
-                      'orm_object': 'Tag',
-                      'tag': 'b a',
-                      'str_attrs': {'tag': 'b a'}}],
-    'debug': False,
-    'echo': False,
-    'db_result': [   ('select COUNT(*) from alias;', 0),
-                     ('select COUNT(*) from aliasword;', 0),
-                     ('select COUNT(*) from bookmark;', 0),
-                     ('select COUNT(*) from filename;', 0),
-                     ('select COUNT(*) from tag;', 1),
-                     ('select COUNT(*) from tag_relationship;', 0),
-                     ('select COUNT(*) from tagbookmarks;', 0),
-                     ('select COUNT(*) from tagword;', 2),
-                     ('select COUNT(*) from word;', 2),
-                     ('select COUNT(*) from wordmisspelling;', 0)]}
+#!/usr/bin/env python3
+
+from anormbookmarker.test.functions import *
+
+# make a tag to make an alias to
+ba = Tag.construct(session=SESSION, tag='b a')
+SESSION.commit()
+
+db_result = [('select COUNT(*) from alias;', 0),
+             ('select COUNT(*) from aliasword;', 0),
+             ('select COUNT(*) from bookmark;', 0),
+             ('select COUNT(*) from filename;', 0),
+             ('select COUNT(*) from tag;', 1),
+             ('select COUNT(*) from tag_relationship;', 0),
+             ('select COUNT(*) from tagbookmarks;', 0),
+             ('select COUNT(*) from tagword;', 2),
+             ('select COUNT(*) from word;', 2),
+             ('select COUNT(*) from wordmisspelling;', 0)]
+
+check_db_result(config=CONFIG, db_result=db_result)
+SESSION.close()
