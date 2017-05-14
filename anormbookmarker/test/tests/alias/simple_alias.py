@@ -1,31 +1,6 @@
 #!/usr/bin/env python3
 
-import pprint
-pp = pprint.PrettyPrinter(indent=4)
-
-from anormbookmarker.example.Filename import Filename
-from anormbookmarker.TagClassConstructor import TagClassConstructor
-Tag = TagClassConstructor(mapper_to_bookmark=Filename)
-
-from anormbookmarker.BookmarkClassConstructor import BookmarkClassConstructor
-Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
-
-from anormbookmarker.Alias import Alias
-
-from anormbookmarker.Config import CONFIG
-from anormbookmarker.example.db_utils import create_database_and_tables
-from anormbookmarker.example.db_utils import create_session
-from anormbookmarker.example.testing_functions import check_db_result
-
-import logging
-logger = logging.getLogger()
-logger.setLevel(logging.CRITICAL)
-logging.basicConfig()
-logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
-
-create_database_and_tables(config=CONFIG)
-
-SESSION = create_session(config=CONFIG)
+from anormbookmarker.example.testing_functions import *
 
 # make a tag to make an alias to
 eucalyptus_deglupta = Tag.construct(session=SESSION, tag='Eucalyptus deglupta')
@@ -35,9 +10,6 @@ SESSION.commit()
 #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus', casesensitive=False)
 alias = Alias.construct(session=SESSION, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
 SESSION.commit()
-
-
-str_attrs = {'tag': 'a'}
 
 db_result = [('select COUNT(*) from alias;', 1),
              ('select COUNT(*) from aliasword;', 2),
@@ -50,9 +22,6 @@ db_result = [('select COUNT(*) from alias;', 1),
              ('select COUNT(*) from word;', 4),
              ('select COUNT(*) from wordmisspelling;', 0)]
 
-pp.pprint(db_result)
-
 check_db_result(config=CONFIG, db_result=db_result)
-
 #from IPython import embed; embed()
 SESSION.close()
