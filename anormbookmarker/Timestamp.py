@@ -4,7 +4,6 @@
 
 import os
 import decimal
-import timestamp
 from sqlalchemy import Numeric
 from sqlalchemy import Column
 from sqlalchemy import Integer
