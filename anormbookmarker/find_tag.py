@@ -33,6 +33,7 @@ def find_tag(session, tag):
                 print("no misspelling found for word:", word)
                 pass
             current_word = session.query(Word).filter_by(word=word).one()
+            print("current_word:", current_word)
             current_tagword_list = session.query(TagWord).filter_by(word=current_word, position=index).all()
             if current_tagword_list:
                 current_tagword_list_tag_set = set([tagword.tag for tagword in current_tagword_list])
