@@ -37,11 +37,14 @@ def find_tag(session, tag):
             current_tagword_list = session.query(TagWord).filter_by(word=current_word, position=index).all()
             print("current_tagword_list:", current_tagword_list)
             if current_tagword_list:
-                print('possible_tag_set', possible_tag_set)
+                print('possible_tag_set:', possible_tag_set)
                 current_tagword_list_tag_set = set([tagword.tag for tagword in current_tagword_list])
                 print('current_tagword_list_tag_set:', current_tagword_list_tag_set)
-                possible_tag_set = possible_tag_set & current_tagword_list_tag_set
-                print('possible_tag_set', possible_tag_set)
+                if not possible_tag_set:
+                    possible_tag_set = current_tagword_list_tag_set
+                else:
+                    possible_tag_set = possible_tag_set & current_tagword_list_tag_set
+                print('possible_tag_set:', possible_tag_set)
                 for tagword in current_tagword_list:
                     if index == 0: # only add tags that start with the correct word
                         possible_tag_set.add(tagword.tag)
