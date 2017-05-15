@@ -35,7 +35,8 @@ tagbookmarks_table = \
 @classmethod
 def construct(cls, session, tag, **kwargs):
     #tag = Tag.construct(session=session, tag=tag) # could demand to get a tag obj...
-    result = get_one_or_create(session, cls, **kwargs)
+    timestamp = Timestamp.construct(session=session)
+    result = get_one_or_create(session, cls, **kwargs, timestamp=timestamp)
     result.tag_rel.add(tag)
     return result
 
