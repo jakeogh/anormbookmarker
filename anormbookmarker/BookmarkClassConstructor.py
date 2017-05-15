@@ -59,7 +59,7 @@ class BookmarkClassConstructor():
         future_class_attr['target_class_name'] = target_class_name
         future_class_attr['target_name'] = target_name
 
-        #future_class_attr['timestamp'] = Column(Integer, ForeignKey('timestamp.id'), unique=False, nullable=False, default=datetime.datetime.utcnow)
+        future_class_attr['timestamp_id'] = Column(Integer, ForeignKey('timestamp.id'), unique=False, nullable=False, default=datetime.datetime.utcnow)
         future_class_attr['timestamp'] = relationship('Timestamp', backref='timestamp')
 
         future_class_attr['construct'] = construct
