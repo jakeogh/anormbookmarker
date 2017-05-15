@@ -22,10 +22,10 @@ class Timestamp(BASE):
 
 
     @classmethod
-       def construct(cls, session):
-           result = get_one_or_create(session, Timestamp)
-           #print("returning result:", result)
-           return result
+        def construct(cls, session):
+            result = get_one_or_create(session, Timestamp)
+            #print("returning result:", result)
+            return result
 
 
 
