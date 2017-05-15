@@ -4,6 +4,7 @@
 
 import os
 import decimal
+import timestamp
 from sqlalchemy import Numeric
 from sqlalchemy import Column
 from sqlalchemy import Integer
@@ -19,7 +20,6 @@ class Timestamp(BASE):
     # timestamps should be unique
 
     id = Column(Integer, primary_key=True)
-    #timestamp = Column(Numeric(32,22), CheckConstraint('timestamp>0'), unique=True, nullable=False, index=True)
     timestamp = Column(DateTime(timezone=True), unique=True, nullable=False, index=True, default=datetime.datetime.utcnow)
 
     #def __init__(self, timestamp=None):  # todo disable passing of timestamp after oldschool import is done
