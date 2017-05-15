@@ -18,6 +18,7 @@ def find_tag(session, tag):
     corrected_tag = tag
     possible_tag_set = set([])
     assert isinstance(tag, str)
+    print("tag:", tag)
     try:
         for index, word in enumerate(tag.split(' ')):
             print("index, word:", index, word)
