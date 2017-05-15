@@ -31,13 +31,13 @@ tagbookmarks_table = \
           UniqueConstraint('bookmark_id', 'tag_id'))
 
 @classmethod
-def bookmark_construct(cls, session, tag, **kwargs):
+def construct(cls, session, tag, **kwargs):
     #tag = Tag.construct(session=session, tag=tag) # could demand to get a tag obj...
     result = get_one_or_create(session, cls, **kwargs)
     result.tag_rel.add(tag)
     return result
 
-def bookmark_repr(self):
+def repr(self):
     return str(getattr(self, self.target_name)) + ' ' + str(self.tags)
 
 class BookmarkClassConstructor():
@@ -57,6 +57,8 @@ class BookmarkClassConstructor():
         future_class_attr['target_class_name'] = target_class_name
         future_class_attr['target_name'] = target_name
 
-        future_class_attr['construct'] = bookmark_construct
-        future_class_attr['__repr__'] = bookmark_repr
+        future_class_attr['timestamp'] = Column(Integer, ForeignKey('timestamp.id'), unique=False, nullable=False, default=datetime.datetime.utcnow)
+
+        future_class_attr['construct'] = construct
+        future_class_attr['__repr__'] = repr
         return type('Bookmark', (BASE,), future_class_attr)
