@@ -18,7 +18,7 @@ def find_tag(session, tag):
     corrected_tag = tag
     possible_tag_set = set([])
     assert isinstance(tag, str)
-    print("tag:", tag)
+    print("\ntag:", tag)
     tag_split = tag.split(' ')
     print("tag_split:", tag_split)
     try:
@@ -44,6 +44,7 @@ def find_tag(session, tag):
                             print("tagword.tag:", tagword.tag, "is not in possible_tag_set:", possible_tag_set)
                             return False
                 if not possible_tag_set:
+                    print("not possible_tag_set:", possible_tag_set)
                     return False
                 if len(possible_tag_set) == 1:
                     last_tag = list(possible_tag_set)[0]
@@ -51,6 +52,7 @@ def find_tag(session, tag):
                     if last_tag_text == corrected_tag:
                         return last_tag
                     else:
+                        print("last_tag_text:", last_tag_text, "!= corrected_tag:", corrected_tag)
                         return False
     except NoResultFound: # any failed query
         return False
