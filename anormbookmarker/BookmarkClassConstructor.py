@@ -37,6 +37,7 @@ def construct(cls, session, tag, **kwargs):
     #tag = Tag.construct(session=session, tag=tag) # could demand to get a tag obj...
     result = get_one_or_create(session, cls, **kwargs)
     result.tag_rel.add(tag)
+    result.timestamp = Timestamp()
     return result
 
 def repr(self):
@@ -61,7 +62,7 @@ class BookmarkClassConstructor():
 
         future_class_attr['timestamp_id'] = \
             Column(Integer, ForeignKey('timestamp.id'), unique=False, nullable=False)
-        future_class_attr['timestamp'] = relationship('Timestamp', backref='timestamps')
+        future_class_attr['timestamp'] = relationship('Timestamp', backref='bookmarks')
 
         future_class_attr['construct'] = construct
         future_class_attr['__repr__'] = repr
