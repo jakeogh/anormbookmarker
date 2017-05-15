@@ -152,11 +152,6 @@ def run_tests(session):
     assert rainbow_eucalyptus == eucalyptus_deglupta
 
 
-
-
-
-
-
     #make a Filename object to attach to a Bookmark
     filename = Filename.construct(session=session, filename=b"/var/log/messages")
     session.commit()
@@ -164,6 +159,7 @@ def run_tests(session):
     #make a duplicate Filename object (correctly returns the existing filename)
     filename = Filename.construct(session=session, filename=b"/var/log/messages")
     session.commit()
+
 
     # make a tag
     messages = Tag.construct(session=session, tag='messages')
@@ -181,6 +177,8 @@ def run_tests(session):
     bookmark = Bookmark.construct(session=session, filename=filename, tag=more_messages)
     session.commit()
 
+
+
     #make another Filename object to attach to a Bookmark
     filename = Filename.construct(session=session, filename=b"/var/log/mail.log")
     session.commit()
@@ -192,6 +190,7 @@ def run_tests(session):
     # make Bookmark
     bookmark = Bookmark.construct(session=session, filename=filename, tag=mail)
     session.commit()
+
 
     # make tag
     next_tag = "Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo"
@@ -208,6 +207,9 @@ def run_tests(session):
     tag = Tag.construct(session=session, tag=next_tag)
     session.commit()
 
+
+
+
     # make a tag to misspell
     tag = Tag.construct(session=session, tag='plants')
     session.commit()
@@ -221,10 +223,17 @@ def run_tests(session):
     plants = Tag.construct(session=session, tag='plantss')
     session.commit()
 
+
+
+
+
     # test wordmisspelling on a multiple word tag
     plants_plants = Tag.construct(session=session, tag='plantss plants')
     session.commit()
     assert str(plants_plants) == 'plants plants'
+
+
+
 
     # make a child tag for plants (it's a duplicate tag and is correctly returned)
     trees = Tag.construct(session=session, tag='trees')
