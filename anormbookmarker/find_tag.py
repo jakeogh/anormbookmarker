@@ -57,4 +57,5 @@ def find_tag(session, tag):
                         print("last_tag_text:", last_tag_text, "!= corrected_tag:", corrected_tag)
                         return False
     except NoResultFound: # any failed query
+        print("NoResultFound returning False")
         return False
