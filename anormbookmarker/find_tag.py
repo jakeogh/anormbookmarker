@@ -22,7 +22,7 @@ def find_tag(session, tag):
     tag_split = tag.split(' ')
     print("tag_split:", tag_split)
     try:
-        for index, word in enumerate(tag.split(' ')):
+        for index, word in enumerate(tag_split):
             print("index, word:", index, word)
             try:
                 wordmisspelling = session.query(WordMisSpelling).filter_by(wordmisspelling=word).one()
@@ -30,6 +30,7 @@ def find_tag(session, tag):
                 word = str(target_word)
                 corrected_tag = tag.replace(wordmisspelling.wordmisspelling, word)
             except NoResultFound:
+                print("no misspelling found for word:", word)
                 pass
             current_word = session.query(Word).filter_by(word=word).one()
             current_tagword_list = session.query(TagWord).filter_by(word=current_word, position=index).all()
