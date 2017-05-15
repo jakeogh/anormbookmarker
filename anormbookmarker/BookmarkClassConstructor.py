@@ -6,6 +6,7 @@
 A Bookmark combines a set of Tags and a single Object ('class Filename' in the inclided example).
 '''
 
+import datetime
 from sqlalchemy import Table
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
