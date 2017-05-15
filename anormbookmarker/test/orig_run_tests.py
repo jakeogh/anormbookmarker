@@ -177,8 +177,6 @@ def run_tests(session):
     bookmark = Bookmark.construct(session=session, filename=filename, tag=more_messages)
     session.commit()
 
-
-
     #make another Filename object to attach to a Bookmark
     filename = Filename.construct(session=session, filename=b"/var/log/mail.log")
     session.commit()
@@ -190,7 +188,6 @@ def run_tests(session):
     # make Bookmark
     bookmark = Bookmark.construct(session=session, filename=filename, tag=mail)
     session.commit()
-
 
     # make tag
     next_tag = "Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo"
@@ -207,9 +204,6 @@ def run_tests(session):
     tag = Tag.construct(session=session, tag=next_tag)
     session.commit()
 
-
-
-
     # make a tag to misspell
     tag = Tag.construct(session=session, tag='plants')
     session.commit()
@@ -222,10 +216,6 @@ def run_tests(session):
     # test the WordMispelling (correctly does not create a plantss tag)
     plants = Tag.construct(session=session, tag='plantss')
     session.commit()
-
-
-
-
 
     # test wordmisspelling on a multiple word tag
     plants_plants = Tag.construct(session=session, tag='plantss plants')

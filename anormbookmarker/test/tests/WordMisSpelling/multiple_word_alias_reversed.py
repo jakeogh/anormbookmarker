@@ -21,11 +21,11 @@ eucalyptus_wms = WordMisSpelling.construct(session=SESSION, wordmisspelling="euc
 alias_eucaliptus = Alias.construct(session=SESSION, tag=eucalyptus_deglupta, alias='rainbow eucaliptus')
 SESSION.commit()
 
-print("alias:", alias)
-print("alias.tag:", alias.tag)
-print(' ')
-print("alias_eucaliptus:", alias_eucaliptus)
-print("alias_eucaliptus.tag:", alias_eucaliptus.tag)
+#print("alias:", alias)
+#print("alias.tag:", alias.tag)
+#print(' ')
+#print("alias_eucaliptus:", alias_eucaliptus)
+#print("alias_eucaliptus.tag:", alias_eucaliptus.tag)
 
 assert id(alias) == id(alias_eucaliptus)
 assert str(alias_eucaliptus.tag) == 'Eucalyptus deglupta'
