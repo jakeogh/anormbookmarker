@@ -41,6 +41,7 @@ def find_tag(session, tag):
                         possible_tag_set.add(tagword.tag)
                     else:
                         if tagword.tag not in possible_tag_set:
+                            print("tagword.tag:", tagword.tag, "is not in possible_tag_set:", possible_tag_set)
                             return False
                 if not possible_tag_set:
                     return False
