@@ -13,6 +13,8 @@ from anormbookmarker.BookmarkClassConstructor import BookmarkClassConstructor
 Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
 
 from anormbookmarker.Alias import Alias
+from anormbookmarker.Word import WordMisSpelling
+from anormbookmarker.Word import Word
 
 from anormbookmarker.Config import CONFIG
 from anormbookmarker.test.db_utils import create_database_and_tables
