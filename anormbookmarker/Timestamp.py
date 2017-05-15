@@ -20,11 +20,11 @@ class Timestamp(BASE):
 
     id = Column(Integer, primary_key=True)
     #timestamp = Column(Numeric(32,22), CheckConstraint('timestamp>0'), unique=True, nullable=False, index=True)
-    timestamp = Column(DateTime(timezone=True), unique=True, nullable=False, index=True)
+    timestamp = Column(DateTime(timezone=True), unique=True, nullable=False, index=True, default=datetime.datetime.utcnow)
 
-    def __init__(self, timestamp=None):  # todo disable passing of timestamp after oldschool import is done
-        if timestamp:
-            self.timestamp = decimal.Decimal(format(decimal.Decimal(str(timestamp)), '0.22f'))
+    #def __init__(self, timestamp=None):  # todo disable passing of timestamp after oldschool import is done
+    #    if timestamp:
+    #        self.timestamp = decimal.Decimal(format(decimal.Decimal(str(timestamp)), '0.22f'))
 
     def __repr__(self):
         return str(self.timestamp)

@@ -10,8 +10,14 @@ SESSION.commit()
 messages = Tag.construct(session=SESSION, tag='messages')
 SESSION.commit()
 
+# make a Timestamp
+timestamp = Timestamp()
+SESSION.commit()
+
+print("timestamp:", timestamp)
+
 # make a Bookmark
-bookmark = Bookmark.construct(session=SESSION, filename=filename, tag=messages)
+bookmark = Bookmark.construct(session=SESSION, filename=filename, tag=messages, timestamp=timestamp)
 SESSION.commit()
 
 db_result = [('select COUNT(*) from alias;', 0),

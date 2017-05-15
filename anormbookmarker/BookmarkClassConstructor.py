@@ -37,7 +37,6 @@ def construct(cls, session, tag, **kwargs):
     #tag = Tag.construct(session=session, tag=tag) # could demand to get a tag obj...
     result = get_one_or_create(session, cls, **kwargs)
     result.tag_rel.add(tag)
-    #result.timestamp = Timestamp()
     return result
 
 def repr(self):
