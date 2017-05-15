@@ -34,7 +34,7 @@ SESSION = create_session(config=CONFIG)
 def check_db_result(config, db_result):
     ENGINE = get_engine(config)
     for db_test in db_result:
-        print("db_test:", db_test)
+        print(db_test)
         with ENGINE.connect() as connection:
             answer = connection.execute(db_test[0])
             for row in answer:
