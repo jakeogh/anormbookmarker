@@ -10,12 +10,7 @@ SESSION.commit()
 messages = Tag.construct(session=SESSION, tag='messages')
 SESSION.commit()
 
-# make a Timestamp
-#timestamp = Timestamp.construct(session=SESSION)
-#SESSION.commit()
-
 # make a Bookmark
-#bookmark = Bookmark.construct(session=SESSION, filename=filename, tag=messages, timestamp=timestamp)
 bookmark = Bookmark.construct(session=SESSION, filename=filename, tag=messages)
 SESSION.commit()
 

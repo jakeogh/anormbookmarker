@@ -13,8 +13,7 @@ def create_database(config):
     '''Create new database.'''
     print("create_database() config.dbname:", config.dbname)
     print("create_database() config.dbpath:", config.dbpath)
-    #with create_engine(config.pg_dbpath, isolation_level='AUTOCOMMIT', echo=False).connect() as connection:
-    with create_engine(config.dbpath, isolation_level='AUTOCOMMIT', echo=False).connect() as connection:
+    with create_engine(config.pg_dbpath, isolation_level='AUTOCOMMIT', echo=False).connect() as connection:
         connection.execute('CREATE DATABASE ' + config.dbname)
 
 def get_engine(config):
