@@ -9,6 +9,7 @@ from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy import CheckConstraint
 from sqlalchemy.types import DateTime
+from .BaseMixin import BASE
 
 # might want a to add a Date type http://www.postgresql.org/docs/9.4/static/datatype-datetime.html
 class Timestamp(Base):
