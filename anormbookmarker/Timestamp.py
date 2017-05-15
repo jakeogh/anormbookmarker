@@ -12,7 +12,7 @@ from sqlalchemy.types import DateTime
 from .BaseMixin import BASE
 
 # might want a to add a Date type http://www.postgresql.org/docs/9.4/static/datatype-datetime.html
-class Timestamp(Base):
+class Timestamp(BASE):
     # 1431237850.2934275 (os.stat().st_mtime)
     # query returns a padded result
     # 1396732434.7183542000000000000000
