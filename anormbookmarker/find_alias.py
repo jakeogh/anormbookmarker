@@ -79,6 +79,6 @@ def find_alias(session, alias, tag=False):
     except NoResultFound: # any failed query
         return False
 
-class ConflictingAliasError(ValueError):
-    pass
+#class ConflictingAliasError(ValueError):
+#    pass
 
