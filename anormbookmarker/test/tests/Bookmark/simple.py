@@ -15,6 +15,10 @@ timestamp = Timestamp()
 SESSION.commit()
 
 print("timestamp:", timestamp)
+print("timestamp.timestamp:", timestamp.timestamp)
+print("timestamp.id", timestamp.id)
+
+assert timestamp.id != None
 
 # make a Bookmark
 bookmark = Bookmark.construct(session=SESSION, filename=filename, tag=messages, timestamp=timestamp)
