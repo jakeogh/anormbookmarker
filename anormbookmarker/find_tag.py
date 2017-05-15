@@ -51,6 +51,7 @@ def find_tag(session, tag):
                     last_tag = list(possible_tag_set)[0]
                     last_tag_text = str(last_tag)
                     if last_tag_text == corrected_tag:
+                        print("returning last_tag:", last_tag)
                         return last_tag
                     else:
                         print("last_tag_text:", last_tag_text, "!= corrected_tag:", corrected_tag)
