@@ -20,8 +20,9 @@ def find_tag(session, tag):
     assert isinstance(tag, str)
     try:
         for index, word in enumerate(tag.split(' ')):
+            print("index, word:", index, word)
             try:
-                wordmisspelling = session.query(WordMisSpelling).filter_by(wordmisspelling=word).one() #bug? shouldnt it be =word?
+                wordmisspelling = session.query(WordMisSpelling).filter_by(wordmisspelling=word).one()
                 target_word = wordmisspelling.word
                 word = str(target_word)
                 corrected_tag = tag.replace(wordmisspelling.wordmisspelling, word)
