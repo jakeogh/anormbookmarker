@@ -20,5 +20,14 @@ class Timestamp(BASE):
     id = Column(Integer, primary_key=True)
     timestamp = Column(DateTime(timezone=True), unique=True, nullable=False, index=True, server_default=func.now())
 
+
+    @classmethod
+       def construct(cls, session):
+           result = get_one_or_create(session, Timestamp)
+           #print("returning result:", result)
+           return result
+
+
+
     def __repr__(self):
         return str(self.timestamp)
