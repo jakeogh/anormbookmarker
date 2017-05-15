@@ -13,7 +13,7 @@ class Config():
         self.tag_max_length = 255
         self.dbname = 'anormbookmarker_test_' + str(time.time()).replace('.', '_')
         self.dbpath = 'postgres://postgres@localhost/' + self.dbname
-        self.pg_dbpath = 'postgresql://postgres@localhost/postgres'
+        # self.pg_dbpath = 'postgresql://postgres@localhost/postgres'
 
 CONFIG = Config()
 
