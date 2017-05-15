@@ -81,3 +81,4 @@ def find_alias(session, alias, tag=False):
 
 class ConflictingAliasError(ValueError):
     pass
+
