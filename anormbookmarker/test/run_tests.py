@@ -10,3 +10,5 @@ if __name__ == '__main__':
             exit_status = os.WEXITSTATUS(os.system(test_file))
             if exit_status != 0:
                 quit(exit_status)
+
+    print("\n\nAll Tests Completed OK")

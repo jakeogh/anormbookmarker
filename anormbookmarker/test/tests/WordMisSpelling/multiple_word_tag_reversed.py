@@ -11,7 +11,7 @@ plants_wms = WordMisSpelling.construct(session=SESSION, wordmisspelling="plantss
 SESSION.commit()
 
 # test the WordMispelling (correctly does not create a 'plants plantss' tag)
-plantss = Tag.construct(session=SESSION, tag='plants plantss')
+plantss = Tag.construct(session=SESSION, tag='plantss plants')
 SESSION.commit()
 
 assert str(plantss) == 'plants plants'
