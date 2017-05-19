@@ -32,11 +32,13 @@ SESSION = create_session(config=CONFIG)
 
 def check_db_result(config, db_result):
     ENGINE = get_engine(config)
-    tables = ENGINE.table_names()
+    tables = set(ENGINE.table_names())
     print("tables:", tables)
 
     for db_test in db_result:
         print(db_test)
+        db_test_table = db_test[0].split()[-1].split(';')[0]
+        print("db_test_table:", db_test_table)
         with ENGINE.connect() as connection:
             answer = connection.execute(db_test[0])
             for row in answer:
