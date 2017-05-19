@@ -16,7 +16,6 @@ from anormbookmarker.Alias import Alias
 from anormbookmarker.Word import WordMisSpelling
 from anormbookmarker.Word import Word
 from anormbookmarker.Timestamp import Timestamp
-
 from anormbookmarker.Config import CONFIG
 from anormbookmarker.test.db_utils import create_database_and_tables
 from anormbookmarker.test.db_utils import create_session
@@ -33,6 +32,9 @@ SESSION = create_session(config=CONFIG)
 
 def check_db_result(config, db_result):
     ENGINE = get_engine(config)
+    tables = ENGINE.table_names()
+    print("tables:", tables)
+
     for db_test in db_result:
         print(db_test)
         with ENGINE.connect() as connection:
