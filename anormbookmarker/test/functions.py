@@ -49,8 +49,8 @@ def check_db_result(config, db_result):
                     print("\nAssertionError on db test:", db_test[0])
                     print("row[0] != db_test[0]:\n", row[0], "!=", db_test[1])
                     raise e
-        if len(tables) != 0:
+        if tables:
             print("Missed table test(s):", tables)
-        assert len(tables) == 0
+        assert not tables
 
     ENGINE.dispose()
