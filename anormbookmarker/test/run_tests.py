@@ -3,6 +3,8 @@
 from kcl.dirops import all_files
 import os
 
+os.system('sudo /home/cfg/database/postgresql/start')
+
 if __name__ == '__main__':
     for test_file in all_files('./tests/'):
         if test_file.endswith('''.py''') and not test_file.endswith('__init__.py'):
