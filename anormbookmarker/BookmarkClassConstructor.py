@@ -18,6 +18,8 @@ from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.associationproxy import association_proxy
 from .get_one_or_create import get_one_or_create
 from .BaseMixin import BASE
+
+# Timestamps on bookmarks results in 'duplicate' bookmarks
 from .Timestamp import Timestamp
 
 tagbookmarks_table = \

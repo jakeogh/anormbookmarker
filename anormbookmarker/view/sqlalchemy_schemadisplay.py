@@ -6,7 +6,7 @@ from sqlalchemy.orm import sync
 import pydot
 import types
 from sqlalchemy.orm import class_mapper
-from run_tests import Bookmark as model
+from anormbookmarker.test.functions import Bookmark as model
 
 __all__ = ['create_uml_graph', 'create_schema_graph', 'show_uml_graph', 'show_schema_graph']
 

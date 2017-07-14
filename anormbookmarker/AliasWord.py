@@ -29,7 +29,6 @@ class AliasWord(BASE):
     * row_count = aliass + spaces
     Does not appear to be a big deal because it's not exp and most aliass have 0 spaces
 
-
     '''
 
     __table_args__ = (UniqueConstraint('alias_id', 'word_id', 'position', 'previous_position'),)
