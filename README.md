@@ -2,23 +2,23 @@ anormbookmarker provides a Bookmark class that links Tags (unicode sentences) wi
 
 The included example shows a simple 'class Filename' getting bookmarked.
 
-A Tag is a unicode string.
+A Tag is a unicode string with leading and trailing spaces stripped.
 
-Leading and trailing spaces are stripped.
+Consecutive spaces are collapsed.
 
-Consecutive spaces are collapsed into a single space.
-
-The only invalid (unicode) Tag is a sequence of 1 or more spaces.
+The only invalid Tag is a sequence of 1 or more spaces.
 
 A space is only 0x20. Any other unicode (including whitespace) is treated as valid tag chars.
 
-A Tag is split into Words seperated by spaces.
+A Tag is composed of Words seperated by spaces.
 
-The only unicode char that can not be in a Word is 0x20.
+Words are unicode strings excluding the standard 0x20 space.
+
+Said another way, the only char that can not be in a Word is 0x20.
 
 Words can have mispellings that alias back to the correct Word.
 
-Tags can have aliases.
+Tags (Word sequences) can themselves have aliases.
 
 Mispellings also apply to the words that Tag aliases are composed of.
 
