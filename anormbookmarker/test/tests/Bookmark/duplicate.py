@@ -28,7 +28,7 @@ db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from tag_relationship;', 0),
              ('select COUNT(*) from tagbookmarks;', 1),
              ('select COUNT(*) from tagword;', 1),
-             ('select COUNT(*) from timestamp;', 1),
+             ('select COUNT(*) from timestamp;', 0),
              ('select COUNT(*) from word;', 1),
              ('select COUNT(*) from wordmisspelling;', 0)]
 
