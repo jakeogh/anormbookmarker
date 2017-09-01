@@ -30,7 +30,7 @@ sudo rm -rf /usr/lib64/python3.4/site-packages/"${short_package}"-0.1-py3.4.egg
 sudo emerge --tree --quiet-build=n --usepkg=n "${package}"
 sudo rm /usr/portage/packages/"${package}"-0.0.1.tbz2 -f
 sudo rm -rf build
-#$short_package
+$short_package
 
 
 

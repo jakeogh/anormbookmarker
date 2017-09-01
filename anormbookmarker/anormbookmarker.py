@@ -20,7 +20,7 @@ CONTEXT_SETTINGS = \
 @click.option('--verbose', is_flag=True, callback=set_verbose, expose_value=False)
 @click.pass_context
 def anormbookmarker(ctx):
-    ''' iridb_cli '''
+    ''' anormbookmarker_cli '''
     pass
 
 anormbookmarker.add_command(test)
