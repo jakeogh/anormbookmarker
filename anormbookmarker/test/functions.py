@@ -35,7 +35,6 @@ def check_db_result(config, db_result):
     tables = set(ENGINE.table_names())
     print("tables:", tables)
     assert tables
-
     for db_test in db_result:
         print(db_test)
         db_test_table = db_test[0].split()[-1].split(';')[0]
