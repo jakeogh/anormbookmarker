@@ -3,11 +3,15 @@
 import click
 from kcl.dirops import all_files
 import os
-os.system('sudo /home/cfg/database/postgresql/start')
+import pkg_resources
+
+
+DATA_PATH = pkg_resources.resource_filename('<package name>', 'cli/test/tests/')
 
 @click.command()
 def test():
-    for test_file in all_files('./tests/'):
+    os.system('sudo /home/cfg/database/postgresql/start')
+    for test_file in all_files(DATA_PATH):
         if test_file.endswith('''.py''') and not test_file.endswith('__init__.py'):
             print("\nrunning test:", test_file)
             exit_status = os.WEXITSTATUS(os.system(test_file))
@@ -15,5 +19,4 @@ def test():
                 quit(exit_status)
 
     print("\n\nAll Tests Completed OK")
-
 
