@@ -4,7 +4,6 @@ import click
 import shutil
 from kcl.logops import set_verbose
 from .cli.test import test
-
 __version__ = 0.01
 
 # https://github.com/mitsuhiko/click/issues/441
