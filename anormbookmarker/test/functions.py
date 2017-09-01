@@ -47,13 +47,15 @@ def check_db_result(config, db_result):
             for row in answer:
                 try:
                     assert row[0] == db_test[1]
-                    drop_database(dbname=config.dbname)
                 except AssertionError as e:
                     print("\nAssertionError on db test:", db_test[0])
                     print("row[0] != db_test[0]:\n", row[0], "!=", db_test[1])
                     raise e
+
     if tables:
         print("Missed table test(s):", tables)
     assert not tables
 
     ENGINE.dispose()
+    drop_database(dbname=config.dbname)
+
