@@ -6,7 +6,7 @@ import os
 import pkg_resources
 
 
-DATA_PATH = pkg_resources.resource_filename('<package name>', 'cli/test/tests/')
+DATA_PATH = pkg_resources.resource_filename('anormbookmarker', 'cli/test/tests/')
 
 @click.command()
 def test():
