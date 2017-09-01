@@ -30,11 +30,11 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=dependencies,
-    #entry_points={
-    #    'console_scripts': [
-    #        'iridb = iridb.iridb:iridb',
-    #    ],
-    #},
+    entry_points={
+        'console_scripts': [
+            'anormbookmarker = anormbookmarker.anormbookmarker:anormbookmarker',
+        ],
+    },
 #   long_description = long_descr,
     classifiers=[
         # As from http://pypi.python.org/pypi?%3Aaction=list_classifiers
