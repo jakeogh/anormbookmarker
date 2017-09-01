@@ -57,5 +57,5 @@ def check_db_result(config, db_result):
     assert not tables
 
     ENGINE.dispose()
-    drop_database(dbname=config.dbname)
+    #drop_database(dbname=config.dbname)
 
