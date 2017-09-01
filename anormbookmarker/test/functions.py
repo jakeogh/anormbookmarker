@@ -32,7 +32,7 @@ create_database_and_tables(dbname=CONFIG.dbname, schema=BASE)
 SESSION = create_session(dbname=CONFIG.dbname, multithread=False)
 
 def check_db_result(config, db_result):
-    ENGINE = get_engine(dbname=config.dbname)
+    ENGINE = get_engine(dbpath=config.dbpath)
     tables = set(ENGINE.table_names())
     print("tables:", tables)
     assert tables
