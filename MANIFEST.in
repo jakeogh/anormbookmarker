@@ -1,1 +1,1 @@
-recursive-include cli/test/tests
+recursive-include test/tests

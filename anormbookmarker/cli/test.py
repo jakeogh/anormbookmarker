@@ -7,7 +7,7 @@ import os
 import pkg_resources
 
 
-TEST_PATH = pkg_resources.resource_filename('anormbookmarker', 'cli/tests')
+TEST_PATH = pkg_resources.resource_filename('anormbookmarker', 'test/tests')
 
 @click.command()
 def test():
