@@ -18,6 +18,7 @@ from anormbookmarker.Word import Word
 from anormbookmarker.Config import CONFIG
 from kcl.postgresqlops import create_database_and_tables
 from kcl.postgresqlops import create_session
+from kcl.postgresqlops import drop_database
 from anormbookmarker.find_alias import ConflictingAliasError
 from anormbookmarker.BaseMixin import BASE
 
@@ -46,6 +47,7 @@ def check_db_result(config, db_result):
             for row in answer:
                 try:
                     assert row[0] == db_test[1]
+                    drop_database(dbname=config.dbname)
                 except AssertionError as e:
                     print("\nAssertionError on db test:", db_test[0])
                     print("row[0] != db_test[0]:\n", row[0], "!=", db_test[1])

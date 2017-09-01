@@ -11,7 +11,6 @@ CONTEXT_SETTINGS = \
     dict(help_option_names=['--help'],
          terminal_width=shutil.get_terminal_size((80, 20)).columns)
 
-
 # pylint: disable=C0326
 # http://pylint-messages.wikidot.com/messages:c0326
 @click.group(context_settings=CONTEXT_SETTINGS)
