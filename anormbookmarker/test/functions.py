@@ -29,7 +29,7 @@ logging.basicConfig()
 logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
 
 create_database_and_tables(dbname=CONFIG.dbname, schema=BASE)
-SESSION = create_session(dbname=CONFIG.dbname)
+SESSION = create_session(dbname=CONFIG.dbname, multithread=False)
 
 def check_db_result(config, db_result):
     ENGINE = get_engine(config)
