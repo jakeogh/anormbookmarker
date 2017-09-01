@@ -3,7 +3,6 @@
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-
 from anormbookmarker.test.Filename import Filename
 from anormbookmarker.TagClassConstructor import TagClassConstructor
 Tag = TagClassConstructor(mapper_to_bookmark=Filename)
@@ -57,5 +56,5 @@ def check_db_result(config, db_result):
     assert not tables
 
     ENGINE.dispose()
-    #drop_database(dbname=config.dbname)
-
+    SESSION.close()
+    drop_database(dbname=config.dbname)
