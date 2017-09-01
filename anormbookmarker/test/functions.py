@@ -15,11 +15,11 @@ Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
 from anormbookmarker.Alias import Alias
 from anormbookmarker.Word import WordMisSpelling
 from anormbookmarker.Word import Word
-#from anormbookmarker.Timestamp import Timestamp
 from anormbookmarker.Config import CONFIG
-from anormbookmarker.test.db_utils import create_database_and_tables
-from anormbookmarker.test.db_utils import create_session
+from kcl.postgresqlops import create_database_and_tables
+from kcl.postgresqlops import create_session
 from anormbookmarker.find_alias import ConflictingAliasError
+from anormbookmarker.BaseMixin import BASE
 
 import logging
 logger = logging.getLogger()
@@ -27,8 +27,8 @@ logger.setLevel(logging.CRITICAL)
 logging.basicConfig()
 logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
 
-create_database_and_tables(config=CONFIG)
-SESSION = create_session(config=CONFIG)
+create_database_and_tables(dbname=CONFIG.dbname, schema=BASE)
+SESSION = create_session(dbname=CONFIG.dbname)
 
 def check_db_result(config, db_result):
     ENGINE = get_engine(config)
