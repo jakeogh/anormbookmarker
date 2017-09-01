@@ -25,4 +25,3 @@ def anormbookmarker(ctx):
 
 anormbookmarker.add_command(test)
 
-
