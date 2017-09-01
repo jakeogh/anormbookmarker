@@ -7,13 +7,13 @@ import os
 import pkg_resources
 
 
-TEST_PATH = pkg_resources.resource_filename('anormbookmarker', 'cli/test/tests/')
+TEST_PATH = pkg_resources.resource_filename('anormbookmarker', 'cli/tests')
 
 @click.command()
 def test():
     eprint("TEST_PATH:", TEST_PATH)
     os.system('sudo /home/cfg/database/postgresql/start')
-    for test_file in all_files(DATA_PATH):
+    for test_file in all_files(TEST_PATH):
         if test_file.endswith('''.py''') and not test_file.endswith('__init__.py'):
             print("\nrunning test:", test_file)
             exit_status = os.WEXITSTATUS(os.system(test_file))
