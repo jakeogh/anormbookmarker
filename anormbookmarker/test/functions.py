@@ -3,7 +3,6 @@
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-from anormbookmarker.test.db_utils import get_engine
 
 from anormbookmarker.test.Filename import Filename
 from anormbookmarker.TagClassConstructor import TagClassConstructor
@@ -16,6 +15,7 @@ from anormbookmarker.Alias import Alias
 from anormbookmarker.Word import WordMisSpelling
 from anormbookmarker.Word import Word
 from anormbookmarker.Config import CONFIG
+from kcl.postgresqlops import get_engine
 from kcl.postgresqlops import create_database_and_tables
 from kcl.postgresqlops import create_session
 from kcl.postgresqlops import drop_database
@@ -32,7 +32,7 @@ create_database_and_tables(dbname=CONFIG.dbname, schema=BASE)
 SESSION = create_session(dbname=CONFIG.dbname, multithread=False)
 
 def check_db_result(config, db_result):
-    ENGINE = get_engine(config)
+    ENGINE = get_engine(dbname=config.dbname)
     tables = set(ENGINE.table_names())
     print("tables:", tables)
     assert tables
