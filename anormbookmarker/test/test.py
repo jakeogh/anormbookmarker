@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
+import click
 from kcl.dirops import all_files
 import os
-
 os.system('sudo /home/cfg/database/postgresql/start')
 
-if __name__ == '__main__':
+@click.command()
+def test():
     for test_file in all_files('./tests/'):
         if test_file.endswith('''.py''') and not test_file.endswith('__init__.py'):
             print("\nrunning test:", test_file)
@@ -14,3 +15,5 @@ if __name__ == '__main__':
                 quit(exit_status)
 
     print("\n\nAll Tests Completed OK")
+
+
