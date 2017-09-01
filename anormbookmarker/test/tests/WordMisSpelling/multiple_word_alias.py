@@ -44,4 +44,3 @@ db_result = [('select COUNT(*) from alias;', 1),
              ('select COUNT(*) from wordmisspelling;', 1)]
 
 check_db_result(config=CONFIG, db_result=db_result)
-SESSION.close()

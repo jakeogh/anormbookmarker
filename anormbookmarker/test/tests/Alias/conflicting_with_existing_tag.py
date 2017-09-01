@@ -17,13 +17,6 @@ except ConflictingAliasError:
     print("Correctly throws ConflictingAliasError")
 SESSION.commit()
 
-#try:
-#    # make a duplicate (conflicting) Alias to a different tag (correctly throws ConflictingAliasError)
-#    alias = Alias.construct(session=SESSION, tag=trees, alias='rainbow eucalyptus')
-#except ConflictingAliasError:
-#    print("Correctly throws ConflictingAliasError")
-#SESSION.commit()
-
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),
              ('select COUNT(*) from bookmark;', 0),
@@ -36,4 +29,3 @@ db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from wordmisspelling;', 0)]
 
 check_db_result(config=CONFIG, db_result=db_result)
-SESSION.close()
