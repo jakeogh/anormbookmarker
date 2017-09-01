@@ -2,14 +2,16 @@
 
 import click
 from kcl.dirops import all_files
+from kcl.printops import eprint
 import os
 import pkg_resources
 
 
-DATA_PATH = pkg_resources.resource_filename('anormbookmarker', 'cli/test/tests/')
+TEST_PATH = pkg_resources.resource_filename('anormbookmarker', 'cli/test/tests/')
 
 @click.command()
 def test():
+    eprint("TEST_PATH:", TEST_PATH)
     os.system('sudo /home/cfg/database/postgresql/start')
     for test_file in all_files(DATA_PATH):
         if test_file.endswith('''.py''') and not test_file.endswith('__init__.py'):
