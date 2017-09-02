@@ -21,7 +21,7 @@ from kcl.postgresqlops import create_database_and_tables
 from kcl.postgresqlops import create_session
 from kcl.postgresqlops import drop_database
 from anormbookmarker.find_alias import ConflictingAliasError
-from anormbookmarker.BaseMixin import BASE
+from kcl.sqlalchemy.BaseMixin import BASE
 
 import logging
 logger = logging.getLogger()
