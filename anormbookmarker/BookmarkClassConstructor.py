@@ -17,7 +17,7 @@ from sqlalchemy.orm import backref
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.associationproxy import association_proxy
 from kcl.sqlalchemy.get_one_or_create import get_one_or_create
-from .BaseMixin import BASE
+from kcl.sqlalchemy.BaseMixin import BASE
 
 # Timestamps on bookmarks results in 'duplicate' bookmarks
 #from .Timestamp import Timestamp

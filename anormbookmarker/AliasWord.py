@@ -8,7 +8,7 @@ from sqlalchemy import UniqueConstraint
 from sqlalchemy import CheckConstraint
 from sqlalchemy import Integer
 from sqlalchemy.orm import relationship
-from .BaseMixin import BASE
+from kcl.sqlalchemy.BaseMixin import BASE
 
 
 class AliasWord(BASE):

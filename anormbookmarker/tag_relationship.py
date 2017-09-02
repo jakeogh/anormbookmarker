@@ -8,7 +8,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy import UniqueConstraint
 from sqlalchemy import CheckConstraint
-from .BaseMixin import BASE
+from kcl.sqlalchemy.BaseMixin import BASE
 
 tag_constraint = 'tag_id!=tag_parent_id'
 
