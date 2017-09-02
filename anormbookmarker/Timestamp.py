@@ -5,7 +5,6 @@
 '''
  if the application needs Timestamps, this should be applied to Bookmark attributes, not the Bookmarks themselves
 '''
-
 import os
 import decimal
 from sqlalchemy import Numeric

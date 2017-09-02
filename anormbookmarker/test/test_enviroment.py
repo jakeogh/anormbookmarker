@@ -32,30 +32,4 @@ logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
 create_database_and_tables(dbname=CONFIG.dbname, schema=BASE)
 SESSION = create_session(dbname=CONFIG.dbname, multithread=False)
 
-def check_db_result(config, db_result):
-    ENGINE = get_engine(dbpath=config.dbpath)
-    tables = set(ENGINE.table_names())
-    print("tables:", tables)
-    assert tables
-    for db_test in db_result:
-        print(db_test)
-        db_test_table = db_test[0].split()[-1].split(';')[0]
-        #print("db_test_table:", db_test_table)
-        tables.remove(db_test_table)
-        with ENGINE.connect() as connection:
-            answer = connection.execute(db_test[0])
-            for row in answer:
-                try:
-                    assert row[0] == db_test[1]
-                except AssertionError as e:
-                    print("\nAssertionError on db test:", db_test[0])
-                    print("row[0] != db_test[0]:\n", row[0], "!=", db_test[1])
-                    raise e
-
-    if tables:
-        print("Missed table test(s):", tables)
-    assert not tables
-
-    ENGINE.dispose()
-    SESSION.close()
-    drop_database(dbname=config.dbname)
+from kcl.sqlalchemy.check_db_result import check_db_result

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from anormbookmarker.test.functions import *
+from anormbookmarker.test.test_enviroment import *
 
 # make tag to misspell
 plants = Tag.construct(session=SESSION, tag='plants')
@@ -29,5 +29,5 @@ db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from word;', 1),
              ('select COUNT(*) from wordmisspelling;', 1)]
 
-check_db_result(config=CONFIG, db_result=db_result)
+check_db_result(config=CONFIG, db_result=db_result, session=SESSION)
 #from IPython import embed; embed()

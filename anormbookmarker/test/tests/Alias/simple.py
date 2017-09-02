@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from anormbookmarker.test.functions import *
+from anormbookmarker.test.test_enviroment import *
 
 # make a tag to make an alias to
 eucalyptus_deglupta = Tag.construct(session=SESSION, tag='Eucalyptus deglupta')
@@ -22,4 +22,4 @@ db_result = [('select COUNT(*) from alias;', 1),
              ('select COUNT(*) from word;', 4),
              ('select COUNT(*) from wordmisspelling;', 0)]
 
-check_db_result(config=CONFIG, db_result=db_result)
+check_db_result(config=CONFIG, db_result=db_result, session=SESSION)

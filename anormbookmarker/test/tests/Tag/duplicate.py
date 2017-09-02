@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from anormbookmarker.test.functions import *
+from anormbookmarker.test.test_enviroment import *
 
 ed = Tag.construct(session=SESSION, tag='Eucalyptus deglupta')
 SESSION.commit()
@@ -21,4 +21,4 @@ db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from word;', 2),
              ('select COUNT(*) from wordmisspelling;', 0)]
 
-check_db_result(config=CONFIG, db_result=db_result)
+check_db_result(config=CONFIG, db_result=db_result, session=SESSION)
