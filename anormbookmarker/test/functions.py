@@ -3,7 +3,9 @@
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-from anormbookmarker.test.Filename import Filename
+
+#from anormbookmarker.test.Filename import Filename
+from kcl.sqlalchemy.Filename import Filename
 from anormbookmarker.TagClassConstructor import TagClassConstructor
 Tag = TagClassConstructor(mapper_to_bookmark=Filename)
 
