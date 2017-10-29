@@ -10,8 +10,8 @@ from sqlalchemy import Column
 from sqlalchemy import CheckConstraint
 from sqlalchemy import Integer
 from sqlalchemy import Numeric
-from BaseMixin import BASE
-
+from kcl.sqlalchemy.BaseMixin import BASE
+i
 class Timestamp(BASE):
     '''
     todo: use Date type:
