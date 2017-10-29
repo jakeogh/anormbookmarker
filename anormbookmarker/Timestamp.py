@@ -11,7 +11,7 @@ from sqlalchemy import CheckConstraint
 from sqlalchemy import Integer
 from sqlalchemy import Numeric
 from kcl.sqlalchemy.BaseMixin import BASE
-i
+
 class Timestamp(BASE):
     '''
     todo: use Date type:
