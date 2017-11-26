@@ -27,54 +27,54 @@ from kcl.sqlalchemy.get_one_or_create import get_one_or_create
 from kcl.sqlalchemy.BaseMixin import BASE
 from .Config import CONFIG
 
-class Word(BASE):
-    '''
-    Words are grouped in a specific order by a list TagWord instances
-    1 or more TagWord instances make up a Tag
-    before a Word is created we must make sure it's not already a WordMisSpelling
-    the only restrictions on words is they can not contain SPACE
-    '''
-    id = Column(Integer, primary_key=True)
-
-    word_constraint = "position('\\x20' in word) = 0" # words can not contain SPACE #todo: add test
-    word = Column(Unicode(CONFIG.word_max_length),
-                  CheckConstraint(word_constraint),
-                  unique=True,
-                  nullable=False,
-                  index=True)
-
-    @classmethod
-    def construct(cls, session, word):
-        #print("Word.construct() word:", word)
-        try:
-            wordmisspelling = \
-                session.query(WordMisSpelling).filter_by(wordmisspelling=word).one()
-            result = get_one_or_create(session, Word, word=wordmisspelling.word)
-        except NoResultFound:
-            result = get_one_or_create(session, Word, word=word)
-        #print("returning result:", result)
-        return result
-
-    @hybrid_property
-    def tags(self):
-        tags = []
-        for tag in self.tagwords:
-            tags.append(tag)
-        return set(tags)
-
-    @hybrid_property
-    def bookmarks(self):
-        bookmarks = []
-        for tagword in self.tagwords:
-            for bookmark in tagword.tag.bookmarks:
-                bookmarks.append(bookmark)
-        return set(bookmarks)
-
-    def __repr__(self):
-        return str(self.word)
-
-    def __len__(self):
-        return len(str(self.word))
+#class Word(BASE):
+#    '''
+#    Words are grouped in a specific order by a list TagWord instances
+#    1 or more TagWord instances make up a Tag
+#    before a Word is created we must make sure it's not already a WordMisSpelling
+#    the only restrictions on words is they can not contain SPACE
+#    '''
+#    id = Column(Integer, primary_key=True)
+#
+#    word_constraint = "position('\\x20' in word) = 0" # words can not contain SPACE #todo: add test
+#    word = Column(Unicode(CONFIG.word_max_length),
+#                  CheckConstraint(word_constraint),
+#                  unique=True,
+#                  nullable=False,
+#                  index=True)
+#
+#    @classmethod
+#    def construct(cls, session, word):
+#        #print("Word.construct() word:", word)
+#        try:
+#            wordmisspelling = \
+#                session.query(WordMisSpelling).filter_by(wordmisspelling=word).one()
+#            result = get_one_or_create(session, Word, word=wordmisspelling.word)
+#        except NoResultFound:
+#            result = get_one_or_create(session, Word, word=word)
+#        #print("returning result:", result)
+#        return result
+#
+#    @hybrid_property
+#    def tags(self):
+#        tags = []
+#        for tag in self.tagwords:
+#            tags.append(tag)
+#        return set(tags)
+#
+#    @hybrid_property
+#    def bookmarks(self):
+#        bookmarks = []
+#        for tagword in self.tagwords:
+#            for bookmark in tagword.tag.bookmarks:
+#                bookmarks.append(bookmark)
+#        return set(bookmarks)
+#
+#    def __repr__(self):
+#        return str(self.word)
+#
+#    def __len__(self):
+#        return len(str(self.word))
 
 
 class WordMisSpelling(BASE):
