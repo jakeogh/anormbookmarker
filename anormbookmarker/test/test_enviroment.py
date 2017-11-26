@@ -27,7 +27,7 @@ import logging
 logger = logging.getLogger()
 logger.setLevel(logging.CRITICAL)
 logging.basicConfig()
-slogging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL2
+logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
 
 create_database_and_tables(database=CONFIG.database, schema=BASE)
 SESSION = create_session(database=CONFIG.database, multithread=False)
