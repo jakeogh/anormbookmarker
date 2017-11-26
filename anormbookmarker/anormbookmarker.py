@@ -3,7 +3,7 @@
 import click
 import shutil
 from kcl.logops import set_verbose
-from kcl.sqlalchemy.test import test
+from kcl.sqlalchemy.test import test as kcltest
 from kcl.sqlalchemy.print_database import print_database
 
 __version__ = 0.01
@@ -21,6 +21,12 @@ CONTEXT_SETTINGS = \
 def anormbookmarker(ctx):
     '''anormbookmarker'''
     pass
+
+@click.command()
+@click.option('--keep-databases', is_flag=True)
+@click.option('--count', is_flag=False, type=int, required=False)
+def test(keep_databases, count):
+    kcltest('anormbookmarker', keep_databases=keep_databases, count=count)
 
 anormbookmarker.add_command(test)
 anormbookmarker.add_command(print_database)
