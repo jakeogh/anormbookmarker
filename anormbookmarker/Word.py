@@ -26,7 +26,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from kcl.sqlalchemy.get_one_or_create import get_one_or_create
 from kcl.sqlalchemy.BaseMixin import BASE
 from .Config import CONFIG
-from .WordMisSpelling import WordMisSpelling
+#from .WordMisSpelling import WordMisSpelling
 
 class Word(BASE):
     '''
@@ -78,43 +78,43 @@ class Word(BASE):
         return len(str(self.word))
 
 
-#class WordMisSpelling(BASE):
-#    '''
-#    alias of a word, intended to be used for misspellings
-#    '''
-#    id = Column(Integer, primary_key=True)
-#    wordmisspelling = Column(Unicode(CONFIG.word_max_length),
-#                             unique=True,
-#                             nullable=False,
-#                             index=True)
-#    # many WordMisSpelling can have the same word
-#    word_id = Column(Integer,
-#                     ForeignKey('word.id'),
-#                     unique=False,
-#                     nullable=False)
-#    word = relationship('Word', backref='wordmisspellings')
-#
-#    @classmethod
-#    def construct(cls, session, wordmisspelling, word):
-#        #print("constructing WordMisSpelling")
-#        try:
-#            word = session.query(Word).filter_by(word=word).one()
-#        except NoResultFound:
-#            print("cant add WordMisSpelling:", wordmisspelling,
-#                   "the target word:", word, "does not exist.")
-#            return False # should be raising exception
-#        try:
-#            existing_word = session.query(Word).filter_by(word=wordmisspelling).one()
-#            print("cant add WordMisSpelling:", wordmisspelling,
-#                   "identical Word exists:", existing_word)
-#            return False # should be raising exception
-#        except NoResultFound:
-#            pass
-#        result = get_one_or_create(session,
-#                                   WordMisSpelling,
-#                                   wordmisspelling=wordmisspelling,
-#                                   word=word)
-#        return result
-#
-#    def __repr__(self):
-#        return str(self.wordmisspelling)
+class WordMisSpelling(BASE):
+    '''
+    alias of a word, intended to be used for misspellings
+    '''
+    id = Column(Integer, primary_key=True)
+    wordmisspelling = Column(Unicode(CONFIG.word_max_length),
+                             unique=True,
+                             nullable=False,
+                             index=True)
+    # many WordMisSpelling can have the same word
+    word_id = Column(Integer,
+                     ForeignKey('word.id'),
+                     unique=False,
+                     nullable=False)
+    word = relationship('Word', backref='wordmisspellings')
+
+    @classmethod
+    def construct(cls, session, wordmisspelling, word):
+        #print("constructing WordMisSpelling")
+        try:
+            word = session.query(Word).filter_by(word=word).one()
+        except NoResultFound:
+            print("cant add WordMisSpelling:", wordmisspelling,
+                   "the target word:", word, "does not exist.")
+            return False # should be raising exception
+        try:
+            existing_word = session.query(Word).filter_by(word=wordmisspelling).one()
+            print("cant add WordMisSpelling:", wordmisspelling,
+                   "identical Word exists:", existing_word)
+            return False # should be raising exception
+        except NoResultFound:
+            pass
+        result = get_one_or_create(session,
+                                   WordMisSpelling,
+                                   wordmisspelling=wordmisspelling,
+                                   word=word)
+        return result
+
+    def __repr__(self):
+        return str(self.wordmisspelling)
