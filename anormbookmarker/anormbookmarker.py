@@ -3,7 +3,7 @@
 import click
 import shutil
 from kcl.logops import set_verbose
-from .cli.test import test
+from kcl.sqlalchemy.test import test
 from kcl.sqlalchemy.print_database import print_database
 
 __version__ = 0.01
