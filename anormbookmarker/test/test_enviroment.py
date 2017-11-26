@@ -27,9 +27,9 @@ import logging
 logger = logging.getLogger()
 logger.setLevel(logging.CRITICAL)
 logging.basicConfig()
-logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
+slogging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL2
 
-create_database_and_tables(dbname=CONFIG.dbname, schema=BASE)
-SESSION = create_session(dbname=CONFIG.dbname, multithread=False)
+create_database_and_tables(database=CONFIG.database, schema=BASE)
+SESSION = create_session(database=CONFIG.database, multithread=False)
 
 from kcl.sqlalchemy.check_db_result import check_db_result
