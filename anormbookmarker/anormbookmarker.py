@@ -25,7 +25,8 @@ def anormbookmarker(ctx):
 @anormbookmarker.command()
 @click.option('--keep-databases', is_flag=True)
 @click.option('--count', is_flag=False, type=int, required=False)
-def test(keep_databases, count):
-    kcltest('anormbookmarker', keep_databases, count)
+@click.option('--test-class', is_flag=False, type=str, required=False)
+def test(keep_databases, count, test_class):
+    kcltest('anormbookmarker', keep_databases=keep_databases, count=count, test_class=test_class)
 
 anormbookmarker.add_command(print_database)
