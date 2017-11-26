@@ -13,8 +13,8 @@ from kcl.sqlalchemy.BaseMixin import BASE
 
 class AliasWord(BASE):
     '''
-    Tag instances are composed of a list of AliasWord instances.
-    Tags with spaces are composed of multiple AliasWord instances.
+    Tag instances are composed of one or more AliasWord instances.
+    Tags with spaces are composed of a list of AliasWord instances.
     Each AliasWord maps a Word to a position and a specific Tag.
     position is always 0 unless the alias is composed of multiple AliasWord instances
     The Slide/Bullett example:
@@ -41,7 +41,7 @@ class AliasWord(BASE):
                      unique=False,
                      primary_key=True)
     # These must be a signed int's because -1 has special meaning
-    position_constraint = 'position<100' #limit words/alias to 100
+    position_constraint = 'position<100' #limit words/alias to 100 # bug: why 100?
     position = Column(Integer,
                       CheckConstraint(position_constraint),
                       unique=False,
@@ -61,5 +61,4 @@ class AliasWord(BASE):
             ', alias_id: ' + str(self.alias_id) + \
             ', word_id: ' + str(self.word_id) + \
             ', position: ' + str(self.position) + '>'
-
 
