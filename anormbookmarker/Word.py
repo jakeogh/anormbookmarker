@@ -36,12 +36,13 @@ class Word(BASE):
     '''
     id = Column(Integer, primary_key=True)
 
-    word_constraint = "position('\\x20' in word) = 0" # words can not contain SPACE
+    word_constraint = "position('\\x20' in word) = 0" # words can not contain SPACE #todo: add test
     word = Column(Unicode(CONFIG.word_max_length),
                   CheckConstraint(word_constraint),
                   unique=True,
                   nullable=False,
                   index=True)
+
     @classmethod
     def construct(cls, session, word):
         #print("Word.construct() word:", word)
@@ -116,4 +117,3 @@ class WordMisSpelling(BASE):
 
     def __repr__(self):
         return str(self.wordmisspelling)
-
