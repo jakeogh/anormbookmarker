@@ -19,7 +19,7 @@ from anormbookmarker.Config import CONFIG
 from kcl.postgresqlops import get_engine
 from kcl.postgresqlops import create_database_and_tables
 from kcl.postgresqlops import create_session
-from kcl.postgresqlops import drop_database
+from kcl.postgresqlops import delete_database
 from anormbookmarker.find_alias import ConflictingAliasError
 from kcl.sqlalchemy.BaseMixin import BASE
 
