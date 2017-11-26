@@ -28,5 +28,4 @@ def anormbookmarker(ctx):
 def test(keep_databases, count):
     kcltest('anormbookmarker', keep_databases, count)
 
-#anormbookmarker.add_command(test)
 anormbookmarker.add_command(print_database)
