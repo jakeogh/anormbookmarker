@@ -4,6 +4,8 @@ import click
 import shutil
 from kcl.logops import set_verbose
 from .cli.test import test
+from kcl.sqlalchemy.print_database import print_database
+
 __version__ = 0.01
 
 # https://github.com/mitsuhiko/click/issues/441
@@ -21,3 +23,4 @@ def anormbookmarker(ctx):
     pass
 
 anormbookmarker.add_command(test)
+anormbookmarker.add_command(print_database)
