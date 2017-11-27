@@ -26,8 +26,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from kcl.sqlalchemy.get_one_or_create import get_one_or_create
 from kcl.sqlalchemy.BaseMixin import BASE
 from .Config import CONFIG
-#from .WordMisSpelling import WordMisSpelling
-from .ConflictingWordMisSpellingError import ConflictingWordMisSpellingError
+from .Exceptions import ConflictingWordMisSpellingError
 
 class Word(BASE):
     '''
