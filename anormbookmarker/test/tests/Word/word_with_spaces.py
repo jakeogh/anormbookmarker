@@ -3,11 +3,11 @@
 from anormbookmarker.test.test_enviroment import *
 from sqlalchemy.exc import IntegrityError
 
-ed = Word.construct(session=SESSION, word='Eucalyptus deglupta')
 try:
-    SESSION.commit()
+    ed = Word.construct(session=SESSION, word='Eucalyptus deglupta')
 except IntegrityError:
     print("Correctly raises IntegrityError")
+SESSION.commit()
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),
