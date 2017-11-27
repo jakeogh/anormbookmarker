@@ -8,6 +8,9 @@ try:
     SESSION.commit()
 except IntegrityError:
     print("Correctly raises IntegrityError")
+except Exception as e:
+    print("some other exception:", e)
+
 
 
 db_result = [('select COUNT(*) from alias;', 0),
