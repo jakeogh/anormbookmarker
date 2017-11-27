@@ -5,8 +5,6 @@ from anormbookmarker.test.test_enviroment import *
 ed = Word.construct(session=SESSION, word='Eucalyptus deglupta')
 SESSION.commit()
 
-assert id(ed) == id(ed_duplicate)
-
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),
              ('select COUNT(*) from bookmark;', 0),
