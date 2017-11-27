@@ -27,6 +27,7 @@ from kcl.sqlalchemy.get_one_or_create import get_one_or_create
 from kcl.sqlalchemy.BaseMixin import BASE
 from .Config import CONFIG
 #from .WordMisSpelling import WordMisSpelling
+from .ConflictingWordMisSpellingError import ConflictingWordMisSpellingError
 
 class Word(BASE):
     '''
@@ -120,8 +121,9 @@ class WordMisSpelling(BASE):
                 return existing_wordmisspelling
             else:
                 print("cant add WordMisSpelling:", wordmisspelling,
-                       "because it already exists and points to a different word:", existing_wordmisspelling.word)
-                return False #todo raise exception
+                       "because it already exists and does not point to word:", word,
+                       "instead it already points to word:", existing_wordmisspelling.word)
+                raise ConflictingWordMisSpellingError
 
         result = get_one_or_create(session,
                                    WordMisSpelling,
