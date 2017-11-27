@@ -39,7 +39,8 @@ class Word(BASE):
     '''
     id = Column(Integer, primary_key=True)
 
-    word_constraint = "position('\\x20' in word) = 0" # words can not contain SPACE #todo: add test
+    #word_constraint = "position('\\x20' in word) = 0" # words can not contain SPACE #todo: add test
+    word_constraint = "position(' ' in word) = 0" # words can not contain SPACE #todo: add test
     word = Column(Unicode(CONFIG.word_max_length),
                   CheckConstraint(word_constraint),
                   unique=True,

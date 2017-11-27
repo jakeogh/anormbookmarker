@@ -5,6 +5,8 @@ from anormbookmarker.test.test_enviroment import *
 ed = Word.construct(session=SESSION, word='Eucalyptus deglupta')
 SESSION.commit()
 
+assert False #shouldnt get here
+
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),
              ('select COUNT(*) from bookmark;', 0),
