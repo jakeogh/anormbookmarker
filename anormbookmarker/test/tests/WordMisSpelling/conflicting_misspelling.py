@@ -20,10 +20,14 @@ try:
     plants_wms = WordMisSpelling.construct(session=SESSION, wordmisspelling="plantss", word="Plants")
     SESSION.commit()
 except ConflictingWordMisSpellingError:
-    print("correctly raises ConflictingWordMisSpellingError")
+    print("Correctly raises ConflictingWordMisSpellingError")
+
+# make a misspelled tag to use plants_wms
+plantss = Tag.construct(session=SESSION, tag='plantss')
+SESSION.commit()
 
 assert str(plants) == 'plants'
-#assert id(plants_plants) == id(plantss)
+assert id(plants) == id(plantss)
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),
