@@ -27,6 +27,7 @@ from kcl.sqlalchemy.get_one_or_create import get_one_or_create
 from kcl.sqlalchemy.BaseMixin import BASE
 from .Config import CONFIG
 from .Exceptions import ConflictingWordMisSpellingError
+from .Exceptions import ConflictingWordError
 
 class Word(BASE):
     '''
@@ -107,7 +108,7 @@ class WordMisSpelling(BASE):
             existing_word = session.query(Word).filter_by(word=wordmisspelling).one()
             print("cant add WordMisSpelling:", wordmisspelling,
                    "identical Word exists:", existing_word)
-            return False # should be raising exception #todo write test
+            raise ConflictingWordError #todo write test
         except NoResultFound:
             pass
 
