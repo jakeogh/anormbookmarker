@@ -12,7 +12,7 @@ from .AliasWord import AliasWord
 from .find_tag import find_tag
 from .find_alias import find_alias
 from kcl.sqlalchemy.BaseMixin import BASE
-from .ConflictingAliasError import ConflictingAliasError
+from .Exceptions import ConflictingAliasError
 
 class Alias(BASE):
     '''
