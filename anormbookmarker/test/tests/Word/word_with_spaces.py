@@ -3,8 +3,8 @@
 from anormbookmarker.test.test_enviroment import *
 from sqlalchemy.exc import IntegrityError
 
+ed = Word.construct(session=SESSION, word='Eucalyptus deglupta')
 try:
-    ed = Word.construct(session=SESSION, word='Eucalyptus deglupta')
     SESSION.commit()
 except IntegrityError:
     print("Correctly raises IntegrityError")
