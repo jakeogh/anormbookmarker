@@ -13,7 +13,7 @@ db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from tag_relationship;', 0),
              ('select COUNT(*) from tagbookmarks;', 0),
              ('select COUNT(*) from tagword;', 0),
-             ('select COUNT(*) from word;', 2),
+             ('select COUNT(*) from word;', 1),
              ('select COUNT(*) from wordmisspelling;', 0)]
 
 check_db_result(config=CONFIG, db_result=db_result, session=SESSION)
