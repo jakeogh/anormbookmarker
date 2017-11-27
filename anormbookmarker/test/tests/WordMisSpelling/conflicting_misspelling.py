@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
-from anormbookmarker.ConflictingWordMisSpellingError import ConflictingWordMisSpellingError
+from anormbookmarker.Exceptions import ConflictingWordMisSpellingError
 
 # make tag to misspell later
 plants = Tag.construct(session=SESSION, tag='plants')

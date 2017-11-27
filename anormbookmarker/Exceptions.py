@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 # MIT License
 
+class ConflictingAliasError(ValueError):
+    pass
+
 class ConflictingWordMisSpellingError(ValueError):
     pass
 
