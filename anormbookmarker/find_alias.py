@@ -6,7 +6,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from .Word import Word
 from .Word import WordMisSpelling
 from .AliasWord import AliasWord
-from .ConflictingAliasError import ConflictingAliasError
+from .Exceptions import ConflictingAliasError
 
 def find_alias(session, alias, tag=False):
     '''
@@ -22,44 +22,32 @@ def find_alias(session, alias, tag=False):
 
     alias_split = alias.split(' ')
 
-
     corrected_alias = alias
     for index, word in enumerate(alias_split):
-
         try:
             wordmisspelling = session.query(WordMisSpelling).filter_by(wordmisspelling=word).one()
             target_word = wordmisspelling.word
             word = str(target_word)
             corrected_alias = alias.replace(wordmisspelling.wordmisspelling, word)
         except NoResultFound:
-
             pass
 
-
     corrected_alias_split = corrected_alias.split(' ')
-
     try:
         for index, word in enumerate(corrected_alias_split):
-
             current_word = session.query(Word).filter_by(word=word).one()
-
             current_aliasword_list = session.query(AliasWord).filter_by(word=current_word, position=index).all()
-
             if current_aliasword_list:
-
                 current_aliasword_list_alias_set = set([aliasword.alias for aliasword in current_aliasword_list])
-
                 if not possible_alias_set:
                     possible_alias_set = current_aliasword_list_alias_set
                 else:
                     possible_alias_set = possible_alias_set & current_aliasword_list_alias_set
-
                 for aliasword in current_aliasword_list:
                     if index == 0: # only add aliass that start with the correct word
                         possible_alias_set.add(aliasword.alias)
                     else:
                         if aliasword.alias not in possible_alias_set:
-
                             return False
                 if not possible_alias_set:
                     return False
@@ -79,7 +67,4 @@ def find_alias(session, alias, tag=False):
                         return False
     except NoResultFound: # any failed query
         return False
-
-#class ConflictingAliasError(ValueError):
-#    pass
 
