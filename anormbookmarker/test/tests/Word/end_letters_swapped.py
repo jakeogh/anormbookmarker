@@ -2,10 +2,10 @@
 
 from anormbookmarker.test.test_enviroment import *
 
-buffalo = Tag.construct(session=SESSION, tag='Buffalo')
+buffalo = Word.construct(session=SESSION, word='Buffalo')
 SESSION.commit()
 
-buffalo_swap = Tag.construct(session=SESSION, tag='ouffalB')
+buffalo_swap = Word.construct(session=SESSION, word='ouffalB')
 SESSION.commit()
 
 db_result = [('select COUNT(*) from alias;', 0),
