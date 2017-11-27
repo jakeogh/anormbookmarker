@@ -8,10 +8,6 @@ try:
     SESSION.commit()
 except IntegrityError:
     print("Correctly raises IntegrityError")
-#except Exception as e:
-#    print("some other exception:", e)
-
-
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),
@@ -21,7 +17,7 @@ db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from tag_relationship;', 0),
              ('select COUNT(*) from tagbookmarks;', 0),
              ('select COUNT(*) from tagword;', 0),
-             ('select COUNT(*) from word;', 1),
+             ('select COUNT(*) from word;', 0),
              ('select COUNT(*) from wordmisspelling;', 0)]
 
 check_db_result(config=CONFIG, db_result=db_result, session=SESSION)
