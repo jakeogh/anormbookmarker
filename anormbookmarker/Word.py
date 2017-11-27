@@ -102,14 +102,27 @@ class WordMisSpelling(BASE):
         except NoResultFound:
             print("cant add WordMisSpelling:", wordmisspelling,
                    "the target word:", word, "does not exist.")
-            return False # should be raising exception
+            return False # should be raising exception # todo write test
         try:
             existing_word = session.query(Word).filter_by(word=wordmisspelling).one()
             print("cant add WordMisSpelling:", wordmisspelling,
                    "identical Word exists:", existing_word)
-            return False # should be raising exception
+            return False # should be raising exception #todo write test
         except NoResultFound:
             pass
+
+        try:
+            existing_wordmisspelling = session.query(WordMisSpelling).filter_by(wordmisspelling=wordmisspelling).one()
+        except NoResultFound:
+            pass
+
+        if existing_wordmisspelling.word == word:
+            return existing_wordmisspelling
+        else:
+            print("cant add WordMisSpelling:", wordmisspelling,
+                   "because it already exists and points to a different word:", existing_wordmisspelling.word)
+            return False #todo raise exception
+
         result = get_one_or_create(session,
                                    WordMisSpelling,
                                    wordmisspelling=wordmisspelling,
