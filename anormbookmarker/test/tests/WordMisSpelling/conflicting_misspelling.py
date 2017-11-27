@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+from anormbookmarker.ConflictingWordMisSpellingError import ConflictingWordMisSpellingError
 
 # make tag to misspell later
 plants = Tag.construct(session=SESSION, tag='plants')
@@ -15,8 +16,11 @@ plants_wms = WordMisSpelling.construct(session=SESSION, wordmisspelling="plantss
 SESSION.commit()
 
 # make conflicting WordMisSpelling
-plants_wms = WordMisSpelling.construct(session=SESSION, wordmisspelling="plantss", word="Plants")
-SESSION.commit()
+try:
+    plants_wms = WordMisSpelling.construct(session=SESSION, wordmisspelling="plantss", word="Plants")
+    SESSION.commit()
+except ConflictingWordMisSpellingError:
+    print("correctly raises ConflictingWordMisSpellingError")
 
 assert str(plants) == 'plants'
 #assert id(plants_plants) == id(plantss)
