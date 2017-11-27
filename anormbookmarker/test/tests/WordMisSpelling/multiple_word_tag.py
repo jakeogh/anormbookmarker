@@ -2,7 +2,7 @@
 
 from anormbookmarker.test.test_enviroment import *
 
-# make tag to misspell
+# make tag to misspell later
 plants_plants = Tag.construct(session=SESSION, tag='plants plants')
 SESSION.commit()
 
