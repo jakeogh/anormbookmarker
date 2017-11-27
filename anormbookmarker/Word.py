@@ -121,8 +121,6 @@ class WordMisSpelling(BASE):
             else:
                 print("cant add WordMisSpelling:", wordmisspelling,
                        "because it already exists and points to a different word:", existing_wordmisspelling.word)
-                print("cant add WordMisSpelling:", wordmisspelling2
-                       "identical Word exists:", existing_word)
                 return False #todo raise exception
 
         result = get_one_or_create(session,
