@@ -5,10 +5,11 @@
 '''
 Tags are composed of 1 or more ordered Words.
 
+Words are Unicode.
 Words are unique.
-Words do not contain 0x20.
+Words do not contain 0x20 (all other Unicode whitespace is valid).
 Words do not have parents or children.
-Words do have misspellings (class WordMisSpelling) that alias to the correctly spelled word.
+Words do have misspellings (class WordMisSpelling) that map to the correctly spelled word.
 
 Tags are composed of Words in a specific order, that order is defined by class TagWord
 Each TagWord instance maps a Word to a position.
@@ -39,8 +40,7 @@ class Word(BASE):
     '''
     id = Column(Integer, primary_key=True)
 
-    #word_constraint = "position('\\x20' in word) = 0" # words can not contain SPACE #todo: add test
-    word_constraint = "position(' ' in word) = 0" # words can not contain SPACE #todo: add test
+    word_constraint = "position(' ' in word) = 0" # words can not contain SPACE
     word = Column(Unicode(CONFIG.word_max_length),
                   CheckConstraint(word_constraint),
                   unique=True,

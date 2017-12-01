@@ -22,4 +22,4 @@ db_result = [('select COUNT(*) from alias;', 1),
              ('select COUNT(*) from word;', 4),
              ('select COUNT(*) from wordmisspelling;', 0)]
 
-check_db_result(config=CONFIG, db_result=db_result, session=SESSION)
+check_db_result(config=CONFIG, db_result=db_result)
