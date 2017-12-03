@@ -4,11 +4,11 @@ from anormbookmarker.test.test_enviroment import *
 with self_contained_session(CONFIG.timestamp_database) as session:
     BASE.metadata.create_all(session.bind)
 
-    buffalo = Word.construct(session=SESSION, word='Buffalo')
-    SESSION.commit()
+    buffalo = Word.construct(session=session, word='Buffalo')
+    session.commit()
 
-    buffalo_swap = Word.construct(session=SESSION, word='ouffalB')
-    SESSION.commit()
+    buffalo_swap = Word.construct(session=session, word='ouffalB')
+    session.commit()
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),
@@ -21,5 +21,4 @@ db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from word;', 2),
              ('select COUNT(*) from wordmisspelling;', 0)]
 
-#check_db_result(config=CONFIG, db_result=db_result, session=SESSION)
 check_db_result(config=CONFIG, db_result=db_result)
