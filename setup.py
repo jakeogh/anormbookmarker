@@ -9,7 +9,7 @@ if not sys.version_info[0] == 3:
 import re
 from setuptools import find_packages, setup
 
-dependencies = ['sqlalchemy']
+dependencies = ['sqlalchemy', 'sqlalchemy-utils']
 
 version = 0.01
 
