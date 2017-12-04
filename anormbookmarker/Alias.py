@@ -28,6 +28,7 @@ class Alias(BASE):
 
     def __init__(self, session, alias, tag):
         assert isinstance(alias, str)
+        assert not isinstance(tag, str) # rather not import Tag
         try:
             conflicting_tag = find_tag(session=session, tag=alias)
             assert not conflicting_tag #dont create aliase that conflict with an existing tag
@@ -56,6 +57,7 @@ class Alias(BASE):
         prevents creation of duplicate aliases or conflicting aliases and tags
         '''
         assert alias
+        assert tag
         #existing_tag = find_tag(session=session, tag=alias)
         existing_alias = find_alias(session=session, alias=alias, tag=tag)
         if existing_alias:
