@@ -7,10 +7,11 @@ with self_contained_session(CONFIG.timestamp_database) as session:
     # make a tag to make an alias to
     eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
     session.commit()
-    eprint(eucalyptus_deglupta)
+    eprint("comitted tag:", eucalyptus_deglupta)
 
     # make a Alias
     alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+    eprint("about to call commit() on alias:", alias)
     session.commit()
     eprint(alias)
 
