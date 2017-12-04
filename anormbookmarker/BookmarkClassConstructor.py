@@ -3,10 +3,10 @@
 # MIT License
 
 '''
-A Bookmark combines a set of Tags and a single Object ('class Filename' in the inclided example).
+ A Bookmark attaches a set of Tags and a single Object ('class Filename' in the
+ included example).
 '''
 
-#import datetime
 from sqlalchemy import Table
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
@@ -20,7 +20,7 @@ from kcl.sqlalchemy.get_one_or_create import get_one_or_create
 from kcl.sqlalchemy.BaseMixin import BASE
 
 # Timestamps on bookmarks results in 'duplicate' bookmarks
-#from .Timestamp import Timestamp
+# so dont put timestamps on bookmarks
 
 tagbookmarks_table = \
     Table('tagbookmarks', BASE.metadata,
@@ -36,9 +36,6 @@ tagbookmarks_table = \
 
 @classmethod
 def construct(cls, session, tag, **kwargs):
-    #tag = Tag.construct(session=session, tag=tag) # could demand to get a tag obj...
-    #timestamp = Timestamp.construct(session=session)
-    #result = get_one_or_create(session, cls, timestamp=timestamp, **kwargs)
     result = get_one_or_create(session, cls, **kwargs)
     result.tag_rel.add(tag)
     return result
@@ -63,12 +60,6 @@ class BookmarkClassConstructor():
         future_class_attr['target_class_name'] = target_class_name
         future_class_attr['target_name'] = target_name
 
-        #future_class_attr['timestamp_id'] = \
-        #    Column(Integer, ForeignKey('timestamp.id'), unique=False, nullable=False)
-        #future_class_attr['timestamp'] = relationship('Timestamp', backref='bookmarks')
-
         future_class_attr['construct'] = construct
         future_class_attr['__repr__'] = repr
         return type('Bookmark', (BASE,), future_class_attr)
-
-
