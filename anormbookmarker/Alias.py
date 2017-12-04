@@ -22,7 +22,8 @@ class Alias(BASE):
     '''
     id = Column(Integer, primary_key=True)
 
-    words = relationship("AliasWord", backref='alias') # a list of AliasWord instances
+    #words = relationship("AliasWord", backref='alias') # a list of AliasWord instances
+    aliaswords = relationship("AliasWord", backref='alias') # a list of AliasWord instances
 
     tag_id = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
     tag = relationship('Tag', backref='aliases')
@@ -56,11 +57,12 @@ class Alias(BASE):
     @classmethod
     def construct(cls, session, alias, tag):
         '''
-        prevents creation of duplicate aliases or conflicting aliases and tags
+        prevents creation of duplicate alias
+        prevents creation of a alias that conflicts with an existing tag
         '''
         assert alias
         assert tag
-        #existing_tag = find_tag(session=session, tag=alias)
+        #existing_tag = find_tag(session=session, tag=alias) #todo?
         existing_alias = find_alias(session=session, alias=alias, tag=tag)
         if existing_alias:
             return existing_alias #todo check if it points to the same tag
