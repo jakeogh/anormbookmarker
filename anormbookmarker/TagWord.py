@@ -9,10 +9,13 @@ from sqlalchemy import CheckConstraint
 from sqlalchemy import Integer
 from sqlalchemy.orm import relationship
 from kcl.sqlalchemy.BaseMixin import BASE
-
+from kcl.printops import ceprint
 
 class TagWord(BASE):
     '''
+    Tagwords are to Tags as AliasWords are to Aliases
+
+
     Tag instances are composed of a list of TagWord instances.
     Tags with spaces are composed of multiple TagWord instances.
     Each TagWord maps a Word to a position and a specific Tag.

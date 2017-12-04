@@ -33,7 +33,6 @@ class AliasWord(BASE):
     Does not appear to be a big deal because it's not exp and most aliass have 0 spaces
 
     '''
-
     __table_args__ = (UniqueConstraint('alias_id', 'word_id', 'position', 'previous_position'),)
     alias_id = Column(Integer,
                     ForeignKey("alias.id"),
@@ -43,7 +42,7 @@ class AliasWord(BASE):
                      ForeignKey("word.id"),
                      unique=False,
                      primary_key=True)
-    # These must be a signed int's because -1 has special meaning
+    # Must be signed int because -1 has special meaning
     position_constraint = 'position<100' #limit words/alias to 100 # bug: why 100?
     position = Column(Integer,
                       CheckConstraint(position_constraint),
@@ -59,7 +58,7 @@ class AliasWord(BASE):
                                primary_key=False,
                                nullable=True)
     # collection_class=set?
-    word = relationship("Word", backref='alias_words')
+    word = relationship("Word", backref='aliaswords')
     def __repr__(self):
         return 'AliasWord<' + \
             'word: ' + str(self.word) + \
