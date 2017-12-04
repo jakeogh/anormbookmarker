@@ -48,6 +48,8 @@ class TagWord(BASE):
     previous_position_constraint = \
         '(previous_position IS NULL AND position = 0) ' + \
         'OR ((previous_position = position - 1) IS TRUE)'
+
+    # primary_key=False because it can be Null
     previous_position = Column(Integer,
                                CheckConstraint(previous_position_constraint),
                                primary_key=False,

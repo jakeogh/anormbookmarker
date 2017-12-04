@@ -47,12 +47,11 @@ class Alias(BASE):
             ceprint("AliasWord, position:", index, "previous_position:", previous_position)
             aliasword = AliasWord(position=index, previous_position=previous_position)
             aliasword.word = Word.construct(session=session, word=word)
-            self.words.append(aliasword)
+            self.aliaswords.append(aliasword)
 
         session.add(self)
         session.flush(objects=[self]) # any db error will happen here, like attempting to add a duplicate alias
         # maybe return the already existing alias if it's a duplicate or conflicting
-
 
     @classmethod
     def construct(cls, session, alias, tag):

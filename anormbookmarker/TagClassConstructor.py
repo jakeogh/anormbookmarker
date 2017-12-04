@@ -111,12 +111,10 @@ def construct(cls, session, tag, **kwargs):
 def display(self):
     return str(self.tag)
 
-
 @property
 def tag(self): # appears to always return the same result as tag_with_checks()
     tag = " ".join([str(word) for word in self.words])
     return tag
-
 
 @hybrid_property
 def tag_targets(self):
