@@ -43,6 +43,7 @@ class Alias(BASE):
             previous_position = index - 1
             if previous_position == -1:
                 previous_position = None
+            ceprint("AliasWord, position:", index, "previous_position:", previous_position)
             aliasword = AliasWord(position=index, previous_position=previous_position)
             aliasword.word = Word.construct(session=session, word=word)
             self.words.append(aliasword)
