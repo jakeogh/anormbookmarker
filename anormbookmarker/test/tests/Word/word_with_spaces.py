@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
-from anormbookmarker.test.test_enviroment import *
 from sqlalchemy.exc import IntegrityError
+from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-try:
-    ed = Word.construct(session=SESSION, word='Eucalyptus deglupta')
-except IntegrityError:
-    print("Correctly raises IntegrityError")
-SESSION.commit()
+    try:
+        ed = Word.construct(session=session, word='Eucalyptus deglupta')
+    except IntegrityError:
+        print("Correctly raises IntegrityError")
+    session.commit()
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),

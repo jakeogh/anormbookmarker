@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-plants = Tag.construct(session=SESSION, tag='plants')
-SESSION.commit()
+    plants = Tag.construct(session=session, tag='plants')
+    session.commit()
 
-trees = Tag.construct(session=SESSION, tag='trees')
-SESSION.commit()
+    trees = Tag.construct(session=session, tag='trees')
+    session.commit()
 
-plants.children.append(trees)
-SESSION.commit()
+    plants.children.append(trees)
+    session.commit()
 
-assert trees in plants.children
-assert plants in trees.parents
+    assert trees in plants.children
+    assert plants in trees.parents
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),

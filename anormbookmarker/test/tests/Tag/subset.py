@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-buffalo = Tag.construct(session=SESSION, tag='Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo')
-SESSION.commit()
+    buffalo = Tag.construct(session=session, tag='Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo')
+    session.commit()
 
-buffalo_subset = Tag.construct(session=SESSION, tag='Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo')
-SESSION.commit()
+    buffalo_subset = Tag.construct(session=session, tag='Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo')
+    session.commit()
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),

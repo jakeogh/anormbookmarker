@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-a = Word.construct(session=SESSION, word='a')
-SESSION.commit()
-b = Word.construct(session=SESSION, word='b')
-SESSION.commit()
+    a = Word.construct(session=session, word='a')
+    session.commit()
+    b = Word.construct(session=session, word='b')
+    session.commit()
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),

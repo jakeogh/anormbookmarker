@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-a = Tag.construct(session=SESSION, tag='a')
-SESSION.commit()
-a = Tag.construct(session=SESSION, tag='a')
-SESSION.commit()
+    a = Tag.construct(session=session, tag='a')
+    session.commit()
+    aa = Tag.construct(session=session, tag='a')
+    session.commit()
+
+    assert id(a) == id(aa)
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),

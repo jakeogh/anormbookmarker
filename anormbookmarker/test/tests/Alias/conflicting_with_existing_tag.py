@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-# make tag
-eucalyptus_deglupta = Tag.construct(session=SESSION, tag='Eucalyptus deglupta')
-SESSION.commit()
+    # make tag
+    eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
+    session.commit()
 
-# make a tag to use in a conflicting alias for 'Eucalyptus deglupta'
-trees = Tag.construct(session=SESSION, tag='trees')
-SESSION.commit()
+    # make a tag to use in a conflicting alias for 'Eucalyptus deglupta'
+    trees = Tag.construct(session=session, tag='trees')
+    session.commit()
 
-# make conflicting Alias
-try:
-    alias = Alias.construct(session=SESSION, tag=trees, alias='Eucalyptus deglupta')
-except ConflictingAliasError:
-    print("Correctly throws ConflictingAliasError")
-SESSION.commit()
+    # make conflicting Alias
+    try:
+        alias = Alias.construct(session=session, tag=trees, alias='Eucalyptus deglupta')
+    except ConflictingAliasError:
+        print("Correctly throws ConflictingAliasError")
+    session.commit()
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),

@@ -1,35 +1,37 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-# make a tag to make an alias to
-eucalyptus_deglupta = Tag.construct(session=SESSION, tag='Eucalyptus deglupta')
-SESSION.commit()
+    # make a tag to make an alias to
+    eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
+    session.commit()
 
-# make a tag to use in a conflicting alias for rainbow eucalyptus
-#trees = Tag.construct(session=SESSION, tag='trees')
-#SESSION.commit()
+    # make a tag to use in a conflicting alias for rainbow eucalyptus
+    #trees = Tag.construct(session=session, tag='trees')
+    #session.commit()
 
-# make a Alias
-alias = Alias.construct(session=SESSION, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
-SESSION.commit()
+    # make a Alias
+    alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+    session.commit()
 
-# make a wordmisspelling for rainbow
-eucalyptus_wms = WordMisSpelling.construct(session=SESSION, wordmisspelling="eucaliptus", word="eucalyptus")
+    # make a wordmisspelling for rainbow
+    eucalyptus_wms = WordMisSpelling.construct(session=session, wordmisspelling="eucaliptus", word="eucalyptus")
 
-# make a Alias with misspelled rrainbow
-alias_eucaliptus = Alias.construct(session=SESSION, tag=eucalyptus_deglupta, alias='rainbow eucaliptus')
-SESSION.commit()
+    # make a Alias with misspelled rrainbow
+    alias_eucaliptus = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucaliptus')
+    session.commit()
 
-#print("alias:", alias)
-#print("alias.tag:", alias.tag)
-#print(' ')
-#print("alias_eucaliptus:", alias_eucaliptus)
-#print("alias_eucaliptus.tag:", alias_eucaliptus.tag)
+    #print("alias:", alias)
+    #print("alias.tag:", alias.tag)
+    #print(' ')
+    #print("alias_eucaliptus:", alias_eucaliptus)
+    #print("alias_eucaliptus.tag:", alias_eucaliptus.tag)
 
-assert id(alias) == id(alias_eucaliptus)
-assert str(alias_eucaliptus.tag) == 'Eucalyptus deglupta'
-assert str(alias_eucaliptus.alias) == 'rainbow eucalyptus'
+    assert id(alias) == id(alias_eucaliptus)
+    assert str(alias_eucaliptus.tag) == 'Eucalyptus deglupta'
+    assert str(alias_eucaliptus.alias) == 'rainbow eucalyptus'
 
 db_result = [('select COUNT(*) from alias;', 1),
              ('select COUNT(*) from aliasword;', 2),

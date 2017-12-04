@@ -5,7 +5,6 @@ import shutil
 from kcl.logops import set_verbose
 from kcl.sqlalchemy.test import test as kcltest
 from kcl.sqlalchemy.print_database import print_database
-
 __version__ = 0.01
 
 # https://github.com/mitsuhiko/click/issues/441

@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-# make a tag to make an alias to
-eucalyptus_deglupta = Tag.construct(session=SESSION, tag='Eucalyptus deglupta')
-SESSION.commit()
+    # make a tag to make an alias to
+    eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
+    session.commit()
 
-# make a Alias
-#alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus', casesensitive=False)
-alias = Alias.construct(session=SESSION, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
-SESSION.commit()
+    # make a Alias
+    #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus', casesensitive=False)
+    alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+    session.commit()
 
 db_result = [('select COUNT(*) from alias;', 1),
              ('select COUNT(*) from aliasword;', 2),

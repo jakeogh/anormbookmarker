@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-ed = Word.construct(session=SESSION, word='Eucalyptus')
-SESSION.commit()
+    ed = Word.construct(session=session, word='Eucalyptus')
+    session.commit()
 
-ed_duplicate = Word.construct(session=SESSION, word='Eucalyptus')
-SESSION.commit()
+    ed_duplicate = Word.construct(session=session, word='Eucalyptus')
+    session.commit()
 
-assert id(ed) == id(ed_duplicate)
+    assert id(ed) == id(ed_duplicate)
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),

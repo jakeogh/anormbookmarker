@@ -1,26 +1,28 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-# make a tag to make an alias to
-eucalyptus_deglupta = Tag.construct(session=SESSION, tag='Eucalyptus deglupta')
-SESSION.commit()
+    # make a tag to make an alias to
+    eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
+    session.commit()
 
-# make a tag to use in a conflicting alias for rainbow eucalyptus
-trees = Tag.construct(session=SESSION, tag='trees')
-SESSION.commit()
+    # make a tag to use in a conflicting alias for rainbow eucalyptus
+    trees = Tag.construct(session=session, tag='trees')
+    session.commit()
 
-# make a Alias
-alias = Alias.construct(session=SESSION, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
-SESSION.commit()
+    # make a Alias
+    alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+    session.commit()
 
-try:
-    # make a duplicate (conflicting) Alias to a different tag (correctly throws ConflictingAliasError)
-    alias = Alias.construct(session=SESSION, tag=trees, alias='rainbow eucalyptus')
-except ConflictingAliasError:
-    print("Correctly throws ConflictingAliasError")
+    try:
+        # make a duplicate (conflicting) Alias to a different tag (correctly throws ConflictingAliasError)
+        alias = Alias.construct(session=session, tag=trees, alias='rainbow eucalyptus')
+    except ConflictingAliasError:
+        print("Correctly throws ConflictingAliasError")
 
-SESSION.commit()
+    session.commit()
 
 db_result = [('select COUNT(*) from alias;', 1),
              ('select COUNT(*) from aliasword;', 2),

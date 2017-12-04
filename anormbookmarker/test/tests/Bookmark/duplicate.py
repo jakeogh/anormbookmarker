@@ -1,24 +1,26 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-# make Filename object to attach to a Bookmark
-filename = Filename.construct(session=SESSION, filename=b"/var/log/messages")
-SESSION.commit()
+    # make Filename object to attach to a Bookmark
+    filename = Filename.construct(session=session, filename=b"/var/log/messages")
+    session.commit()
 
-# make tag
-messages = Tag.construct(session=SESSION, tag='messages')
-SESSION.commit()
+    # make tag
+    messages = Tag.construct(session=session, tag='messages')
+    session.commit()
 
-# make bookmark
-bookmark = Bookmark.construct(session=SESSION, filename=filename, tag=messages)
-SESSION.commit()
+    # make bookmark
+    bookmark = Bookmark.construct(session=session, filename=filename, tag=messages)
+    session.commit()
 
-# make duplicate bookmark
-duplicate_bookmark = Bookmark.construct(session=SESSION, filename=filename, tag=messages)
-SESSION.commit()
+    # make duplicate bookmark
+    duplicate_bookmark = Bookmark.construct(session=session, filename=filename, tag=messages)
+    session.commit()
 
-assert id(bookmark) == id(duplicate_bookmark)
+    assert id(bookmark) == id(duplicate_bookmark)
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),

@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-# make a tag to make an alias to
-eucalyptus_deglupta = Tag.construct(session=SESSION, tag='Eucalyptus deglupta')
-SESSION.commit()
+    # make a tag to make an alias to
+    eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
+    session.commit()
 
-# make a Alias
-alias = Alias.construct(session=SESSION, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
-SESSION.commit()
+    # make a Alias
+    alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+    session.commit()
 
-# create a tag that conflicts with an existing alias
-# returns existing alias target
+    # create a tag that conflicts with an existing alias
+    # returns existing alias target
 
-rainbow_eucalyptus = Tag.construct(session=SESSION, tag='rainbow eucalyptus')
-SESSION.commit()
+    rainbow_eucalyptus = Tag.construct(session=session, tag='rainbow eucalyptus')
+    session.commit()
 
-assert rainbow_eucalyptus == eucalyptus_deglupta
+    assert rainbow_eucalyptus == eucalyptus_deglupta
 
 db_result = [('select COUNT(*) from alias;', 1),
              ('select COUNT(*) from aliasword;', 2),

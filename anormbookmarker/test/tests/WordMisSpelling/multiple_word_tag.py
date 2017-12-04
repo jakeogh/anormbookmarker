@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-# make tag to misspell later
-plants_plants = Tag.construct(session=SESSION, tag='plants plants')
-SESSION.commit()
+    # make tag to misspell later
+    plants_plants = Tag.construct(session=session, tag='plants plants')
+    session.commit()
 
-# make WordMisSpelling
-plants_wms = WordMisSpelling.construct(session=SESSION, wordmisspelling="plantss", word="plants")
-SESSION.commit()
+    # make WordMisSpelling
+    plants_wms = WordMisSpelling.construct(session=session, wordmisspelling="plantss", word="plants")
+    session.commit()
 
-# test the WordMispelling (correctly does not create a 'plants plantss' tag)
-plantss = Tag.construct(session=SESSION, tag='plants plantss')
-SESSION.commit()
+    # test the WordMispelling (correctly does not create a 'plants plantss' tag)
+    plantss = Tag.construct(session=session, tag='plants plantss')
+    session.commit()
 
-assert str(plantss) == 'plants plants'
-assert id(plants_plants) == id(plantss)
+    assert str(plantss) == 'plants plants'
+    assert id(plants_plants) == id(plantss)
 
 
 db_result = [('select COUNT(*) from alias;', 0),

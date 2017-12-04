@@ -1,33 +1,35 @@
 #!/usr/bin/env python3
 
-from anormbookmarker.test.test_enviroment import *
 from anormbookmarker.Exceptions import ConflictingWordMisSpellingError
+from anormbookmarker.test.test_enviroment import *
+with self_contained_session(CONFIG.timestamp_database) as session:
+    BASE.metadata.create_all(session.bind)
 
-# make tag to misspell later
-plants = Tag.construct(session=SESSION, tag='plants')
-SESSION.commit()
+    # make tag to misspell later
+    plants = Tag.construct(session=session, tag='plants')
+    session.commit()
 
-# make tag to misspell later
-Plantss = Tag.construct(session=SESSION, tag='Plants')
-SESSION.commit()
+    # make tag to misspell later
+    Plantss = Tag.construct(session=session, tag='Plants')
+    session.commit()
 
-# make WordMisSpelling
-plants_wms = WordMisSpelling.construct(session=SESSION, wordmisspelling="plantss", word="plants")
-SESSION.commit()
+    # make WordMisSpelling
+    plants_wms = WordMisSpelling.construct(session=session, wordmisspelling="plantss", word="plants")
+    session.commit()
 
-# make conflicting WordMisSpelling
-try:
-    plants_wms = WordMisSpelling.construct(session=SESSION, wordmisspelling="plantss", word="Plants")
-    SESSION.commit()
-except ConflictingWordMisSpellingError:
-    print("Correctly raises ConflictingWordMisSpellingError")
+    # make conflicting WordMisSpelling
+    try:
+        plants_wms = WordMisSpelling.construct(session=session, wordmisspelling="plantss", word="Plants")
+        session.commit()
+    except ConflictingWordMisSpellingError:
+        print("Correctly raises ConflictingWordMisSpellingError")
 
-# make a misspelled tag to use plants_wms
-plantss = Tag.construct(session=SESSION, tag='plantss')
-SESSION.commit()
+    # make a misspelled tag to use plants_wms
+    plantss = Tag.construct(session=session, tag='plantss')
+    session.commit()
 
-assert str(plants) == 'plants'
-assert id(plants) == id(plantss)
+    assert str(plants) == 'plants'
+    assert id(plants) == id(plantss)
 
 db_result = [('select COUNT(*) from alias;', 0),
              ('select COUNT(*) from aliasword;', 0),
