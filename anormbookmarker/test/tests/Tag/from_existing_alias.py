@@ -7,16 +7,19 @@ with self_contained_session(CONFIG.timestamp_database) as session:
     # make a tag to make an alias to
     eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
     session.commit()
+    eprint(eucalyptus_deglupta)
 
     # make a Alias
     alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
     session.commit()
+    eprint(alias)
 
     # create a tag that conflicts with an existing alias
     # returns existing alias target
 
     rainbow_eucalyptus = Tag.construct(session=session, tag='rainbow eucalyptus')
     session.commit()
+    eprint(rainbow_eucalyptus)
 
     assert rainbow_eucalyptus == eucalyptus_deglupta
 
