@@ -12,6 +12,7 @@ from .AliasWord import AliasWord
 from .find_tag import find_tag
 from .find_alias import find_alias
 from kcl.sqlalchemy.BaseMixin import BASE
+from kcl.printops import ceprint
 from .Exceptions import ConflictingAliasError
 
 class Alias(BASE):
@@ -37,7 +38,7 @@ class Alias(BASE):
             raise ConflictingAliasError(error_msg)
 
         self.tag = tag
-
+        ceprint("constructing aliaswords for alias:", alias)
         for index, word in enumerate(alias.split(' ')):
             previous_position = index - 1
             if previous_position == -1:
