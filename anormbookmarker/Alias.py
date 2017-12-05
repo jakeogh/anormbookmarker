@@ -15,23 +15,25 @@ from kcl.sqlalchemy.BaseMixin import BASE
 from kcl.printops import ceprint
 from .Exceptions import ConflictingAliasError
 
+# todo:
+# does it make sense to have Aliases composed of a single AliasWord?
+# seems no, because that could just be a WordMisspelling instead
+
 class Alias(BASE):
     '''
-    List of AliasWord instances that point to a Tag
+    List of AliasWord instances that together point to a Tag
 
     '''
     id = Column(Integer, primary_key=True)
-
-    #words = relationship("AliasWord", backref='alias') # a list of AliasWord instances
     aliaswords = relationship("AliasWord", backref='alias') # a list of AliasWord instances
-
     tag_id = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
     tag = relationship('Tag', backref='aliases')
 
     def __init__(self, session, alias, tag):
         assert isinstance(alias, str)
         assert not isinstance(tag, str) # rather not import Tag
-        try:
+        assert not find_alias(session=session, alias=alias) # because get_one_or_create should have already found it
+        try: # special case only for Alias?
             conflicting_tag = find_tag(session=session, tag=alias)
             assert not conflicting_tag #dont create aliase that conflict with an existing tag
         except AssertionError:
@@ -45,10 +47,9 @@ class Alias(BASE):
             if previous_position == -1:
                 previous_position = None
             ceprint("AliasWord, position:", index, "previous_position:", previous_position)
-            aliasword = AliasWord(position=index, previous_position=previous_position)
-            aliasword.word = Word.construct(session=session, word=word)
+            aliasword = AliasWord(alias_id=self.id, position=index, previous_position=previous_position)
+            aliasword.word = Word.construct(session=session, word=word) #todo should be get_one_or_create?
             self.aliaswords.append(aliasword)
-
         session.add(self)
         session.flush(objects=[self]) # any db error will happen here, like attempting to add a duplicate alias
         # maybe return the already existing alias if it's a duplicate or conflicting
@@ -77,5 +78,4 @@ class Alias(BASE):
 
     def __repr__(self):
         return str(self.alias)
-
 
