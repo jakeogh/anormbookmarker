@@ -43,7 +43,7 @@ class AliasWord(BASE):
                      unique=False,
                      primary_key=True)
     # Must be signed int because -1 has special meaning
-    position_constraint = 'position<100' #limit words/alias to 100 # bug: why 100?
+    position_constraint = 'position<100' #limit words/alias to 100
     position = Column(Integer,
                       CheckConstraint(position_constraint),
                       unique=False,

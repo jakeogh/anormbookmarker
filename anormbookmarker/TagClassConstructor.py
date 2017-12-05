@@ -50,7 +50,6 @@ class TagClassConstructor():
         class_attr = {}
         class_attr['id'] = Column(Integer, primary_key=True)
         class_attr['tagwords'] = relationship("TagWord", backref='tag') # list of TagWord instances
-
         class_attr['parents'] = relationship('Tag',
                                                 secondary=tag_relationship,
                                                 primaryjoin=tag_relationship.c.tag_id == class_attr['id'],
@@ -62,32 +61,31 @@ class TagClassConstructor():
         class_attr['target_class_name'] = target_class_name
         class_attr['target_name'] = target_name
 
-        class_attr['construct'] = construct
-        class_attr['__repr__'] = display
         class_attr['__init__'] = init
-        class_attr['tag'] = tag
-        class_attr[target_name+'s'] = tag_targets
-        class_attr['words'] = words
+        class_attr['__repr__'] = display
+        class_attr['construct'] = construct         # @classmethod
+        class_attr['tag'] = tag                     # @property
+        class_attr[target_name+'s'] = tag_targets   # @hybrid_property
+        class_attr['words'] = words                 # @hybrid_property
         return type('Tag', (BASE,), class_attr)
 
 
 def init(self, session, tag):
     assert isinstance(tag, str)
-    assert not find_tag(session=session, tag=tag)
+    assert not find_tag(session=session, tag=tag) # because get_one_or_create should have already found it
     #assert not find_alias(session=session, alias=tag) #todo
-
     for index, word in enumerate(tag.split(' ')):
         previous_position = index - 1
         if previous_position == -1:
             previous_position = None
-        tagword = TagWord(position=index,
-                          previous_position=previous_position)
+        tagword = TagWord(position=index, previous_position=previous_position)
         tagword.word = Word.construct(session=session, word=word)
         self.tagwords.append(tagword)
-
     session.add(self)
     session.flush(objects=[self])
 
+def display(self):
+    return str(self.tag)
 
 @classmethod
 def construct(cls, session, tag, **kwargs):
@@ -99,17 +97,12 @@ def construct(cls, session, tag, **kwargs):
     existing_alias = find_alias(session=session, alias=tag)
     if existing_alias:
         return existing_alias.tag
-
     existing_tag = find_tag(session=session, tag=tag)
     if existing_tag:
         return existing_tag
     else:
         new_tag = cls(tag=tag, session=session)
         return new_tag
-
-
-def display(self):
-    return str(self.tag)
 
 @property
 def tag(self): # appears to always return the same result as tag_with_checks()

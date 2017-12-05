@@ -61,12 +61,11 @@ class TagWord(BASE):
     word = relationship("Word", backref='tagwords')
 
     def __repr__(self):
+        return 'TagWord<' + \
+            'word: ' + str(self.word) + \
+            ', tag_id: ' + str(self.tag_id) + \
+            ', word_id: ' + str(self.word_id) + \
+            ', position: ' + str(self.position) + '>'
+
+    def __repr__(self):
         return str(self.word)
-
-#    def __repr__(self):
-#        return 'TagWord<' + \
-#            'word: ' + str(self.word) + \
-#            ', tag_id: ' + str(self.tag_id) + \
-#            ', word_id: ' + str(self.word_id) + \
-#            ', position: ' + str(self.position) + '>'
-
