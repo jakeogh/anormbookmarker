@@ -24,11 +24,11 @@ class Alias(BASE):
     List of AliasWord instances that together point to a Tag
 
     '''
+    id = Column(Integer, primary_key=True)
     aliaswords = relationship("AliasWord", backref='alias') # a list of AliasWord instances
 
     def __new__(self, session, alias, tag):
 
-        id = Column(Integer, primary_key=True)
         tag_id = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
         tag = relationship('Tag', backref='aliases')
 
