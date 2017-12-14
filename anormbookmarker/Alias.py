@@ -27,7 +27,9 @@ class Alias(BASE):
     id = Column(Integer, primary_key=True)
     aliaswords = relationship("AliasWord", backref='alias') # a list of AliasWord instances
 
-    def __new__(self, session, alias, tag):
+    def __new__(self, session, alias, tag): # called when Alias() is first called, not when a @classmethod is called
+        assert isinstance(alias, str)
+        assert not isinstance(tag, str) # rather not import Tag
 
         tag_id = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
         tag = relationship('Tag', backref='aliases')
