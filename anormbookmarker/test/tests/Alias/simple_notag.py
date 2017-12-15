@@ -5,14 +5,14 @@ with self_contained_session(CONFIG.timestamp_database) as session:
     BASE.metadata.create_all(session.bind)
 
     # make a tag to make an alias to
-    #eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
-    #session.commit()
+    eucalyptus_deglupta = Tag.construct(session=session, tag='Eucalyptus deglupta')
+    session.commit()
 
     # make a Alias
     #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus', casesensitive=False)
     import pdb; pdb.set_trace()
-    #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
-    alias = Alias.construct(session=session, alias='rainbow eucalyptus')
+    alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
+    #alias = Alias.construct(session=session, alias='rainbow eucalyptus')
 
     session.commit()
 
