@@ -30,21 +30,27 @@ class Alias(BASE):
     tag_id = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
     tag = relationship('Tag', backref='aliases')
 
-    def __init__(self, session, alias, tag): #why use __init__ intead of construct?
-    #def __init__(self, session, alias):
-        assert isinstance(alias, str)
-        #assert not isinstance(tag, str) # rather not import Tag
-        assert not find_alias(session=session, alias=alias) # because get_one_or_create should have already found it
-        #try: # special case only for Alias?
-        #    conflicting_tag = find_tag(session=session, tag=alias)
-        #    assert not conflicting_tag #dont create aliase that conflict with an existing tag
-        #except AssertionError:
-        #    error_msg = "alias: '%s' conflicts with existing tag: %s" % (alias, conflicting_tag)
-        #    raise ConflictingAliasError(error_msg)
+    #def __init__(self, session, alias, tag): #why use __init__ intead of construct?
+    ##def __init__(self, session, alias):
+    #    assert isinstance(alias, str)
+    #    #assert not isinstance(tag, str) # rather not import Tag
+    #    #assert not find_alias(session=session, alias=alias) # because get_one_or_create should have already found it
 
+    #    # maybe return the already existing alias if it's a duplicate or conflicting
+
+    @classmethod
+    def construct(cls, session, alias, tag):
+    #def construct(cls, session, alias):
+        '''
+        prevents creation of duplicate alias
+        prevents creation of a alias that conflicts with an existing tag
+        '''
+        assert alias
+        assert isinstance(alias, str)
+        assert tag
         self.tag = tag #hmmm already have a class attribute...
         ceprint("constructing aliaswords for alias:", alias)
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
         for index, word in enumerate(alias.split(' ')):
             previous_position = index - 1
             if previous_position == -1:
@@ -57,17 +63,12 @@ class Alias(BASE):
             self.aliaswords.append(aliasword)
         session.add(self)
         session.flush(objects=[self]) # any db error will happen here, like attempting to add a duplicate alias
-        # maybe return the already existing alias if it's a duplicate or conflicting
-
-    @classmethod
-    def construct(cls, session, alias, tag):
-    #def construct(cls, session, alias):
-        '''
-        prevents creation of duplicate alias
-        prevents creation of a alias that conflicts with an existing tag
-        '''
-        assert alias
-        assert tag
+        #try: # special case only for Alias?
+        #    conflicting_tag = find_tag(session=session, tag=alias)
+        #    assert not conflicting_tag #dont create aliase that conflict with an existing tag
+        #except AssertionError:
+        #    error_msg = "alias: '%s' conflicts with existing tag: %s" % (alias, conflicting_tag)
+        #    raise ConflictingAliasError(error_msg)
         assert session
         #existing_tag = find_tag(session=session, tag=alias) #todo?
         #existing_alias = find_alias(session=session, alias=alias, tag=tag)
