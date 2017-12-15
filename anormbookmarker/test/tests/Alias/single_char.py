@@ -10,7 +10,7 @@ with self_contained_session(CONFIG.timestamp_database) as session:
 
     # make a Alias # todo, this single char case shouldnt be allowed, prob no single AliasWord Alias instances
     #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus', casesensitive=False)
-    e_lowercase_alias = Alias.construct(session=session, tag=euppercase_tag, alias='e')
+    e_lowercase_alias = Alias.construct(session=session, tag=e_uppercase_tag, alias='e')
     session.commit()
 
 db_result = [('select COUNT(*) from alias;', 1),
