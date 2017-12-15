@@ -57,22 +57,22 @@ class Alias(BASE):
         # maybe return the already existing alias if it's a duplicate or conflicting
 
     @classmethod
-    #def construct(cls, session, alias, tag):
-    def construct(cls, session, alias):
+    def construct(cls, session, alias, tag):
+    #def construct(cls, session, alias):
         '''
         prevents creation of duplicate alias
         prevents creation of a alias that conflicts with an existing tag
         '''
         assert alias
-        #assert tag
+        assert tag
         #existing_tag = find_tag(session=session, tag=alias) #todo?
         #existing_alias = find_alias(session=session, alias=alias, tag=tag)
         existing_alias = find_alias(session=session, alias=alias)
         if existing_alias:
             return existing_alias #todo check if it points to the same tag
         else:
-            #new_alias = Alias(alias=alias, tag=tag, session=session)
-            new_alias = Alias(alias=alias, session=session)
+            new_alias = Alias(alias=alias, tag=tag, session=session)
+            #new_alias = Alias(alias=alias, session=session)
             assert new_alias
             return new_alias
 
