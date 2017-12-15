@@ -41,7 +41,7 @@ class Alias(BASE):
         #    error_msg = "alias: '%s' conflicts with existing tag: %s" % (alias, conflicting_tag)
         #    raise ConflictingAliasError(error_msg)
 
-        #self.tag = tag #hmmm already have a class attribute...
+        self.tag = tag #hmmm already have a class attribute...
         ceprint("constructing aliaswords for alias:", alias)
         for index, word in enumerate(alias.split(' ')):
             previous_position = index - 1
