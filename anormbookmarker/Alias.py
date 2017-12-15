@@ -29,8 +29,8 @@ class Alias(BASE):
     tag_id = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
     tag = relationship('Tag', backref='aliases')
 
-    #def __init__(self, session, alias, tag):
-    def __init__(self, session, alias):
+    def __init__(self, session, alias, tag):
+    #def __init__(self, session, alias):
         assert isinstance(alias, str)
         #assert not isinstance(tag, str) # rather not import Tag
         assert not find_alias(session=session, alias=alias) # because get_one_or_create should have already found it
