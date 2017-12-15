@@ -49,7 +49,14 @@ class Alias(BASE):
         assert alias
         assert isinstance(alias, str)
         assert tag
+        existing_alias = find_alias(session=session, alias=alias)
+        if existing_alias:
+            return existing_alias #todo check if it points to the same tag
+        else:
+            #new_alias = Alias(alias=alias, tag=tag, session=session)
+            alias = get_one_or_create(session, Alias, alias=alias, tag=tag)
         #self.tag = tag #hmmm already have a class attribute...
+
         ceprint("constructing aliaswords for alias:", alias)
         #import pdb; pdb.set_trace()
         for index, word in enumerate(alias.split(' ')):
@@ -61,9 +68,9 @@ class Alias(BASE):
             #aliasword = AliasWord(alias_id=self.id, position=index, previous_position=previous_position)
             aliasword = AliasWord(position=index, previous_position=previous_position) #no construct()?
             aliasword.word = Word.construct(session=session, word=word) #todo should be get_one_or_create?, no there is a construct()
-            self.aliaswords.append(aliasword)
-        session.add(self)
-        session.flush(objects=[self]) # any db error will happen here, like attempting to add a duplicate alias
+            alias.aliaswords.append(aliasword)
+        #session.add(self)
+        #session.flush(objects=[self]) # any db error will happen here, like attempting to add a duplicate alias
         #try: # special case only for Alias?
         #    conflicting_tag = find_tag(session=session, tag=alias)
         #    assert not conflicting_tag #dont create aliase that conflict with an existing tag
@@ -72,15 +79,7 @@ class Alias(BASE):
         #    raise ConflictingAliasError(error_msg)
         #existing_tag = find_tag(session=session, tag=alias) #todo?
         #existing_alias = find_alias(session=session, alias=alias, tag=tag)
-        existing_alias = find_alias(session=session, alias=alias)
-        if existing_alias:
-            return existing_alias #todo check if it points to the same tag
-        else:
-            #new_alias = Alias(alias=alias, tag=tag, session=session)
-            new_alias = get_one_or_create(session, Alias, alias=alias, tag=tag)
-            #new_alias = Alias(alias=alias, session=session)
-            assert new_alias
-            return new_alias
+        return alias
 
     @property
     def alias(self): # appears to always return the same result as tag_with_checks()
