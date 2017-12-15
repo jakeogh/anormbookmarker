@@ -10,7 +10,7 @@ with self_contained_session(CONFIG.timestamp_database) as session:
 
     # make a Alias
     #alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus', casesensitive=False)
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     alias = Alias.construct(session=session, tag=eucalyptus_deglupta, alias='rainbow eucalyptus')
     #alias = Alias.construct(session=session, alias='rainbow eucalyptus')
 
