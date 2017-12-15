@@ -43,6 +43,7 @@ class Alias(BASE):
 
         self.tag = tag #hmmm already have a class attribute...
         ceprint("constructing aliaswords for alias:", alias)
+        import pdb; pdb.set_trace()
         for index, word in enumerate(alias.split(' ')):
             previous_position = index - 1
             if previous_position == -1:
