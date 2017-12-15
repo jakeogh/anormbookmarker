@@ -14,7 +14,7 @@ with self_contained_session(CONFIG.timestamp_database) as session:
     session.commit()
 
 db_result = [('select COUNT(*) from alias;', 1),
-             ('select COUNT(*) from aliasword;', 2),
+             ('select COUNT(*) from aliasword;', 1),
              ('select COUNT(*) from bookmark;', 0),
              ('select COUNT(*) from filename;', 0),
              ('select COUNT(*) from tag;', 1),
