@@ -6,6 +6,7 @@ from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy.orm import relationship
+from sqlalchemy.ext.hybrid import hybrid_property
 from .Config import CONFIG
 from .Word import Word
 from .AliasWord import AliasWord
