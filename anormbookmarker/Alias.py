@@ -68,6 +68,7 @@ class Alias(BASE):
         '''
         assert alias
         assert tag
+        assert session
         #existing_tag = find_tag(session=session, tag=alias) #todo?
         #existing_alias = find_alias(session=session, alias=alias, tag=tag)
         existing_alias = find_alias(session=session, alias=alias)
