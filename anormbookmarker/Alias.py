@@ -33,7 +33,6 @@ class Alias(BASE):
 
     @classmethod
     def construct(cls, session, alias, tag):
-    #def construct(cls, session, alias):
         '''
         prevents creation of duplicate alias
         prevents creation of a alias that conflicts with an existing tag
@@ -62,7 +61,7 @@ class Alias(BASE):
                 previous_position = None
             ceprint("AliasWord: word:", word, "position:", index, "previous_position:", previous_position)
             aliasword = AliasWord(position=index, previous_position=previous_position) #no construct()?
-            aliasword.word = Word.construct(session=session, word=word) #todo should be get_one_or_create?, no there is a construct()
+            aliasword.word = Word.construct(session=session, word=word)
             new_alias.aliaswords.append(aliasword)
         #session.add(self)
         #session.flush(objects=[self]) # any db error will happen here, like attempting to add a duplicate alias

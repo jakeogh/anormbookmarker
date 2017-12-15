@@ -84,6 +84,7 @@ class Word(BASE):
 class WordMisSpelling(BASE):
     '''
     alias of a word, intended to be used for misspellings
+    TODO: add rules, like x is a mispelling iff it appears before/after y
     '''
     id = Column(Integer, primary_key=True)
     wordmisspelling = Column(Unicode(CONFIG.word_max_length),
