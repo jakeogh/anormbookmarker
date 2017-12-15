@@ -66,7 +66,7 @@ class Alias(BASE):
             if previous_position == -1:
                 previous_position = None
             # right here, self.id is None.
-            ceprint("AliasWord, position:", index, "previous_position:", previous_position)
+            ceprint("AliasWord: word:", word, "position:", index, "previous_position:", previous_position)
             #aliasword = AliasWord(alias_id=self.id, position=index, previous_position=previous_position)
             aliasword = AliasWord(position=index, previous_position=previous_position) #no construct()?
             aliasword.word = Word.construct(session=session, word=word) #todo should be get_one_or_create?, no there is a construct()
