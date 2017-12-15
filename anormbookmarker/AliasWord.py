@@ -37,7 +37,8 @@ class AliasWord(BASE):
     alias_id = Column(Integer,
                     ForeignKey("alias.id"),
                     unique=False,
-                    primary_key=True)
+                    primary_key=True,
+                    autoincrement=True)
     word_id = Column(Integer,
                      ForeignKey("word.id"),
                      unique=False,
