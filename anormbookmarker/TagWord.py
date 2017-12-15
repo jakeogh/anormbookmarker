@@ -9,7 +9,7 @@ from sqlalchemy import CheckConstraint
 from sqlalchemy import Integer
 from sqlalchemy.orm import relationship
 from kcl.sqlalchemy.BaseMixin import BASE
-from kcl.printops import ceprint
+#from kcl.printops import ceprint
 
 class TagWord(BASE):
     '''
@@ -67,5 +67,5 @@ class TagWord(BASE):
             ', word_id: ' + str(self.word_id) + \
             ', position: ' + str(self.position) + '>'
 
-    def __repr__(self):
-        return str(self.word)
+#    def __repr__(self):
+#        return str(self.word)

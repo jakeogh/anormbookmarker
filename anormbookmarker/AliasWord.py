@@ -9,7 +9,6 @@ from sqlalchemy import CheckConstraint
 from sqlalchemy import Integer
 from sqlalchemy.orm import relationship
 from kcl.sqlalchemy.BaseMixin import BASE
-from kcl.printops import ceprint
 
 class AliasWord(BASE):
     '''
@@ -35,10 +34,10 @@ class AliasWord(BASE):
     '''
     __table_args__ = (UniqueConstraint('alias_id', 'word_id', 'position', 'previous_position'),)
     alias_id = Column(Integer,
-                    ForeignKey("alias.id"),
-                    unique=False,
-                    primary_key=True,
-                    autoincrement=True)
+                      ForeignKey("alias.id"),
+                      unique=False,
+                      primary_key=True,
+                      autoincrement=True)
     word_id = Column(Integer,
                      ForeignKey("word.id"),
                      unique=False,
@@ -66,4 +65,3 @@ class AliasWord(BASE):
             ', alias_id: ' + str(self.alias_id) + \
             ', word_id: ' + str(self.word_id) + \
             ', position: ' + str(self.position) + '>'
-

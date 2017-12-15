@@ -18,13 +18,10 @@ def find_tag(session, tag):
     corrected_tag = tag
     possible_tag_set = set([])
     assert isinstance(tag, str)
-    #print("\ntag:", tag)
     tag_split = tag.split(' ')
-    #print("tag_split:", tag_split)
 
     corrected_tag = tag
     for index, word in enumerate(tag_split):
-        #print("index, word:", index, word)
         try:
             wordmisspelling = session.query(WordMisSpelling).filter_by(wordmisspelling=word).one()
             target_word = wordmisspelling.word
@@ -39,39 +36,28 @@ def find_tag(session, tag):
 
     try:
         for index, word in enumerate(corrected_tag_split):
-            #print("index, word:", index, word)
             current_word = session.query(Word).filter_by(word=word).one()
-            #print("current_word:", current_word)
             current_tagword_list = session.query(TagWord).filter_by(word=current_word, position=index).all()
-            #print("current_tagword_list:", current_tagword_list)
             if current_tagword_list:
-                #print('possible_tag_set:', possible_tag_set)
                 current_tagword_list_tag_set = set([tagword.tag for tagword in current_tagword_list])
-                #print('current_tagword_list_tag_set:', current_tagword_list_tag_set)
                 if not possible_tag_set:
                     possible_tag_set = current_tagword_list_tag_set
                 else:
                     possible_tag_set = possible_tag_set & current_tagword_list_tag_set
-                #print('possible_tag_set:', possible_tag_set)
                 for tagword in current_tagword_list:
                     if index == 0: # only add tags that start with the correct word
                         possible_tag_set.add(tagword.tag)
                     else:
                         if tagword.tag not in possible_tag_set:
-                            #print("tagword.tag:", tagword.tag, "is not in possible_tag_set:", possible_tag_set)
                             return False
                 if not possible_tag_set:
-                    #print("not possible_tag_set:", possible_tag_set)
                     return False
                 if len(possible_tag_set) == 1:
                     last_tag = list(possible_tag_set)[0]
                     last_tag_text = str(last_tag)
                     if last_tag_text == corrected_tag:
-                        #print("returning last_tag:", last_tag)
                         return last_tag
-                    else:
-                        #print("last_tag_text:", last_tag_text, "!= corrected_tag:", corrected_tag)
-                        return False
+                    return False
     except NoResultFound: # any failed query
         #print("NoResultFound returning False")
         return False

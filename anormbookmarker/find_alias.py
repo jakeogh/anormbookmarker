@@ -67,4 +67,3 @@ def find_alias(session, alias, tag=False):
                         return False
     except NoResultFound: # any failed query
         return False
-

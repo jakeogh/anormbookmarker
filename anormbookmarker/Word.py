@@ -105,12 +105,12 @@ class WordMisSpelling(BASE):
             word = session.query(Word).filter_by(word=word).one()
         except NoResultFound:
             print("cant add WordMisSpelling:", wordmisspelling,
-                   "the target word:", word, "does not exist.")
+                  "the target word:", word, "does not exist.")
             raise MissingWordError # todo write test
         try:
             existing_word = session.query(Word).filter_by(word=wordmisspelling).one()
             print("cant add WordMisSpelling:", wordmisspelling,
-                   "identical Word exists:", existing_word)
+                  "identical Word exists:", existing_word)
             raise ConflictingWordError # todo write test
         except NoResultFound:
             pass
@@ -124,8 +124,8 @@ class WordMisSpelling(BASE):
                 return existing_wordmisspelling
             else:
                 print("cant add WordMisSpelling:", wordmisspelling,
-                       "because it already exists and does not point to word:", word,
-                       "instead it already points to word:", existing_wordmisspelling.word)
+                      "because it already exists and does not point to word:", word,
+                      "instead it already points to word:", existing_wordmisspelling.word)
                 raise ConflictingWordMisSpellingError
 
         result = get_one_or_create(session,

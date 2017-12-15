@@ -7,15 +7,14 @@ from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_property
-from .Config import CONFIG
+from kcl.sqlalchemy.BaseMixin import BASE
+from kcl.printops import ceprint
+from kcl.sqlalchemy.get_one_or_create import get_one_or_create
 from .Word import Word
 from .AliasWord import AliasWord
 from .find_tag import find_tag
 from .find_alias import find_alias
-from kcl.sqlalchemy.BaseMixin import BASE
-from kcl.printops import ceprint
 from .Exceptions import ConflictingAliasError
-from kcl.sqlalchemy.get_one_or_create import get_one_or_create
 
 # todo:
 # does it make sense to have Aliases composed of a single AliasWord?
@@ -85,4 +84,3 @@ class Alias(BASE):
 
     def __repr__(self):
         return str(self.alias)
-

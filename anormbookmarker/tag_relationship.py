@@ -6,7 +6,6 @@ from sqlalchemy import Table
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
-from sqlalchemy import UniqueConstraint
 from sqlalchemy import CheckConstraint
 from kcl.sqlalchemy.BaseMixin import BASE
 

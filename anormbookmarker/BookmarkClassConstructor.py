@@ -14,7 +14,6 @@ from sqlalchemy import UniqueConstraint
 from sqlalchemy import Integer
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import backref
-from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.associationproxy import association_proxy
 from kcl.sqlalchemy.get_one_or_create import get_one_or_create
 from kcl.sqlalchemy.BaseMixin import BASE
@@ -40,7 +39,7 @@ def construct(cls, session, tag, **kwargs):
     result.tag_rel.add(tag)
     return result
 
-def repr(self):
+def bookmark_repr(self):
     return str(getattr(self, self.target_name)) + ' ' + str(self.tags)
 
 class BookmarkClassConstructor():
@@ -61,5 +60,5 @@ class BookmarkClassConstructor():
         future_class_attr['target_name'] = target_name
 
         future_class_attr['construct'] = construct
-        future_class_attr['__repr__'] = repr
+        future_class_attr['__repr__'] = bookmark_repr
         return type('Bookmark', (BASE,), future_class_attr)

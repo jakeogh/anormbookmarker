@@ -36,7 +36,7 @@ So, actually, Tag.words is a list of TagWord instances, not Word instances.
 from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy.orm import relationship
-from sqlalchemy.orm import backref
+#from sqlalchemy.orm import backref
 from sqlalchemy.ext.hybrid import hybrid_property
 from kcl.sqlalchemy.BaseMixin import BASE
 from .Word import Word
@@ -51,10 +51,10 @@ class TagClassConstructor():
         class_attr['id'] = Column(Integer, primary_key=True)
         class_attr['tagwords'] = relationship("TagWord", backref='tag') # list of TagWord instances
         class_attr['parents'] = relationship('Tag',
-                                                secondary=tag_relationship,
-                                                primaryjoin=tag_relationship.c.tag_id == class_attr['id'],
-                                                secondaryjoin=tag_relationship.c.tag_parent_id == class_attr['id'],
-                                                backref="children")
+                                             secondary=tag_relationship,
+                                             primaryjoin=tag_relationship.c.tag_id == class_attr['id'],
+                                             secondaryjoin=tag_relationship.c.tag_parent_id == class_attr['id'],
+                                             backref="children")
         target_class_name = mapper_to_bookmark.__name__
         target_name = target_class_name.lower().split('.')[-1] # 'filename' usually
 
@@ -64,7 +64,7 @@ class TagClassConstructor():
         class_attr['__init__'] = init
         class_attr['__repr__'] = display
         class_attr['construct'] = construct         # @classmethod
-        class_attr['tag'] = tag                     # @property
+        class_attr['tag'] = build_tag               # @property
         class_attr[target_name+'s'] = tag_targets   # @hybrid_property
         class_attr['words'] = words                 # @hybrid_property
         return type('Tag', (BASE,), class_attr)
@@ -100,12 +100,11 @@ def construct(cls, session, tag, **kwargs):
     existing_tag = find_tag(session=session, tag=tag)
     if existing_tag:
         return existing_tag
-    else:
-        new_tag = cls(tag=tag, session=session)
-        return new_tag
+    new_tag = cls(tag=tag, session=session)
+    return new_tag
 
 @property
-def tag(self): # appears to always return the same result as tag_with_checks()
+def build_tag(self): # appears to always return the same result as tag_with_checks()
     tag = " ".join([str(word) for word in self.words])
     return tag
 
