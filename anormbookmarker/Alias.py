@@ -36,7 +36,6 @@ class Alias(BASE):
     #    assert isinstance(alias, str)
     #    #assert not isinstance(tag, str) # rather not import Tag
     #    #assert not find_alias(session=session, alias=alias) # because get_one_or_create should have already found it
-
     #    # maybe return the already existing alias if it's a duplicate or conflicting
 
     @classmethod
