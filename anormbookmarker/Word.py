@@ -33,7 +33,7 @@ from .Exceptions import MissingWordError
 
 class Word(BASE):
     '''
-    Words are grouped in a specific order by a list TagWord instances
+    Words are grouped in a specific order by a list of TagWord instances
     1 or more TagWord instances make up a Tag
     before a Word is created we must make sure it's not already a WordMisSpelling
     the only restrictions on words is they can not contain SPACE
@@ -53,7 +53,7 @@ class Word(BASE):
         try:
             wordmisspelling = \
                 session.query(WordMisSpelling).filter_by(wordmisspelling=word).one()
-            result = get_one_or_create(session, Word, word=wordmisspelling.word)
+            result = get_one_or_create(session, Word, word=wordmisspelling.word) #hm, should this be used here?
         except NoResultFound:
             result = get_one_or_create(session, Word, word=word)
         #print("returning result:", result)

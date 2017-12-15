@@ -33,9 +33,6 @@ class Alias(BASE):
 
     #def __init__(self, session, alias, tag): #why use __init__ intead of construct?
     ##def __init__(self, session, alias):
-    #    assert isinstance(alias, str)
-    #    #assert not isinstance(tag, str) # rather not import Tag
-    #    #assert not find_alias(session=session, alias=alias) # because get_one_or_create should have already found it
     #    # maybe return the already existing alias if it's a duplicate or conflicting
 
     @classmethod
@@ -49,24 +46,19 @@ class Alias(BASE):
         assert alias
         assert isinstance(alias, str)
         assert tag
+        assert not isinstance(tag, str) # rather not import Tag
         existing_alias = find_alias(session=session, alias=alias)
         if existing_alias:
             return existing_alias #todo check if it points to the same tag
         else:
-            #new_alias = Alias(alias=alias, tag=tag, session=session)
-            #alias = get_one_or_create(session, Alias, alias=alias, tag=tag)
             new_alias = get_one_or_create(session, Alias, tag=tag)
-        #self.tag = tag #hmmm already have a class attribute...
 
         ceprint("constructing aliaswords for alias:", alias)
-        #import pdb; pdb.set_trace()
         for index, word in enumerate(alias.split(' ')):
             previous_position = index - 1
             if previous_position == -1:
                 previous_position = None
-            # right here, self.id is None.
             ceprint("AliasWord: word:", word, "position:", index, "previous_position:", previous_position)
-            #aliasword = AliasWord(alias_id=self.id, position=index, previous_position=previous_position)
             aliasword = AliasWord(position=index, previous_position=previous_position) #no construct()?
             aliasword.word = Word.construct(session=session, word=word) #todo should be get_one_or_create?, no there is a construct()
             new_alias.aliaswords.append(aliasword)
