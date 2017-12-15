@@ -26,8 +26,8 @@ class Alias(BASE):
     '''
     id = Column(Integer, primary_key=True)
     aliaswords = relationship("AliasWord", backref='alias') # a list of AliasWord instances
-    #tag_id = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
-    #tag = relationship('Tag', backref='aliases')
+    tag_id = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
+    tag = relationship('Tag', backref='aliases')
 
     #def __init__(self, session, alias, tag):
     def __init__(self, session, alias):
