@@ -82,6 +82,13 @@ class Alias(BASE):
         #existing_alias = find_alias(session=session, alias=alias, tag=tag)
         return alias
 
+    @hybrid_property
+    def words(self):
+        word_list = []
+        for aliasword in self.aliaswords:
+            word_list.append(aliasword.word)
+        return word_list # cant be a set because "a a" -> "a"
+
     @property
     def alias(self): # appears to always return the same result as tag_with_checks()
         alias = " ".join([str(word.word) for word in self.words])
