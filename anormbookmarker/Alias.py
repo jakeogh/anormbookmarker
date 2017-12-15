@@ -31,10 +31,6 @@ class Alias(BASE):
     tag_id = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
     tag = relationship('Tag', backref='aliases')
 
-    #def __init__(self, session, alias, tag): #why use __init__ intead of construct?
-    ##def __init__(self, session, alias):
-    #    # maybe return the already existing alias if it's a duplicate or conflicting
-
     @classmethod
     def construct(cls, session, alias, tag):
     #def construct(cls, session, alias):
@@ -47,6 +43,12 @@ class Alias(BASE):
         assert isinstance(alias, str)
         assert tag
         assert not isinstance(tag, str) # rather not import Tag
+        try: # special case only for Alias? or shpould tags also check for existing aliases?
+            conflicting_tag = find_tag(session=session, tag=alias)
+            assert not conflicting_tag #dont create aliase that conflict with an existing tag
+        except AssertionError:
+            error_msg = "alias: '%s' conflicts with existing tag: %s" % (alias, conflicting_tag)
+            raise ConflictingAliasError(error_msg)
         existing_alias = find_alias(session=session, alias=alias)
         if existing_alias:
             return existing_alias #todo check if it points to the same tag
@@ -64,14 +66,10 @@ class Alias(BASE):
             new_alias.aliaswords.append(aliasword)
         #session.add(self)
         #session.flush(objects=[self]) # any db error will happen here, like attempting to add a duplicate alias
-        #try: # special case only for Alias?
-        #    conflicting_tag = find_tag(session=session, tag=alias)
-        #    assert not conflicting_tag #dont create aliase that conflict with an existing tag
-        #except AssertionError:
-        #    error_msg = "alias: '%s' conflicts with existing tag: %s" % (alias, conflicting_tag)
-        #    raise ConflictingAliasError(error_msg)
+
         #existing_tag = find_tag(session=session, tag=alias) #todo?
         #existing_alias = find_alias(session=session, alias=alias, tag=tag)
+
         return new_alias
 
     @hybrid_property
