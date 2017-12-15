@@ -48,10 +48,11 @@ class Alias(BASE):
             previous_position = index - 1
             if previous_position == -1:
                 previous_position = None
-            ceprint("AliasWord, alias_id:", self.id, "position:", index, "previous_position:", previous_position)
+            # right here, self.id is None.
+            ceprint("AliasWord, position:", index, "previous_position:", previous_position)
             #aliasword = AliasWord(alias_id=self.id, position=index, previous_position=previous_position)
-            aliasword = AliasWord(position=index, previous_position=previous_position)
-            aliasword.word = Word.construct(session=session, word=word) #todo should be get_one_or_create?
+            aliasword = AliasWord(position=index, previous_position=previous_position) #no construct()?
+            aliasword.word = Word.construct(session=session, word=word) #todo should be get_one_or_create?, no there is a construct()
             self.aliaswords.append(aliasword)
         session.add(self)
         session.flush(objects=[self]) # any db error will happen here, like attempting to add a duplicate alias
@@ -72,7 +73,8 @@ class Alias(BASE):
         if existing_alias:
             return existing_alias #todo check if it points to the same tag
         else:
-            new_alias = Alias(alias=alias, tag=tag, session=session)
+            #new_alias = Alias(alias=alias, tag=tag, session=session)
+            new_alias = get_one_or_create(session, Alias, alias=alias, tag=tag)
             #new_alias = Alias(alias=alias, session=session)
             assert new_alias
             return new_alias
