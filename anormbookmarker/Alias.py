@@ -45,10 +45,11 @@ class Alias(BASE):
         prevents creation of duplicate alias
         prevents creation of a alias that conflicts with an existing tag
         '''
+        assert session
         assert alias
         assert isinstance(alias, str)
         assert tag
-        self.tag = tag #hmmm already have a class attribute...
+        #self.tag = tag #hmmm already have a class attribute...
         ceprint("constructing aliaswords for alias:", alias)
         #import pdb; pdb.set_trace()
         for index, word in enumerate(alias.split(' ')):
@@ -69,7 +70,6 @@ class Alias(BASE):
         #except AssertionError:
         #    error_msg = "alias: '%s' conflicts with existing tag: %s" % (alias, conflicting_tag)
         #    raise ConflictingAliasError(error_msg)
-        assert session
         #existing_tag = find_tag(session=session, tag=alias) #todo?
         #existing_alias = find_alias(session=session, alias=alias, tag=tag)
         existing_alias = find_alias(session=session, alias=alias)
