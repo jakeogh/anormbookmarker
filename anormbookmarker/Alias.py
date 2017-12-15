@@ -56,7 +56,7 @@ class Alias(BASE):
         else:
             #new_alias = Alias(alias=alias, tag=tag, session=session)
             #alias = get_one_or_create(session, Alias, alias=alias, tag=tag)
-            alias = get_one_or_create(session, Alias, tag=tag)
+            new_alias = get_one_or_create(session, Alias, tag=tag)
         #self.tag = tag #hmmm already have a class attribute...
 
         ceprint("constructing aliaswords for alias:", alias)
@@ -70,7 +70,7 @@ class Alias(BASE):
             #aliasword = AliasWord(alias_id=self.id, position=index, previous_position=previous_position)
             aliasword = AliasWord(position=index, previous_position=previous_position) #no construct()?
             aliasword.word = Word.construct(session=session, word=word) #todo should be get_one_or_create?, no there is a construct()
-            alias.aliaswords.append(aliasword)
+            new_alias.aliaswords.append(aliasword)
         #session.add(self)
         #session.flush(objects=[self]) # any db error will happen here, like attempting to add a duplicate alias
         #try: # special case only for Alias?
@@ -81,7 +81,7 @@ class Alias(BASE):
         #    raise ConflictingAliasError(error_msg)
         #existing_tag = find_tag(session=session, tag=alias) #todo?
         #existing_alias = find_alias(session=session, alias=alias, tag=tag)
-        return alias
+        return new_alias
 
     @hybrid_property
     def words(self):
