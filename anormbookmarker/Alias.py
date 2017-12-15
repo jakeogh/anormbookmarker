@@ -14,6 +14,7 @@ from .find_alias import find_alias
 from kcl.sqlalchemy.BaseMixin import BASE
 from kcl.printops import ceprint
 from .Exceptions import ConflictingAliasError
+from kcl.sqlalchemy.get_one_or_create import get_one_or_create
 
 # todo:
 # does it make sense to have Aliases composed of a single AliasWord?
@@ -29,7 +30,7 @@ class Alias(BASE):
     tag_id = Column(Integer, ForeignKey("tag.id"), unique=False, nullable=False)
     tag = relationship('Tag', backref='aliases')
 
-    def __init__(self, session, alias, tag):
+    def __init__(self, session, alias, tag): #why use __init__ intead of construct?
     #def __init__(self, session, alias):
         assert isinstance(alias, str)
         #assert not isinstance(tag, str) # rather not import Tag
