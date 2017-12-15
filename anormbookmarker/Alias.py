@@ -54,7 +54,8 @@ class Alias(BASE):
             return existing_alias #todo check if it points to the same tag
         else:
             #new_alias = Alias(alias=alias, tag=tag, session=session)
-            alias = get_one_or_create(session, Alias, alias=alias, tag=tag)
+            #alias = get_one_or_create(session, Alias, alias=alias, tag=tag)
+            alias = get_one_or_create(session, Alias, tag=tag)
         #self.tag = tag #hmmm already have a class attribute...
 
         ceprint("constructing aliaswords for alias:", alias)
