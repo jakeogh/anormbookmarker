@@ -15,7 +15,6 @@ from anormbookmarker.Word import WordMisSpelling
 from anormbookmarker.Word import Word
 from anormbookmarker.Config import CONFIG
 from sqlalchemy_utils.functions import create_database
-from kcl.sqlalchemy.create_session import create_session
 from kcl.sqlalchemy.delete_database import delete_database
 from kcl.sqlalchemy.check_db_result import check_db_result
 from anormbookmarker.find_alias import ConflictingAliasError
