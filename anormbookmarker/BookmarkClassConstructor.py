@@ -43,7 +43,7 @@ def bookmark_repr(self):
     return str(getattr(self, self.target_name)) + ' ' + str(self.tags)
 
 class BookmarkClassConstructor():
-    def __new__(cls, mapper_to_bookmark):
+    def __new__(cls, mapper_to_bookmark, mapper_to_bookmark_placeholder=False):
         future_class_attr = {}
         future_class_attr['id'] = Column(Integer, primary_key=True)
         future_class_attr['tag_rel'] = relationship("Tag",
@@ -51,14 +51,27 @@ class BookmarkClassConstructor():
                                                     collection_class=set,
                                                     backref=backref('bookmarks'))
         future_class_attr['tags'] = association_proxy('tag_rel', 'tag')
+
         target_class_name = mapper_to_bookmark.__name__
         target_name = target_class_name.lower().split('.')[-1] # 'filename' usually
-
         future_class_attr[target_name+'_id'] = Column(Integer, ForeignKey(target_name+'.id'), unique=False, nullable=False)
         future_class_attr[target_name] = relationship(target_class_name, backref='bookmarks')
         future_class_attr['target_class_name'] = target_class_name
         future_class_attr['target_name'] = target_name
 
+        if mapper_to_bookmark_placeholder:
+            target_class_name_placeholder = mapper_to_bookmark_placeholder.__name__
+            target_name_placeholder = target_class_name_placeholder.lower().split('.')[-1] # byteoffset in the filename case
+            future_class_attr[target_name_placeholder+'_id'] = Column(Integer, ForeignKey(target_name_placeholder+'.id'), unique=False, nullable=False)
+            future_class_attr[target_name_placeholder] = relationship(target_class_name_placeholder, backref='bookmarks')
+            future_class_attr['target_class_name_placeholder'] = target_class_name_placeholder
+            future_class_attr['target_name_placeholder'] = target_name_placeholder
+
         future_class_attr['construct'] = construct
         future_class_attr['__repr__'] = bookmark_repr
         return type('Bookmark', (BASE,), future_class_attr)
+
+
+
+
+
