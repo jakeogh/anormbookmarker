@@ -62,7 +62,7 @@ class BookmarkClassConstructor():
         if mapper_to_bookmark_placeholder:
             target_class_name_placeholder = mapper_to_bookmark_placeholder.__name__
             target_name_placeholder = target_class_name_placeholder.lower().split('.')[-1] # byteoffset in the filename case
-            future_class_attr[target_name_placeholder+'_id'] = Column(Integer, ForeignKey(target_name_placeholder+'.id'), unique=False, nullable=False)
+            future_class_attr[target_name_placeholder+'_id'] = Column(Integer, ForeignKey(target_name_placeholder+'.id'), unique=False, nullable=True)
             future_class_attr[target_name_placeholder] = relationship(target_class_name_placeholder, backref='bookmarks')
             future_class_attr['target_class_name_placeholder'] = target_class_name_placeholder
             future_class_attr['target_name_placeholder'] = target_name_placeholder
