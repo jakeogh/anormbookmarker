@@ -40,7 +40,11 @@ def construct(cls, session, tag, **kwargs):
     return result
 
 def bookmark_repr(self):
-    return str(getattr(self, self.target_name)) + ' ' + str(self.tags)
+    target_name = str(getattr(self, self.target_name))
+    target_name_placeholder = str(getattr(self, self.target_name_placeholder))
+    if target_name_placeholder:
+        return target_name + '#' + target_name_placeholder + ' ' + str(self.tags)
+    return target_name + ' ' + str(self.tags)
 
 class BookmarkClassConstructor():
     def __new__(cls, mapper_to_bookmark, mapper_to_bookmark_placeholder=False):
