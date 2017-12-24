@@ -28,4 +28,6 @@ logger.setLevel(logging.CRITICAL)
 logging.basicConfig()
 logging.getLogger('sqlalchemy.engine').setLevel(logging.CRITICAL)
 
-create_database(CONFIG.timestamp_database)
+CONFIG.database = CONFIG.database_timestamp
+
+create_database(CONFIG.database)
