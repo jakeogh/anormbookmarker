@@ -12,6 +12,7 @@ from anormbookmarker.Word import WordMisSpelling
 from anormbookmarker.Word import Word
 from anormbookmarker.find_alias import ConflictingAliasError
 
+from sqlalchemy_utils.functions import create_database
 from anormbookmarker.Config import CONFIG
 CONFIG.database = CONFIG.database_timestamp
 create_database(CONFIG.database)
