@@ -16,7 +16,7 @@ CONTEXT_SETTINGS = \
 @click.group(context_settings=CONTEXT_SETTINGS)
 @click.option('--verbose', is_flag=True)
 @click.option('--database', is_flag=False, type=str, required=False)
-@click.option('--temp-database', is_flag=True, required=False)
+@click.option('--temp-database', is_flag=True, required=False, default=True)
 @click.pass_context
 def anormbookmarker(ctx, verbose, database, temp_database):
     '''anormbookmarker'''
