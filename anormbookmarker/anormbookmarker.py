@@ -6,7 +6,8 @@ from sqlalchemy_utils.functions import database_exists
 from sqlalchemy_utils.functions import create_database
 from kcl.sqlalchemy.test import test as kcltest
 from kcl.sqlalchemy.print_database import print_database
-from kcl.sqlalchemy.model.Config import CONFIG
+from .Config import CONFIG
+#from kcl.sqlalchemy.model.Config import CONFIG
 from kcl.sqlalchemy.self_contained_session import self_contained_session
 from kcl.sqlalchemy.BaseMixin import BASE
 
