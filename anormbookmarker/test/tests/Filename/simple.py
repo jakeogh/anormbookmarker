@@ -4,7 +4,7 @@ from anormbookmarker.test.test_enviroment import *
 with self_contained_session(CONFIG.timestamp_database) as session:
     BASE.metadata.create_all(session.bind)
 
-    f = Filename.construct(session=session, filename=b"/var/log/messages")
+    f = Filename.construct(session=session, filename=b"messages")
     session.commit()
 
 db_result = [('select COUNT(*) from alias;', 0),

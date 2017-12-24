@@ -1,0 +1,5 @@
+#!/bin/sh
+short_package="anormbookmarker"
+group="dev-python"
+package="${group}/${short_package}"
+remote="git@github.com:jakeogh/anormbookmarker.git"

@@ -5,7 +5,7 @@ with self_contained_session(CONFIG.timestamp_database) as session:
     BASE.metadata.create_all(session.bind)
 
     # make Filename object to attach to a Bookmark
-    filename = Filename.construct(session=session, filename=b"/var/log/messages")
+    filename = Filename.construct(session=session, filename=b"messages")
     session.commit()
 
     # make tag
