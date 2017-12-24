@@ -4,6 +4,7 @@ import shutil
 import click
 from kcl.sqlalchemy.test import test as kcltest
 from kcl.sqlalchemy.print_database import print_database
+from kcl.sqlalchemy.model.Config import CONFIG
 __version__ = 0.01
 
 # https://github.com/mitsuhiko/click/issues/441
