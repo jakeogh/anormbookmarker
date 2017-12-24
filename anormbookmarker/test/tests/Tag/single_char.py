@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from anormbookmarker.test.test_enviroment import *
-with self_contained_session(CONFIG.timestamp_database, echo=False) as session:
+with self_contained_session(CONFIG.database_timestamp, echo=False) as session:
     BASE.metadata.create_all(session.bind)
 
     # make a tag to make an alias to

@@ -2,7 +2,7 @@
 
 from sqlalchemy.exc import IntegrityError
 from anormbookmarker.test.test_enviroment import *
-with self_contained_session(CONFIG.timestamp_database) as session:
+with self_contained_session(CONFIG.database_timestamp) as session:
     BASE.metadata.create_all(session.bind)
 
     try:
