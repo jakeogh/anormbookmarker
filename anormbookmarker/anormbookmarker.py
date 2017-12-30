@@ -11,8 +11,8 @@ from kcl.sqlalchemy.clickapp.print_database import print_database
 from kcl.sqlalchemy.clickapp.test import test
 from kcl.sqlalchemy.ipython import ipython
 from .cli.visualization.sa_display import sa_display
-from .cli.list_objects.list_objects import list_objects
-from .cli.create_objects.create_objects import create_objects
+#from .cli.list_objects.list_objects import list_objects
+#from .cli.create_objects.create_objects import create_objects
 
 anormbookmarker.help = CONFIG.appname + " interface"
 
