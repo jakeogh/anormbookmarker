@@ -18,6 +18,6 @@ from .cli.visualization.sa_display import sa_display
 #from .cli.list_objects.list_objects import list_objects
 #from .cli.create_objects.create_objects import create_objects
 
-fsindex.add_command(sa_display)
+anormbookmarker.add_command(sa_display)
 
 #anormbookmarker.add_command(display_database)
