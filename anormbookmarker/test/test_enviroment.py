@@ -11,6 +11,7 @@ from anormbookmarker.model.Alias import Alias
 from anormbookmarker.model.Word import WordMisSpelling
 from anormbookmarker.model.Word import Word
 from anormbookmarker.model.find_alias import ConflictingAliasError
+from anormbookmarker.model.find_alias import ConflictingWordMisSpellingError
 
 from sqlalchemy_utils.functions import create_database
 from anormbookmarker.model.Config import CONFIG

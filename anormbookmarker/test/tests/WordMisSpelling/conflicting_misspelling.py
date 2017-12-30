@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from anormbookmarker.Exceptions import ConflictingWordMisSpellingError
 from anormbookmarker.test.test_enviroment import *
 with self_contained_session(CONFIG.database_timestamp) as session:
     BASE.metadata.create_all(session.bind)
