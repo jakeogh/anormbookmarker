@@ -6,8 +6,8 @@ from anormbookmarker.model.Config import CONFIG
 builtins.config = CONFIG
 
 from kcl.sqlalchemy.clickapp.clickapp import clickapp as anormbookmarker
-builtins.appobject = anormbookmarker
 anormbookmarker.help = CONFIG.appname + " interface"
+CONFIG.appobject = anormbookmarker
 
 from kcl.sqlalchemy.clickapp.default import *
 
