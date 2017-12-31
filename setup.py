@@ -2,9 +2,9 @@
 """
 Bookmarks for attaching uncode Tags to arbitary SQLAlchemy mapper classes.
 """
-import sys
-if not sys.version_info[0] == 3:
-    sys.exit("Sorry, Python 3 is required. Use: \'python3 setup.py install\'")
+#import sys
+#if not sys.version_info[0] == 3:
+#    sys.exit("Sorry, Python 3 is required. Use: \'python3 setup.py install\'")
 
 import re
 from setuptools import find_packages, setup
