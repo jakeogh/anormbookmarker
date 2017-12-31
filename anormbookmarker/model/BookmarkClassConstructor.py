@@ -33,7 +33,7 @@ tagbookmarks_table = \
                  primary_key=True),
           UniqueConstraint('bookmark_id', 'tag_id'))
 
-#@classmethod
+@classmethod
 def construct(cls, session, tag, **kwargs):
     result = get_one_or_create(session, cls, **kwargs)
     result.tag_rel.add(tag)
