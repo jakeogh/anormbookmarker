@@ -10,8 +10,8 @@ Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
 from anormbookmarker.model.Alias import Alias
 from anormbookmarker.model.Word import WordMisSpelling
 from anormbookmarker.model.Word import Word
-from anormbookmarker.model.Exceptions import ConflictingAliasError
-from anormbookmarker.model.Exceptions import ConflictingWordMisSpellingError
+from anormbookmarker.model.exceptions import ConflictingAliasError
+from anormbookmarker.model.exceptions import ConflictingWordMisSpellingError
 
 from sqlalchemy_utils.functions import create_database
 from anormbookmarker.model.Config import CONFIG

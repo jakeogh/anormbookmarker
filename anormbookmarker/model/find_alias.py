@@ -6,7 +6,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from .Word import Word
 from .Word import WordMisSpelling
 from .AliasWord import AliasWord
-from .Exceptions import ConflictingAliasError
+from .exceptions import ConflictingAliasError
 
 def find_alias(session, alias, tag=False):
     '''

@@ -14,7 +14,7 @@ from .Word import Word
 from .AliasWord import AliasWord
 from .find_tag import find_tag
 from .find_alias import find_alias
-from .Exceptions import ConflictingAliasError
+from .exceptions import ConflictingAliasError
 
 # todo:
 # does it make sense to have Aliases composed of a single AliasWord?
