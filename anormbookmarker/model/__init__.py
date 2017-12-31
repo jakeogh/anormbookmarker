@@ -12,3 +12,5 @@ for module in os.listdir(module_path):
     cmd_to_eval = classname + ' = ' + classname + '.' + classname
     exec(cmd_to_eval) #sshhhhhhhh
 del module
+del classname
+del cmd_to_eval
