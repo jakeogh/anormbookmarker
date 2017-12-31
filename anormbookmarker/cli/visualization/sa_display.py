@@ -2,6 +2,8 @@
 
 import click
 from anormbookmarker.model import *
+from anormbookmarker.test.test_enviroment import Tag
+from anormbookmarker.test.test_enviroment import Bookmark
 #from kcl.sqlalchemy.model.FileRecord import Filename
 #from kcl.sqlalchemy.model.FileRecord import Path
 from kcl.sqlalchemy.visualization.sa_display import sa_display as kcl_sa_display
