@@ -27,13 +27,38 @@ Tags can have any number of parents and/or children.
 A Tag can not be it's own parent or child.
 
 
-![image of db schema from pydot](https://github.com/jakeogh/anormbookmarker/raw/master/dbschema.1493721547.838351.png "dbschema.png")
+![image of db schema from pydot](https://github.com/jakeogh/anormbookmarker/raw/master/dbschema.png "dbschema.png")
 
 
 Output:
 
 ```
-$ ./run_tests.py 
+
+$ anormbookmarker
+Usage: anormbookmarker [OPTIONS] COMMAND [ARGS]...
+
+  anormbookmarker interface
+
+Options:
+  --verbose
+  --database TEXT
+  --temp-database
+  --delete-database
+  --debug
+  --help             Show this message and exit.
+
+Commands:
+  debug
+  print_database
+  sa_display
+  show_config
+  test
+
+
+
+
+
+$ ./run_tests.py
 create_database() CONFIG.dbname: anormbookmarker_test_1493721990_0023692
 create_database() CONFIG.dbpath: postgres://postgres@localhost/anormbookmarker_test_1493721990_0023692
 
