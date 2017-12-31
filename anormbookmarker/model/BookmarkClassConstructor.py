@@ -46,7 +46,7 @@ def bookmark_repr(self):
         return target_name + '#' + str(target_name_placeholder) + ' ' + str(self.tags)
     return target_name + ' ' + str(self.tags)
 
-class BookmarkClassConstructor():
+class BookmarkClassConstructor(): #should be a func
     def __new__(cls, mapper_to_bookmark, mapper_to_bookmark_placeholder=False):
         future_class_attr = {}
         future_class_attr['id'] = Column(Integer, primary_key=True)
