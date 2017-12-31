@@ -3,6 +3,7 @@
 import click
 from anormbookmarker.model import *
 from anormbookmarker.model.BookmarkClassConstructor import tagbookmarks_table
+from anormbookmarker.model.word import WordMisSpelling
 from anormbookmarker.test.test_enviroment import Tag
 from anormbookmarker.test.test_enviroment import Bookmark
 from kcl.sqlalchemy.model.Filename import Filename
