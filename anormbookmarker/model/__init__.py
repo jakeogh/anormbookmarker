@@ -8,7 +8,7 @@ for module in os.listdir(module_path):
     if module == '__init__.py' or module[-3:] != '.py' or not module[0].isupper():
         continue
     classname = module[:-3]
-    __import__('iridb.model.'+classname, globals=globals(), locals=locals(), fromlist=[classname], level=0)
+    __import__('anormbookmarker.model.'+classname, globals=globals(), locals=locals(), fromlist=[classname], level=0)
     cmd_to_eval = classname + ' = ' + classname + '.' + classname
     exec(cmd_to_eval) #sshhhhhhhh
 del module
