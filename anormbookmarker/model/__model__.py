@@ -2,7 +2,7 @@
 
 ## https://stackoverflow.com/questions/1057431/how-to-load-all-modules-in-a-folder
 
-print("anormbookmarker.model.__init__.py")
+#print("anormbookmarker.model.__init__.py")
 import os
 module_path = os.path.dirname(__file__)
 for module in os.listdir(module_path):
