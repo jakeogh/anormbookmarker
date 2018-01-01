@@ -11,6 +11,7 @@ for module in os.listdir(module_path):
     classname = module[:-3]
     __import__('anormbookmarker.model.'+classname, globals=globals(), locals=locals(), fromlist=[classname], level=0)
     cmd_to_eval = classname + ' = ' + classname + '.' + classname
+    print(cmd_to_eval)
     exec(cmd_to_eval) #sshhhhhhhh
 del module
 del classname
