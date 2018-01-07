@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 
-from kcl.sqlalchemy.model.Filename import Filename
-from anormbookmarker.model.TagClassConstructor import TagClassConstructor
-Tag = TagClassConstructor(mapper_to_bookmark=Filename)
+#from kcl.sqlalchemy.model.Filename import Filename
+#from anormbookmarker.model.TagClassConstructor import TagClassConstructor
+#Tag = TagClassConstructor(mapper_to_bookmark=Filename)
 
-from anormbookmarker.model.BookmarkClassConstructor import BookmarkClassConstructor
-Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
+#from anormbookmarker.model.BookmarkClassConstructor import BookmarkClassConstructor
+#Bookmark = BookmarkClassConstructor(mapper_to_bookmark=Filename)
 
 from anormbookmarker.model.Alias import Alias
 from anormbookmarker.model.Word import WordMisSpelling
 from anormbookmarker.model.Word import Word
+from anormbookmarker.model.Tag import Tag
+from anormbookmarker.model.Bookmark import Bookmark
 from anormbookmarker.model.exceptions import ConflictingAliasError
 from anormbookmarker.model.exceptions import ConflictingWordMisSpellingError
 
