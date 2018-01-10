@@ -36,7 +36,6 @@ So, actually, Tag.words is a list of TagWord instances, not Word instances.
 from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy.orm import relationship
-#from sqlalchemy.orm import backref
 from sqlalchemy.ext.hybrid import hybrid_property
 from kcl.sqlalchemy.BaseMixin import BASE
 from .Word import Word
