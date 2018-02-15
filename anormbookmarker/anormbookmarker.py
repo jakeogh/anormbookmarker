@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import click
+#import click
 import builtins
 from anormbookmarker.model.Config import CONFIG
 builtins.config = CONFIG
